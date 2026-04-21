@@ -1,0 +1,105 @@
+---
+import Container from "../ui/Container.astro";
+import Logo from "./Logo.astro";
+import { companyName } from "../../data/site";
+
+const year = new Date().getFullYear();
+
+const serviceLinks = [
+	{ href: "/day-program", label: "Day Program" },
+	{ href: "/community-home-support", label: "Home & Community Staffing" },
+	{ href: "/funding-resources", label: "Funding & Resources" }
+];
+
+const companyLinks = [
+	{ href: "/about", label: "About" },
+	{ href: "/blog", label: "Blog" },
+	{ href: "/contact", label: "Contact" },
+	{ href: "/apply", label: "Apply" }
+];
+
+const legalLinks = [
+	{ href: "/privacy-policy", label: "Privacy Policy" },
+	{ href: "/disclaimer-terms", label: "Disclaimer / Terms" }
+];
+---
+
+<footer class="mt-14 border-t border-brand-line/60 bg-[linear-gradient(180deg,rgba(255,250,241,0.78),rgba(232,244,235,0.76))]">
+	<Container class="py-10 sm:py-12">
+		<div class="relative overflow-hidden rounded-[2.25rem] border border-white/85 bg-brand-cream/92 p-5 shadow-[0_34px_92px_-62px_rgba(8,36,61,0.52)] backdrop-blur sm:p-6 lg:p-8">
+			<div class="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-brand-orange/18 blur-3xl"></div>
+			<div class="pointer-events-none absolute -bottom-24 left-8 h-56 w-56 rounded-full bg-brand-leaf/14 blur-3xl"></div>
+
+			<div class="relative grid gap-8 lg:grid-cols-[1.35fr_0.75fr_0.75fr_1fr]">
+				<div class="max-w-sm space-y-4">
+					<Logo />
+					<p class="text-sm leading-6 text-slate-600">
+						Adult Day Program and Home & Community Staffing support for families and referral partners.
+					</p>
+					<p class="inline-flex rounded-full bg-brand-ink px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white">
+						Warm support. Clear next steps.
+					</p>
+				</div>
+
+				<nav aria-label="Footer services" class="space-y-3">
+					<h2 class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-green">Services</h2>
+					<ul class="space-y-2.5">
+						{serviceLinks.map((link) => (
+							<li>
+								<a class="text-sm font-medium text-slate-600 hover:text-brand-green" href={link.href}>
+									{link.label}
+								</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+
+				<nav aria-label="Footer company navigation" class="space-y-3">
+					<h2 class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-green">Company</h2>
+					<ul class="space-y-2.5">
+						{companyLinks.map((link) => (
+							<li>
+								<a class="text-sm font-medium text-slate-600 hover:text-brand-green" href={link.href}>
+									{link.label}
+								</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+
+				<div class="space-y-3">
+					<h2 class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-green">Contact</h2>
+					<div class="space-y-2 text-sm leading-6 text-slate-600">
+						<p>
+							<a class="font-medium text-brand-ink hover:text-brand-green" href="tel:4372481172">
+								437-248-1172
+							</a>
+						</p>
+						<p>
+							<a class="font-medium text-brand-ink hover:text-brand-green" href="mailto:goldencaresupport@gmail.com">
+								goldencaresupport@gmail.com
+							</a>
+						</p>
+						<p>7:00 AM - 7:00 PM, Monday to Sunday</p>
+					</div>
+					<p class="rounded-[1rem] border border-brand-gold/20 bg-brand-sand/70 px-4 py-3 text-sm leading-6 text-slate-600">
+						Day Program: Durham Region. Home & Community Staffing: Durham, Peel, York, Toronto, and Scarborough.
+					</p>
+				</div>
+			</div>
+
+			<div class="relative mt-8 flex flex-col gap-3 border-t border-brand-line/70 pt-5 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+				<p>&copy; {year} {companyName}. All rights reserved.</p>
+				<nav aria-label="Footer legal navigation">
+					<ul class="flex flex-wrap gap-x-5 gap-y-2">
+						{legalLinks.map((link) => (
+							<li>
+								<a class="hover:text-brand-green" href={link.href}>{link.label}</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</Container>
+</footer>

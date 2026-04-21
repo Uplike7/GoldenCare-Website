@@ -1,0 +1,49 @@
+---
+import ButtonLink from "../ui/ButtonLink.astro";
+import Container from "../ui/Container.astro";
+
+interface Action {
+	href: string;
+	label: string;
+	variant?: "primary" | "secondary" | "ghost" | "light";
+}
+
+interface Props {
+	title: string;
+	description: string;
+	primaryAction: Action;
+	secondaryAction?: Action;
+}
+
+const { title, description, primaryAction, secondaryAction } = Astro.props as Props;
+---
+
+<section class="section-padding pt-6">
+	<Container>
+		<div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,#08243d,#147c68)] px-6 py-8 text-white shadow-[0_36px_96px_-50px_rgba(8,36,61,0.76)] sm:px-8 sm:py-10 lg:flex lg:items-end lg:justify-between lg:gap-10">
+			<div class="pointer-events-none absolute -right-12 -top-16 h-44 w-44 rounded-full bg-brand-orange/28 blur-3xl"></div>
+			<div class="pointer-events-none absolute -bottom-24 left-12 h-56 w-56 rounded-full bg-brand-leaf/20 blur-3xl"></div>
+
+			<div class="relative max-w-3xl space-y-4">
+				<p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-gold">Next step</p>
+				<h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">{title}</h2>
+				<p class="text-base leading-7 text-white/80">{description}</p>
+			</div>
+
+			<div class="relative mt-6 flex flex-wrap gap-3 lg:mt-0 lg:justify-end">
+				<ButtonLink href={primaryAction.href} variant={primaryAction.variant ?? "light"}>
+					{primaryAction.label}
+				</ButtonLink>
+				{secondaryAction && (
+					<ButtonLink
+						href={secondaryAction.href}
+						variant={secondaryAction.variant ?? "unstyled"}
+						class="border border-white/25 bg-white/10 px-5 py-3 text-sm text-white hover:-translate-y-0.5 hover:bg-white/18 sm:text-base"
+					>
+						{secondaryAction.label}
+					</ButtonLink>
+				)}
+			</div>
+		</div>
+	</Container>
+</section>

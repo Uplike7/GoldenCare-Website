@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import Container from "../components/ui/Container.astro";
+---
+
+<BaseLayout
+	title="Disclaimer / Terms | Golden Care Support Services Inc."
+	description="Review website disclaimers and terms for Golden Care."
+>
+	<PageHero
+		eyebrow="Disclaimer / Terms"
+		title="Important website and service disclaimers."
+		description="Clear expectations for content, emergencies, and service requests."
+	/>
+
+	<section class="section-padding pt-6">
+		<Container narrow class="surface-card p-8 sm:p-10">
+			<div class="article-content">
+				<h2>General information only</h2>
+				<p>
+					This website is for general service information. It does not replace legal, medical, crisis, or
+					professional advice.
+				</p>
+
+				<h2>Emergency disclaimer</h2>
+				<p>
+					Do not use this website or any form for emergencies, urgent medical concerns, or crisis situations.
+					Contact emergency services for immediate help.
+				</p>
+
+				<h2>No guarantee of service</h2>
+				<p>
+					Submitting a form does not guarantee admission, approval, or immediate staffing. Requests are
+					reviewed for fit and capacity.
+				</p>
+
+				<h2>Service-area and availability limitations</h2>
+				<p>
+					Service areas, timelines, and suitability may change. Website content does not guarantee availability.
+				</p>
+
+				<h2>Content updates</h2>
+				<p>
+					Website pages, blog posts, and resources may change as services and workflows evolve.
+				</p>
+			</div>
+		</Container>
+	</section>
+</BaseLayout>

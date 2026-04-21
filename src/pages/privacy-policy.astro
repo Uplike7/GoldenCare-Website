@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import Container from "../components/ui/Container.astro";
+---
+
+<BaseLayout
+	title="Privacy Policy | Golden Care Support Services Inc."
+	description="How Golden Care may handle information submitted through this website."
+>
+	<PageHero
+		eyebrow="Privacy Policy"
+		title="How website information may be handled."
+		description="A practical privacy overview for website visitors."
+	/>
+
+	<section class="section-padding pt-6">
+		<Container narrow class="surface-card p-8 sm:p-10">
+			<div class="article-content">
+				<h2>Information this website may collect</h2>
+				<p>
+					Golden Care may collect information you submit through contact, inquiry, application, or referral
+					forms. This may include contact details, region, service interest, schedule, and intake context.
+				</p>
+
+				<h2>How submitted information may be used</h2>
+				<p>
+					Information may be used to review fit, respond, coordinate follow-up, and improve services.
+				</p>
+
+				<h2>Limits of website communication</h2>
+				<p>
+					Website forms are for non-emergency use only. Avoid sending urgent or highly sensitive details
+					unless requested through a secure intake process.
+				</p>
+
+				<h2>Third-party tools</h2>
+				<p>
+					The site may use third-party tools such as forms, analytics, scheduling, or embedded content.
+					Those tools may have their own privacy terms.
+				</p>
+
+				<h2>Updates</h2>
+				<p>
+					This policy should be reviewed whenever forms, analytics, or operations change.
+				</p>
+			</div>
+		</Container>
+	</section>
+</BaseLayout>

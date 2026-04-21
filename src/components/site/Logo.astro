@@ -1,0 +1,21 @@
+---
+import { companyName, shortName } from "../../data/site";
+
+const compactSubtitle = "Support Services Inc.";
+---
+
+<a href="/" class="inline-flex items-center gap-3 text-brand-ink">
+	<span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#08243d,#147c68)] p-2 shadow-[0_14px_36px_-22px_rgba(8,36,61,0.72)] xl:h-12 xl:w-12">
+		<img src="/favicon.svg" alt="" class="h-full w-full rounded-xl bg-white/95 p-1.5" />
+	</span>
+	<span class="flex flex-col leading-none">
+		<span class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-green xl:text-[0.95rem]">
+			Golden Care
+		</span>
+		<span class="mt-1 hidden text-xs font-medium text-slate-500 md:block xl:hidden">
+			{compactSubtitle}
+		</span>
+		<span class="mt-1 hidden text-xs font-medium text-slate-500 xl:block">{companyName}</span>
+		<span class="mt-1 text-xs font-medium text-slate-500 md:hidden">{shortName}</span>
+	</span>
+</a>

@@ -1,0 +1,127 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import ButtonLink from "../components/ui/ButtonLink.astro";
+
+const applicationPaths = [
+	{
+		eyebrow: "Day Program Application",
+		title: "Adult Day Program",
+		audience: "For adults seeking daytime support.",
+		region: "Durham Region only",
+		formId: "day-program-application",
+		cta: "Start Day Program Application",
+		contactHref:
+			"mailto:goldencaresupport@gmail.com?subject=Day%20Program%20Application%20Request"
+	},
+	{
+		eyebrow: "Home & Community Staffing Request",
+		title: "Home & Community Support Staffing",
+		audience: "For youth and adults needing home, community, respite, or 1:1 support.",
+		region: "Durham, Peel, York, Toronto, and Scarborough",
+		formId: "community-support-request",
+		cta: "Start Support Request",
+		contactHref:
+			"mailto:goldencaresupport@gmail.com?subject=Community%20%2F%20Home%20Support%20Request"
+	}
+];
+
+const nextSteps = [
+	"Submit your request.",
+	"We review fit, region, and availability.",
+	"We follow up with next steps."
+];
+---
+
+<BaseLayout
+	title="Apply | Golden Care Support Services Inc."
+	description="Choose the right Golden Care application path for day program or Home & Community Support Staffing."
+>
+	<section class="pb-5 pt-7 sm:pb-6 sm:pt-9">
+		<Container>
+			<div class="hero-panel rounded-[2rem] border border-white/85 bg-brand-cream/90 p-5 shadow-[0_28px_78px_-54px_rgba(8,36,61,0.42)] sm:p-6 lg:p-8">
+				<div class="max-w-4xl space-y-3">
+					<p class="eyebrow">Apply for services</p>
+					<h1 class="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+						Choose the right application path.
+					</h1>
+					<p class="text-base leading-7 text-slate-600">
+						Pick the service that fits.
+					</p>
+				</div>
+
+				<div class="mt-4 flex flex-wrap gap-3">
+					<ButtonLink href="#application-paths">View Paths</ButtonLink>
+					<ButtonLink href="/contact" variant="secondary">Ask First</ButtonLink>
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section id="application-paths" class="pb-6 pt-2 sm:pb-8">
+		<Container>
+			<div class="grid gap-5 lg:grid-cols-2">
+				{applicationPaths.map((path) => (
+					<article class="service-card group flex flex-col">
+						<div class="relative flex-1 pl-3">
+							<p class="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-brand-green">
+								{path.eyebrow}
+							</p>
+							<h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">{path.title}</h2>
+							<p class="mt-3 text-base leading-7 text-slate-600">{path.audience}</p>
+							<div class="mt-4 rounded-[1.1rem] border border-white/70 bg-brand-mist/78 px-4 py-3">
+								<p class="text-sm font-semibold text-brand-ink">Service area</p>
+								<p class="mt-1 text-sm leading-6 text-slate-600">{path.region}</p>
+							</div>
+						</div>
+
+						<div id={path.formId} class="relative mt-5 rounded-[1.3rem] border border-white/70 bg-brand-cream/82 p-4 shadow-[0_18px_48px_-42px_rgba(8,36,61,0.36)]">
+							<p class="text-sm font-semibold text-brand-ink">Application access</p>
+							<p class="mt-2 text-sm leading-6 text-slate-600">
+								Start a non-emergency request.
+							</p>
+							<div class="mt-4 flex flex-wrap gap-3">
+								<ButtonLink href={path.contactHref} class="bg-[linear-gradient(135deg,#0b2f50,#147c68)]">
+									{path.cta}
+								</ButtonLink>
+							</div>
+						</div>
+					</article>
+				))}
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-6 pt-1 sm:pb-8">
+		<Container>
+			<div class="feature-panel p-5 sm:p-6">
+				<div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+					<div class="max-w-2xl">
+						<p class="eyebrow">What happens next</p>
+						<h2 class="mt-3 text-2xl font-semibold tracking-tight">A simple review process.</h2>
+					</div>
+
+					<div class="grid gap-3 lg:grid-cols-3">
+						{nextSteps.map((step, index) => (
+							<div class="step-card">
+								<span class="step-marker">{index + 1}</span>
+								<p class="mt-2 text-sm leading-6 text-slate-600">{step}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-10 pt-1 sm:pb-12">
+		<Container>
+			<div class="rounded-[1.15rem] border border-brand-gold/25 bg-brand-sand/68 px-5 py-3.5 shadow-[0_18px_48px_-44px_rgba(8,36,61,0.3)]">
+				<p class="max-w-5xl text-sm leading-6 text-slate-700">
+					Do not use this page for emergencies, urgent medical concerns, or crisis situations. Submitting a
+					form does not guarantee acceptance or immediate staffing. More information may be requested.
+				</p>
+			</div>
+		</Container>
+	</section>
+</BaseLayout>

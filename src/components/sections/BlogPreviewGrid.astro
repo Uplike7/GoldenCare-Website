@@ -1,0 +1,50 @@
+---
+import Container from "../ui/Container.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+import ButtonLink from "../ui/ButtonLink.astro";
+import ContentCard from "./ContentCard.astro";
+
+interface EntryCard {
+	id: string;
+	data: {
+		title: string;
+		description: string;
+		category: string;
+		date: Date;
+		readingTime: string;
+	};
+}
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	description?: string;
+	linkHref: string;
+	linkLabel: string;
+	items: EntryCard[];
+	basePath: string;
+}
+
+const { eyebrow, title, description, linkHref, linkLabel, items, basePath } = Astro.props as Props;
+---
+
+<section class="section-padding">
+	<Container class="space-y-10">
+		<div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+			<SectionIntro eyebrow={eyebrow} title={title} description={description} />
+			<ButtonLink href={linkHref} variant="secondary">{linkLabel}</ButtonLink>
+		</div>
+
+		<div class="grid gap-5 lg:grid-cols-3">
+			{items.map((item) => (
+				<ContentCard
+					href={`${basePath}/${item.id}`}
+					tag={item.data.category}
+					title={item.data.title}
+					description={item.data.description}
+					meta={`${item.data.date.toLocaleDateString("en-CA", { month: "short", day: "numeric", year: "numeric" })} · ${item.data.readingTime}`}
+				/>
+			))}
+		</div>
+	</Container>
+</section>

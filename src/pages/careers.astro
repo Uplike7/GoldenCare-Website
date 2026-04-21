@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import TrustGrid from "../components/sections/TrustGrid.astro";
+import ContactPlaceholder from "../components/sections/ContactPlaceholder.astro";
+import CTASection from "../components/sections/CTASection.astro";
+
+const careerValues = [
+	{
+		title: "Calm, dependable presence",
+		description: "Steady, respectful support in real care settings."
+	},
+	{
+		title: "Person-centred judgment",
+		description: "Routines, dignity, and communication matter."
+	},
+	{
+		title: "Team and family communication",
+		description: "Reliable communication with families and partner teams."
+	}
+];
+---
+
+<BaseLayout
+	title="Careers | Golden Care Support Services Inc."
+	description="Explore Golden Care career opportunities in day program and Home & Community Support Staffing."
+>
+	<PageHero
+		eyebrow="Careers"
+		title="Work with Golden Care."
+		description="For support workers who value structure, compassion, and care."
+		badges={["Support staff", "Day program roles", "Home & Community Staffing roles"]}
+		actions={[
+			{ href: "#career-form", label: "Share Interest" },
+			{ href: "/about", label: "Learn about Golden Care", variant: "secondary" }
+		]}
+	/>
+
+	<TrustGrid
+		eyebrow="What we're looking for"
+		title="Team members families can trust"
+		items={careerValues}
+	/>
+
+	<div id="career-form">
+		<ContactPlaceholder
+			eyebrow="Careers interest"
+			title="Careers interest form"
+			description="Share interest in Golden Care opportunities."
+			formLabel="Golden Care careers form"
+			notes={[
+				"Roles may include day program, Home & Community Support Staffing, respite, and relief.",
+				"Share location, availability, experience, and role interest.",
+				"Golden Care will review fit when hiring opens."
+			]}
+		/>
+	</div>
+
+	<CTASection
+		title="Want to understand the work?"
+		description="Explore our main services."
+		primaryAction={{ href: "/community-home-support", label: "View Home & Community Staffing" }}
+		secondaryAction={{ href: "/day-program", label: "View day program" }}
+	/>
+</BaseLayout>

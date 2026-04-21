@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import FAQAccordion from "../components/sections/FAQAccordion.astro";
+import CTASection from "../components/sections/CTASection.astro";
+import { faqGroups } from "../data/faqs";
+---
+
+<BaseLayout
+	title="FAQ | Golden Care Support Services Inc."
+	description="Common questions about Golden Care services, intake, funding, and referrals."
+>
+	<PageHero
+		eyebrow="Frequently asked questions"
+		title="Answers to common first questions."
+		description="Quick guidance on services, intake, funding, and referrals."
+		badges={["Services", "Intake", "Funding", "Referrals"]}
+		actions={[
+			{ href: "/contact", label: "Ask your question" },
+			{ href: "/apply", label: "Apply for services", variant: "secondary" }
+		]}
+	/>
+
+	{faqGroups.map((group) => (
+		<FAQAccordion title={group.title} items={group.items} />
+	))}
+
+	<CTASection
+		title="Still have a question?"
+		description="Contact us about service fit."
+		primaryAction={{ href: "/contact", label: "Contact Golden Care" }}
+		secondaryAction={{ href: "/funding-resources", label: "Funding & resources" }}
+	/>
+</BaseLayout>

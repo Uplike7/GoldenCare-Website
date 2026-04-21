@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+@theme {
+	--font-sans: "Aptos", "Segoe UI", "Trebuchet MS", sans-serif;
+	--font-display: "Aptos Display", "Aptos", "Segoe UI", sans-serif;
+
+	--color-brand-navy: #12395d;
+	--color-brand-ink: #08243d;
+	--color-brand-green: #147c68;
+	--color-brand-leaf: #38a87f;
+	--color-brand-gold: #e0a33a;
+	--color-brand-orange: #ef8f3a;
+	--color-brand-cream: #fffaf1;
+	--color-brand-mist: #e8f4eb;
+	--color-brand-sand: #fff1dd;
+	--color-brand-line: #d6e5dc;
+	--color-brand-soft: #eef8f2;
+}
+
+@layer base {
+	:root {
+		color-scheme: light;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		min-height: 100vh;
+		background:
+			radial-gradient(circle at 8% 4%, rgba(56, 168, 127, 0.16), transparent 25rem),
+			radial-gradient(circle at 92% 0%, rgba(239, 143, 58, 0.18), transparent 22rem),
+			linear-gradient(180deg, #fffaf1 0%, #fffcf7 42%, #eef8f2 100%);
+		color: #1e293b;
+		font-family: var(--font-sans);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: var(--color-brand-ink);
+		font-family: var(--font-display);
+		letter-spacing: -0.03em;
+	}
+
+	p {
+		color: #475569;
+	}
+
+	a {
+		transition:
+			color 160ms ease,
+			background-color 160ms ease,
+			border-color 160ms ease,
+			box-shadow 160ms ease,
+			transform 160ms ease;
+	}
+
+	::selection {
+		background: rgba(24, 58, 99, 0.14);
+		color: var(--color-brand-ink);
+	}
+
+	main > section + section {
+		margin-top: clamp(0.875rem, 1.8vw, 1.75rem);
+	}
+}
+
+@layer components {
+	.section-padding {
+		@apply py-14 sm:py-16 lg:py-20;
+	}
+
+	.surface-card {
+		@apply rounded-[1.75rem] border border-white/85 bg-white/88 backdrop-blur;
+		background:
+			linear-gradient(180deg, rgba(255, 252, 247, 0.94), rgba(232, 244, 235, 0.78)),
+			radial-gradient(circle at 100% 0%, rgba(224, 163, 58, 0.13), transparent 16rem);
+		box-shadow: 0 28px 78px -54px rgba(8, 36, 61, 0.42);
+	}
+
+	.muted-card {
+		@apply rounded-[1.5rem] border border-brand-line/70 bg-brand-cream/80;
+		background:
+			linear-gradient(135deg, rgba(255, 241, 221, 0.88), rgba(232, 244, 235, 0.72)),
+			linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.2));
+	}
+
+	.hero-panel {
+		background:
+			linear-gradient(135deg, rgba(255, 252, 247, 0.98), rgba(232, 244, 235, 0.94)),
+			radial-gradient(circle at 90% 8%, rgba(239, 143, 58, 0.18), transparent 18rem),
+			radial-gradient(circle at 10% 90%, rgba(20, 124, 104, 0.13), transparent 16rem);
+	}
+
+	.fine-print {
+		@apply text-sm leading-6 text-slate-500;
+	}
+
+	.eyebrow {
+		@apply inline-flex items-center gap-2 rounded-full border border-brand-gold/25 bg-brand-cream/86 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-brand-green shadow-[0_14px_28px_-24px_rgba(8,36,61,0.42)];
+	}
+
+	.feature-panel {
+		@apply rounded-[1.75rem] border border-white/85 bg-white/88 backdrop-blur;
+		background:
+			linear-gradient(180deg, rgba(255, 252, 247, 0.96), rgba(238, 248, 242, 0.9)),
+			radial-gradient(circle at top right, rgba(20, 124, 104, 0.12), transparent 18rem);
+		box-shadow: 0 28px 76px -54px rgba(8, 36, 61, 0.42);
+	}
+
+	.tint-panel {
+		@apply rounded-[1.65rem] border border-brand-line/70;
+		background:
+			linear-gradient(135deg, rgba(232, 244, 235, 0.92), rgba(255, 241, 221, 0.62)),
+			linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.32));
+	}
+
+	.service-card {
+		@apply relative overflow-hidden rounded-[1.7rem] border border-white/85 bg-brand-cream/86 p-5 transition sm:p-6 lg:p-7;
+		background:
+			linear-gradient(145deg, rgba(255, 252, 247, 0.96), rgba(232, 244, 235, 0.7)),
+			radial-gradient(circle at 100% 0%, rgba(224, 163, 58, 0.15), transparent 12rem);
+		box-shadow: 0 26px 72px -52px rgba(8, 36, 61, 0.45);
+	}
+
+	.service-card::before {
+		content: "";
+		position: absolute;
+		inset: 0 auto 0 0;
+		width: 0.35rem;
+		background: linear-gradient(180deg, var(--color-brand-green), var(--color-brand-gold));
+		opacity: 0.9;
+	}
+
+	.service-card:hover {
+		transform: translateY(-0.18rem);
+		box-shadow: 0 34px 84px -54px rgba(8, 36, 61, 0.54);
+	}
+
+	.info-card {
+		@apply rounded-[1.2rem] border border-white/75 bg-brand-cream/76 p-4 shadow-[0_18px_48px_-42px_rgba(8,36,61,0.38)];
+	}
+
+	.step-card {
+		@apply relative overflow-hidden rounded-[1.2rem] border border-white/75 bg-brand-cream/78 p-4 pl-5 shadow-[0_18px_48px_-42px_rgba(8,36,61,0.38)];
+	}
+
+	.step-card::after {
+		content: "";
+		position: absolute;
+		inset: 0 auto 0 0;
+		width: 0.25rem;
+		background: linear-gradient(180deg, var(--color-brand-green), var(--color-brand-gold));
+		opacity: 0.85;
+	}
+
+	.step-marker {
+		@apply inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-ink text-sm font-semibold text-white shadow-[0_18px_34px_-22px_rgba(8,36,61,0.68)];
+	}
+
+	.cta-panel {
+		@apply rounded-[1.7rem] border border-white/10 bg-[linear-gradient(135deg,#08243d,#147c68)] p-5 text-white sm:p-6 lg:p-7;
+		box-shadow: 0 34px 90px -50px rgba(8, 36, 61, 0.72);
+	}
+
+	.article-card {
+		@apply rounded-[1.35rem] border border-white/80 bg-brand-cream/84 p-5 transition;
+		background:
+			linear-gradient(180deg, rgba(255, 250, 241, 0.94), rgba(238, 248, 242, 0.78)),
+			radial-gradient(circle at 100% 0%, rgba(224, 163, 58, 0.1), transparent 12rem);
+		box-shadow: 0 22px 62px -54px rgba(8, 36, 61, 0.4);
+	}
+
+	.article-card:hover {
+		transform: translateY(-0.18rem);
+		border-color: rgba(31, 122, 97, 0.35);
+	}
+
+	.article-content {
+		@apply text-lg leading-8 text-slate-700;
+	}
+
+	.article-content h2 {
+		@apply mt-12 text-3xl font-semibold text-brand-ink;
+	}
+
+	.article-content h3 {
+		@apply mt-8 text-2xl font-semibold text-brand-ink;
+	}
+
+	.article-content p {
+		@apply mt-4;
+	}
+
+	.article-content ul {
+		@apply mt-4 space-y-3 pl-6 text-slate-700;
+		list-style: disc;
+	}
+
+	.article-content ol {
+		@apply mt-4 space-y-3 pl-6 text-slate-700;
+		list-style: decimal;
+	}
+
+	.article-content li::marker {
+		color: var(--color-brand-green);
+	}
+
+	.article-content a {
+		@apply font-medium text-brand-navy underline decoration-brand-green/40 underline-offset-4;
+	}
+
+	.article-content blockquote {
+		@apply mt-6 rounded-[1.5rem] border-l-4 border-brand-green bg-brand-mist px-6 py-5 text-brand-ink;
+	}
+
+	.article-content strong {
+		color: var(--color-brand-ink);
+	}
+}

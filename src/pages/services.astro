@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import ServicePathGrid from "../components/sections/ServicePathGrid.astro";
+import CTASection from "../components/sections/CTASection.astro";
+
+const servicePaths = [
+	{
+		title: "Day Program",
+		badge: "Durham Region only",
+		description: "A structured daytime option for adults who need routine, guided activity, and consistent support.",
+		bullets: [
+			"For adults with complex support needs",
+			"Helps with participation, routine, and engagement",
+			"Leads to the Day Program application path"
+		],
+		href: "/day-program",
+		ctaLabel: "Explore Day Program"
+	},
+	{
+		title: "Home & Community Support Staffing",
+		badge: "Home and community",
+		description: "Flexible support for youth and adults at home, in the community, or during family respite needs.",
+		bullets: [
+			"For youth and adults who need practical day-to-day support",
+			"Helps with respite, life skills, community access, and 1:1 staffing",
+			"Leads to a support inquiry for your region"
+		],
+		href: "/community-home-support",
+		ctaLabel: "Explore Staffing Support"
+	},
+	{
+		title: "Funding & Resources",
+		badge: "Planning resources",
+		description: "Guides and checklists for families comparing options, preparing questions, or planning next steps.",
+		bullets: [
+			"For families and caregivers getting organized",
+			"Helps with funding topics, intake questions, and planning tools",
+			"Leads to educational resources before you apply"
+		],
+		href: "/funding-resources",
+		ctaLabel: "Explore Resources"
+	}
+];
+---
+
+<BaseLayout
+	title="Services | Golden Care Support Services Inc."
+	description="Explore Golden Care's service paths and planning resources."
+>
+	<PageHero
+		eyebrow="Services"
+		title="Choose the service that fits your needs."
+		description="Compare the Adult Day Program, Home & Community Support Staffing, and Funding & Resources paths so you can move toward the right next step."
+	/>
+
+	<ServicePathGrid
+		eyebrow="Start here"
+		title="Pick the page that fits your need"
+		description="A quick guide to services and resources."
+		items={servicePaths}
+		columns="three"
+	/>
+
+	<CTASection
+		title="Still unsure where to begin?"
+		description="Contact the team and we can help you decide whether to apply, request support, or start with planning resources."
+		primaryAction={{ href: "/contact", label: "Talk to Us" }}
+		secondaryAction={{ href: "/apply", label: "Apply Now" }}
+	/>
+</BaseLayout>

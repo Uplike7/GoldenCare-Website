@@ -1,0 +1,332 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import ButtonLink from "../../components/ui/ButtonLink.astro";
+import { getAllBlogPosts } from "../../lib/content";
+
+const posts = await getAllBlogPosts();
+const featuredPosts = posts.filter((post) => post.data.featured);
+
+const categories = [
+	"All Posts",
+	"Funding",
+	"Home & Community Staffing",
+	"Day Program",
+	"Family Resources",
+	"Caregiver Guidance"
+].map((category) => ({
+	name: category,
+	value: category === "All Posts" ? "all" : category,
+	count: category === "All Posts" ? posts.length : posts.filter((post) => post.data.category === category).length
+}));
+
+const relatedLinks = [
+	{ href: "/day-program", label: "Day Program" },
+	{ href: "/community-home-support", label: "Home & Community Staffing" },
+	{ href: "/funding-resources", label: "Funding & Resources" },
+	{ href: "/contact", label: "Contact" },
+	{ href: "/apply", label: "Apply" }
+];
+
+function formatMeta(post: (typeof posts)[number]) {
+	return `${post.data.date.toLocaleDateString("en-CA", {
+		month: "short",
+		day: "numeric",
+		year: "numeric"
+	})} | ${post.data.readingTime}`;
+}
+
+const cardClasses =
+	"group flex min-h-full flex-col overflow-hidden rounded-[1.85rem] border border-white/85 bg-brand-cream/90 shadow-[0_28px_78px_-58px_rgba(8,36,61,0.48)] transition hover:-translate-y-1 hover:border-brand-green/26 hover:shadow-[0_38px_92px_-60px_rgba(8,36,61,0.58)]";
+---
+
+<BaseLayout
+	title="Blog | Golden Care Support Services Inc."
+	description="Read Golden Care articles on day programs, Home & Community Support Staffing, funding, and caregiver planning."
+>
+	<section class="pb-5 pt-7 sm:pb-6 sm:pt-9">
+		<Container>
+			<div class="hero-panel rounded-[2rem] border border-white/85 bg-brand-cream/90 p-5 shadow-[0_28px_78px_-54px_rgba(8,36,61,0.42)] sm:p-6 lg:p-8">
+				<div class="grid gap-6 lg:grid-cols-[1fr_0.44fr] lg:items-end">
+					<div class="max-w-4xl space-y-3">
+						<p class="eyebrow">Support resource hub</p>
+						<h1 class="text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
+							Practical guidance for families planning support.
+						</h1>
+						<p class="max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
+							Read clear guides on Ontario funding, caregiving, day program planning, Home & Community Staffing, respite, and next-step decisions.
+						</p>
+					</div>
+
+					<div class="rounded-[1.35rem] border border-white/78 bg-brand-cream/72 p-4 shadow-[0_18px_48px_-42px_rgba(8,36,61,0.36)]">
+						<p class="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-green">
+							Resource focus
+						</p>
+						<ul class="mt-3 space-y-2.5 text-sm leading-6 text-slate-600">
+							<li class="flex gap-2.5">
+								<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-green"></span>
+								<span>Funding and planning questions</span>
+							</li>
+							<li class="flex gap-2.5">
+								<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-green"></span>
+								<span>Caregiver support and respite</span>
+							</li>
+							<li class="flex gap-2.5">
+								<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-green"></span>
+								<span>Clear next steps for services</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-7 pt-2 sm:pb-9">
+		<Container>
+			<div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+				<div>
+					<p class="eyebrow">Featured blogs</p>
+					<h2 class="mt-3 max-w-3xl text-2xl font-semibold tracking-tight sm:text-3xl">
+						Start with the most useful planning reads.
+					</h2>
+					<p class="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
+						These guides help families understand funding, service fit, and practical next steps.
+					</p>
+				</div>
+			</div>
+
+			<div class="grid gap-5 md:grid-cols-2">
+				{featuredPosts.map((post) => (
+					<a href={`/blog/${post.id}`} class={cardClasses}>
+						<div
+							class="relative h-36 overflow-hidden border-b border-white/82 bg-[linear-gradient(135deg,rgba(255,241,221,0.84),rgba(232,244,235,0.9))] sm:h-40"
+							aria-hidden="true"
+						>
+							<div class="absolute -right-10 -top-12 h-36 w-36 rounded-full bg-brand-orange/14 blur-2xl transition group-hover:scale-110"></div>
+							<div class="absolute -bottom-14 left-8 h-44 w-44 rounded-full bg-brand-leaf/14 blur-2xl transition group-hover:scale-110"></div>
+							<div class="absolute inset-x-5 bottom-5 h-px bg-brand-green/14"></div>
+						</div>
+						<div class="flex flex-1 flex-col p-5 sm:p-6">
+							<div class="flex flex-wrap items-center gap-2">
+								<p class="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-green">
+									{post.data.category}
+								</p>
+								<span class="rounded-full bg-brand-mist px-2.5 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-brand-ink">
+									Featured
+								</span>
+							</div>
+							<h2 class="mt-4 text-xl font-semibold tracking-tight group-hover:text-brand-green sm:text-2xl">
+								{post.data.title}
+							</h2>
+							<p class="mt-3 flex-1 text-sm leading-6 text-slate-600">{post.data.description}</p>
+							<div class="mt-5 flex flex-wrap items-center gap-3 text-sm text-slate-500">
+								<span>{formatMeta(post)}</span>
+								<span class="font-semibold text-brand-ink group-hover:text-brand-green">Read featured guide</span>
+							</div>
+						</div>
+					</a>
+				))}
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-7 pt-1 sm:pb-9">
+		<Container>
+			<div class="rounded-[1.7rem] border border-white/80 bg-brand-cream/70 p-4 shadow-[0_20px_58px_-48px_rgba(8,36,61,0.34)] sm:p-5">
+				<div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+					<div class="max-w-3xl">
+					<p class="eyebrow">Browse by category</p>
+						<h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+						Find articles by support topic.
+						</h2>
+						<p class="mt-3 text-sm leading-6 text-slate-600">
+						Explore the main areas families and referral partners usually ask about first.
+						</p>
+					</div>
+				</div>
+
+				<div class="-mx-1 overflow-x-auto px-1 pb-1" aria-label="Blog categories">
+					<div class="flex min-w-max gap-2">
+					{categories.map((category) => (
+							<button
+								type="button"
+								class:list={["category-tab", category.value === "all" && "is-active"]}
+								data-blog-category={category.value}
+								aria-pressed={category.value === "all" ? "true" : "false"}
+							>
+								<span>{category.name}</span>
+								<span class="category-tab-count">{category.count}</span>
+							</button>
+					))}
+					</div>
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-7 pt-1 sm:pb-9">
+		<Container>
+			<div class="mb-5 max-w-3xl">
+				<p class="eyebrow">All articles</p>
+				<h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+					Latest support guides.
+				</h2>
+				<p class="mt-3 text-sm leading-6 text-slate-600">
+					Browse the full library of Golden Care articles for planning, funding, caregiving, and service decisions.
+				</p>
+				<p class="mt-3 text-sm font-semibold text-brand-green" data-blog-filter-summary>
+					Showing all {posts.length} articles.
+				</p>
+			</div>
+
+			<div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+				{posts.map((post) => (
+					<a href={`/blog/${post.id}`} class={cardClasses} data-blog-card data-category={post.data.category}>
+						<div
+							class="relative h-36 overflow-hidden border-b border-white/82 bg-[linear-gradient(135deg,rgba(255,241,221,0.84),rgba(232,244,235,0.9))] sm:h-40"
+							aria-hidden="true"
+						>
+							<div class="absolute -right-10 -top-12 h-36 w-36 rounded-full bg-brand-orange/14 blur-2xl transition group-hover:scale-110"></div>
+							<div class="absolute -bottom-14 left-8 h-44 w-44 rounded-full bg-brand-leaf/14 blur-2xl transition group-hover:scale-110"></div>
+							<div class="absolute inset-x-5 bottom-5 h-px bg-brand-green/14"></div>
+						</div>
+						<div class="flex flex-1 flex-col p-5 sm:p-6">
+							<div class="flex flex-wrap items-center gap-2">
+								<p class="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-green">
+									{post.data.category}
+								</p>
+								{post.data.featured && (
+									<span class="rounded-full bg-brand-mist px-2.5 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-brand-ink">
+										Featured
+									</span>
+								)}
+							</div>
+							<h2 class="mt-4 text-xl font-semibold tracking-tight group-hover:text-brand-green sm:text-2xl">
+								{post.data.title}
+							</h2>
+							<p class="mt-3 flex-1 text-sm leading-6 text-slate-600">{post.data.description}</p>
+							<div class="mt-5 flex flex-wrap items-center gap-3 text-sm text-slate-500">
+								<span>{formatMeta(post)}</span>
+								<span class="font-semibold text-brand-ink group-hover:text-brand-green">Read practical guide</span>
+							</div>
+						</div>
+					</a>
+				))}
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-10 pt-1 sm:pb-12">
+		<Container>
+			<div class="tint-panel grid gap-5 p-5 sm:p-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:p-7">
+				<div>
+					<p class="eyebrow">Explore next</p>
+					<h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+						Turn what you read into a next step.
+					</h2>
+					<p class="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
+						Compare service paths, review planning resources, or contact Golden Care with your region and support needs.
+					</p>
+				</div>
+
+				<div class="flex flex-wrap gap-2.5 rounded-[1.35rem] border border-white/70 bg-brand-cream/52 p-3 shadow-[0_18px_48px_-42px_rgba(8,36,61,0.32)] lg:justify-end">
+					{relatedLinks.map((link) => (
+						<ButtonLink href={link.href} variant="secondary" size="sm">{link.label}</ButtonLink>
+					))}
+				</div>
+			</div>
+		</Container>
+	</section>
+
+<style>
+	.category-tab {
+		align-items: center;
+		background: rgba(255, 250, 241, 0.72);
+		border: 1px solid rgba(214, 229, 220, 0.82);
+		border-radius: 999px;
+		box-shadow: 0 14px 32px -28px rgba(8, 36, 61, 0.38);
+		color: #475569;
+		cursor: pointer;
+		display: inline-flex;
+		font-size: 0.82rem;
+		font-weight: 700;
+		gap: 0.55rem;
+		line-height: 1;
+		min-height: 2.55rem;
+		padding: 0.75rem 0.95rem;
+		transition:
+			background 160ms ease,
+			border-color 160ms ease,
+			box-shadow 160ms ease,
+			color 160ms ease,
+			transform 160ms ease;
+		white-space: nowrap;
+	}
+
+	.category-tab:hover {
+		background: rgba(255, 255, 255, 0.88);
+		border-color: rgba(20, 124, 104, 0.36);
+		color: #08243d;
+		transform: translateY(-0.08rem);
+	}
+
+	.category-tab.is-active {
+		background: linear-gradient(135deg, #08243d, #147c68);
+		border-color: rgba(20, 124, 104, 0.45);
+		box-shadow: 0 20px 42px -28px rgba(8, 36, 61, 0.68);
+		color: #fffaf1;
+	}
+
+	.category-tab-count {
+		align-items: center;
+		background: rgba(20, 124, 104, 0.1);
+		border-radius: 999px;
+		display: inline-flex;
+		font-size: 0.72rem;
+		font-weight: 800;
+		justify-content: center;
+		min-width: 1.45rem;
+		padding: 0.22rem 0.42rem;
+	}
+
+	.category-tab.is-active .category-tab-count {
+		background: rgba(255, 250, 241, 0.18);
+		color: #fffaf1;
+	}
+</style>
+
+<script is:inline>
+	const categoryTabs = Array.from(document.querySelectorAll("[data-blog-category]"));
+	const blogCards = Array.from(document.querySelectorAll("[data-blog-card]"));
+	const filterSummary = document.querySelector("[data-blog-filter-summary]");
+
+	function updateBlogFilter(category) {
+		let visibleCount = 0;
+
+		blogCards.forEach((card) => {
+			const shouldShow = category === "all" || card.dataset.category === category;
+			card.hidden = !shouldShow;
+			if (shouldShow) visibleCount += 1;
+		});
+
+		categoryTabs.forEach((tab) => {
+			const isActive = tab.dataset.blogCategory === category;
+			tab.classList.toggle("is-active", isActive);
+			tab.setAttribute("aria-pressed", String(isActive));
+		});
+
+		if (filterSummary) {
+			const label = category === "all" ? "all" : category;
+			const articleLabel = visibleCount === 1 ? "article" : "articles";
+			filterSummary.textContent = `Showing ${label} ${articleLabel === "article" ? "article" : "articles"} (${visibleCount}).`;
+		}
+	}
+
+	categoryTabs.forEach((tab) => {
+		tab.addEventListener("click", () => {
+			updateBlogFilter(tab.dataset.blogCategory || "all");
+		});
+	});
+</script>
+</BaseLayout>

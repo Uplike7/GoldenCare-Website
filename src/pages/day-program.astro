@@ -1,0 +1,302 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import ButtonLink from "../components/ui/ButtonLink.astro";
+
+const fitItems = [
+	"Adults who benefit from a consistent daytime routine",
+	"Adults with developmental, mental health, or complex needs",
+	"Families seeking a structured daytime option",
+	"Private-pay families in Durham Region"
+];
+
+const benefits = [
+	{
+		title: "Meaningful routine",
+		description: "Predictable days can reduce stress and make transitions easier."
+	},
+	{
+		title: "Supportive engagement",
+		description: "Activities are shaped around communication style, interests, and support level."
+	},
+	{
+		title: "Family reassurance",
+		description: "Families know what is being reviewed and what happens next."
+	}
+];
+
+const participationItems = [
+	{
+		title: "Supported activities and guided participation",
+		description: "Planned activities adapted to interests, pacing, and support level."
+	},
+	{
+		title: "Life-skills and routine support",
+		description: "Practice with daily routines, independence, and predictable transitions."
+	},
+	{
+		title: "Calm social interaction",
+		description: "Opportunities for connection in a supportive, low-pressure environment."
+	},
+	{
+		title: "Communication and transition support",
+		description: "Support with changes, instructions, preferences, and regulation needs."
+	},
+	{
+		title: "Community access where appropriate",
+		description: "Community participation may be included when it fits goals and support needs."
+	},
+	{
+		title: "Family collaboration and updates",
+		description: "Families remain part of planning, follow-up, and practical communication."
+	},
+	{
+		title: "Pickup and drop-off on request",
+		description: "Transportation may be discussed based on location, schedule, and fit."
+	}
+];
+
+const nextSteps = [
+	{
+		title: "Apply",
+		description: "Start with the Day Program application path."
+	},
+	{
+		title: "Review",
+		description: "We review safety, support needs, fit, and current capacity."
+	},
+	{
+		title: "Follow up",
+		description: "We follow up if more information or planning is needed."
+	}
+];
+---
+
+<BaseLayout
+	title="Adult Day Program in Durham Region | Golden Care Support Services Inc."
+	description="Learn about Golden Care's Adult Day Program for adults in Durham Region."
+>
+	<section class="pb-5 pt-7 sm:pb-6 sm:pt-9">
+		<Container>
+			<div class="hero-panel relative overflow-hidden rounded-[2.2rem] border border-white/85 bg-brand-cream/90 p-5 shadow-[0_34px_92px_-60px_rgba(8,36,61,0.54)] sm:p-6 lg:grid lg:grid-cols-[1fr_0.82fr] lg:gap-7 lg:p-8">
+				<div class="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand-orange/18 blur-3xl"></div>
+				<div class="pointer-events-none absolute bottom-0 left-12 h-52 w-52 rounded-full bg-brand-leaf/14 blur-3xl"></div>
+
+				<div class="relative flex flex-col justify-center">
+					<div class="max-w-4xl space-y-3">
+						<p class="eyebrow">Adult Day Program</p>
+						<h1 class="text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
+							Structured Adult Day Program support in Durham Region.
+						</h1>
+						<p class="max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
+							A person-centred program option for adults who benefit from calm routines, guided participation, life-skills practice, and consistent support.
+						</p>
+					</div>
+
+					<div class="mt-5 flex flex-wrap gap-3">
+						<ButtonLink href="/apply#day-program-application">Apply for Day Program</ButtonLink>
+						<ButtonLink href="/contact" variant="secondary">Ask a Question</ButtonLink>
+					</div>
+				</div>
+
+				<div class="relative mt-7 lg:mt-0">
+					<div class="relative min-h-[18rem] overflow-hidden rounded-[1.9rem] bg-[linear-gradient(145deg,#fff1dd,#e8f4eb)] p-5 shadow-[0_28px_74px_-58px_rgba(8,36,61,0.48)]">
+						<div class="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-brand-orange/24 blur-2xl"></div>
+						<div class="absolute -bottom-14 left-8 h-48 w-48 rounded-full bg-brand-leaf/18 blur-2xl"></div>
+						<div class="relative flex min-h-[15.5rem] items-end overflow-hidden rounded-[1.45rem] bg-brand-cream/48 p-5 backdrop-blur">
+							<div class="absolute left-7 top-7 h-20 w-20 rounded-full bg-brand-cream/80 shadow-[0_20px_48px_-38px_rgba(8,36,61,0.45)]"></div>
+							<div class="absolute right-8 top-16 h-32 w-24 rounded-full bg-brand-green/20"></div>
+							<div class="absolute bottom-20 left-12 h-24 w-40 rounded-t-full bg-brand-ink/10"></div>
+							<div class="relative rounded-[1.15rem] bg-brand-cream/86 p-4 shadow-[0_22px_58px_-46px_rgba(8,36,61,0.48)]">
+								<p class="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-brand-green">
+									Program image
+								</p>
+								<p class="mt-2 max-w-xs text-lg font-semibold leading-tight tracking-tight text-brand-ink">
+									Add a warm day program photo.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-7 pt-2 sm:pb-9">
+		<Container>
+			<div class="grid gap-5 lg:grid-cols-[1fr_1fr]">
+				<article class="feature-panel p-5 sm:p-6 lg:p-7">
+					<p class="eyebrow">Program overview</p>
+					<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+						A dependable daytime routine.
+					</h2>
+					<p class="mt-4 text-base leading-7 text-slate-600">
+						Adults can take part in planned activities, practise routines, and receive support with transitions during scheduled program windows.
+					</p>
+					<p class="mt-3 text-base leading-7 text-slate-600">
+						Intake looks at safety, communication, support needs, and current program capacity.
+					</p>
+				</article>
+
+				<article class="tint-panel p-5 sm:p-6 lg:p-7">
+					<p class="eyebrow">Who it is for</p>
+					<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+						For adults who need a calmer daytime plan.
+					</h2>
+					<ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600">
+						{fitItems.map((item) => (
+							<li class="flex gap-3">
+								<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-brand-green"></span>
+								<span>{item}</span>
+							</li>
+						))}
+					</ul>
+				</article>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-7 pt-1 sm:pb-9">
+		<Container>
+			<div class="relative overflow-hidden rounded-[2.2rem] border border-white/80 bg-[linear-gradient(145deg,#fffaf1,#e8f4eb_58%,#fff1dd)] p-5 shadow-[0_30px_84px_-62px_rgba(8,36,61,0.54)] sm:p-6 lg:p-7">
+				<div class="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-brand-orange/18 blur-3xl"></div>
+				<div class="pointer-events-none absolute -bottom-20 left-12 h-56 w-56 rounded-full bg-brand-leaf/14 blur-3xl"></div>
+
+				<div class="relative grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+					<div>
+						<p class="eyebrow">Program Hours & Transportation</p>
+						<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+							Program hours and transportation.
+						</h2>
+						<p class="mt-4 text-base leading-7 text-slate-600">
+							Our Day Program currently operates in two support windows: 7:00 AM &ndash; 3:00 PM and 4:00 PM &ndash; 11:00 PM. Pickup and drop-off may be available upon request, depending on location, scheduling, and support fit.
+						</p>
+						<p class="mt-3 text-base leading-7 text-slate-600">
+							If your needed hours are different from the standard windows, reach out. We may be able to discuss a more suitable support arrangement.
+						</p>
+					</div>
+
+					<div class="grid gap-3 sm:grid-cols-2">
+						<div class="rounded-[1.35rem] bg-brand-cream/86 p-5 shadow-[0_22px_62px_-52px_rgba(8,36,61,0.46)]">
+							<p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-green">Support window 1</p>
+							<p class="mt-3 text-2xl font-semibold tracking-tight text-brand-ink">7:00 AM &ndash; 3:00 PM</p>
+						</div>
+						<div class="rounded-[1.35rem] bg-brand-cream/86 p-5 shadow-[0_22px_62px_-52px_rgba(8,36,61,0.46)]">
+							<p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-green">Support window 2</p>
+							<p class="mt-3 text-2xl font-semibold tracking-tight text-brand-ink">4:00 PM &ndash; 11:00 PM</p>
+						</div>
+						<div class="rounded-[1.35rem] border border-brand-leaf/24 bg-brand-cream/78 p-5 shadow-[0_22px_62px_-52px_rgba(8,36,61,0.46)] sm:col-span-2">
+							<p class="text-base font-semibold text-brand-ink">Pickup and drop-off may be available on request.</p>
+							<p class="mt-2 text-sm leading-6 text-slate-600">
+								Transportation depends on location, scheduling, and whether the arrangement is a safe, appropriate fit.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-7 pt-1 sm:pb-9">
+		<Container>
+			<div class="mb-5 flex flex-col gap-2 sm:mb-6">
+				<p class="eyebrow">Benefits</p>
+				<h2 class="max-w-3xl text-2xl font-semibold tracking-tight sm:text-3xl">
+					What the program is designed to support.
+				</h2>
+			</div>
+
+			<div class="grid gap-4 lg:grid-cols-3">
+				{benefits.map((benefit) => (
+					<article class="info-card bg-brand-cream/84">
+						<h3 class="text-xl font-semibold tracking-tight">{benefit.title}</h3>
+						<p class="mt-3 text-sm leading-6 text-slate-600">{benefit.description}</p>
+					</article>
+				))}
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-7 pt-1 sm:pb-9">
+		<Container>
+			<div class="relative overflow-hidden rounded-[2.1rem] bg-[linear-gradient(145deg,#fffaf1,#e8f4eb)] p-5 shadow-[0_28px_82px_-62px_rgba(8,36,61,0.5)] sm:p-6 lg:grid lg:grid-cols-[0.78fr_1.22fr] lg:gap-6 lg:p-7">
+				<div class="pointer-events-none absolute -right-14 -top-14 h-48 w-48 rounded-full bg-brand-orange/14 blur-3xl"></div>
+				<div class="space-y-3">
+					<p class="eyebrow">Participation may include</p>
+					<h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">
+						Practical support during the day.
+					</h2>
+					<p class="text-base leading-7 text-slate-600">
+						The exact mix depends on goals, communication style, and level of support.
+					</p>
+				</div>
+
+				<div class="grid gap-3 sm:grid-cols-2">
+					{participationItems.map((item) => (
+						<div class="relative rounded-[1.2rem] border border-white/74 bg-brand-cream/82 p-4 shadow-[0_18px_54px_-46px_rgba(8,36,61,0.42)]">
+							<h3 class="text-sm font-semibold leading-6 text-brand-ink">{item.title}</h3>
+							<p class="mt-1.5 text-sm leading-6 text-slate-600">{item.description}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-7 pt-1 sm:pb-9">
+		<Container>
+			<div class="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+				<div class="tint-panel p-5 sm:p-6">
+					<p class="eyebrow">Service area</p>
+					<h2 class="mt-4 text-2xl font-semibold tracking-tight">Durham Region only.</h2>
+					<p class="mt-3 text-sm leading-6 text-slate-600">
+						Day Program intake is currently for adults in Durham Region.
+					</p>
+				</div>
+
+				<div class="feature-panel p-5 sm:p-6">
+					<div class="mb-5">
+						<p class="eyebrow">Next steps</p>
+						<h2 class="mt-4 text-2xl font-semibold tracking-tight">A simple intake path.</h2>
+					</div>
+					<div class="grid gap-3 lg:grid-cols-3">
+						{nextSteps.map((step, index) => (
+							<div class="step-card">
+								<span class="step-marker">{index + 1}</span>
+								<h3 class="mt-2 text-base font-semibold">{step.title}</h3>
+								<p class="mt-2 text-sm leading-6 text-slate-600">{step.description}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-10 pt-1 sm:pb-12">
+		<Container>
+			<div class="cta-panel lg:flex lg:items-center lg:justify-between lg:gap-8">
+				<div class="max-w-2xl">
+					<p class="text-sm font-semibold uppercase tracking-[0.18em] text-white/76">Ready to apply?</p>
+					<h2 class="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+						Start the Day Program application path.
+					</h2>
+					<p class="mt-3 text-sm leading-6 text-white/80">
+						Apply now or ask us about fit.
+					</p>
+				</div>
+
+				<div class="mt-5 flex flex-wrap gap-3 lg:mt-0">
+					<ButtonLink href="/apply#day-program-application" variant="light">Apply Now</ButtonLink>
+					<ButtonLink
+						href="/contact"
+						variant="unstyled"
+						class="border border-white/30 bg-white/10 px-5 py-3 text-sm text-white hover:-translate-y-0.5 hover:bg-white/18 sm:text-base"
+					>
+						Talk to Us
+					</ButtonLink>
+				</div>
+			</div>
+		</Container>
+	</section>
+</BaseLayout>

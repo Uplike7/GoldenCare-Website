@@ -1,0 +1,186 @@
+---
+import ButtonLink from "../ui/ButtonLink.astro";
+import Container from "../ui/Container.astro";
+import Logo from "./Logo.astro";
+import { primaryNav, servicesMenu } from "../../data/site";
+
+const pathname = Astro.url.pathname;
+
+function isActive(href: string) {
+	if (href === "/") return pathname === "/";
+	return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function isServicesActive() {
+	return ["/services", "/day-program", "/community-home-support", "/funding-resources"].some((href) =>
+		isActive(href)
+	);
+}
+---
+
+<header class="sticky top-0 z-50 border-b border-brand-line/60 bg-brand-cream/78 shadow-[0_18px_46px_-42px_rgba(8,36,61,0.5)] backdrop-blur-xl">
+	<Container class="flex items-center justify-between gap-4 py-3.5 lg:gap-9 lg:py-4">
+		<Logo />
+
+		<nav class="hidden flex-1 items-center justify-center lg:flex">
+			<div class="flex items-center gap-1.5 rounded-full border border-white/80 bg-white/76 px-2.5 py-2 shadow-[0_20px_44px_-34px_rgba(8,36,61,0.36)] backdrop-blur">
+				{primaryNav.map((item) =>
+					item.label === "Services" ? (
+						<div class="group relative">
+							<a
+								href={item.href}
+								class:list={[
+									"inline-flex items-center gap-2 rounded-full px-5 py-3 text-[0.96rem] font-medium text-slate-600 hover:bg-brand-soft hover:text-brand-ink",
+									isServicesActive() && "bg-brand-ink text-white shadow-[0_14px_30px_-24px_rgba(8,36,61,0.5)]"
+								]}
+								aria-haspopup="true"
+							>
+								<span>{item.label}</span>
+								<svg
+									class="h-4 w-4 text-slate-400 transition group-hover:text-brand-green group-focus-within:text-brand-green"
+									viewBox="0 0 20 20"
+									fill="none"
+									aria-hidden="true"
+								>
+									<path d="m5 7.5 5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path>
+								</svg>
+							</a>
+
+							<div class="pointer-events-none invisible absolute left-0 top-full z-50 w-max min-w-[18rem] pt-1.5 opacity-0 transition duration-150 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100">
+								<div class="overflow-hidden rounded-[1.4rem] border border-white/80 bg-brand-cream/96 p-1.5 shadow-[0_24px_54px_-34px_rgba(8,36,61,0.34)] backdrop-blur-xl">
+									{servicesMenu.map((service) => (
+										<a
+											href={service.href}
+											class:list={[
+												"block rounded-[1rem] px-4 py-3 text-[0.93rem] font-medium leading-6 text-slate-600 hover:bg-brand-soft/85 hover:text-brand-ink",
+												isActive(service.href) &&
+													"bg-brand-ink text-white shadow-[0_14px_30px_-24px_rgba(8,36,61,0.5)]"
+											]}
+										>
+											{service.label}
+										</a>
+									))}
+								</div>
+							</div>
+						</div>
+					) : (
+						<a
+							href={item.href}
+							class:list={[
+								"rounded-full px-5 py-3 text-[0.96rem] font-medium text-slate-600 hover:bg-brand-soft hover:text-brand-ink",
+								isActive(item.href) && "bg-brand-ink text-white shadow-[0_14px_30px_-24px_rgba(8,36,61,0.5)]"
+							]}
+						>
+							{item.label}
+						</a>
+					)
+				)}
+			</div>
+		</nav>
+
+		<div class="hidden items-center gap-2.5 lg:flex">
+			<ButtonLink
+				href="/apply"
+				variant="unstyled"
+				class="bg-[linear-gradient(135deg,#0b2f50,#147c68)] px-5 py-3 text-white shadow-[0_22px_44px_-24px_rgba(8,36,61,0.68)] hover:-translate-y-0.5 hover:bg-[linear-gradient(135deg,#08243d,#0f6f5d)]"
+			>
+				Apply Now
+			</ButtonLink>
+			<ButtonLink
+				href="/contact"
+				variant="unstyled"
+				class="border border-brand-green/20 bg-brand-cream/92 px-5 py-3 text-brand-ink shadow-[0_18px_36px_-30px_rgba(8,36,61,0.38)] hover:border-brand-green/50 hover:bg-brand-mist"
+			>
+				Talk to Us
+			</ButtonLink>
+		</div>
+
+		<details class="relative lg:hidden">
+			<summary class="list-none rounded-full border border-brand-green/20 bg-brand-cream/92 px-4 py-2.5 text-sm font-medium text-brand-ink shadow-[0_16px_32px_-26px_rgba(8,36,61,0.38)]">
+				Menu
+			</summary>
+
+			<div class="surface-card absolute right-0 top-[calc(100%+0.85rem)] w-[min(24rem,calc(100vw-2.5rem))] p-4">
+				<nav class="grid gap-2">
+					<a
+						href="/"
+						class:list={[
+							"rounded-2xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-brand-soft hover:text-brand-ink",
+							isActive("/") && "bg-brand-ink text-white"
+						]}
+					>
+						Home
+					</a>
+					<a
+						href="/about"
+						class:list={[
+							"rounded-2xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-brand-soft hover:text-brand-ink",
+							isActive("/about") && "bg-brand-ink text-white"
+						]}
+					>
+						About
+					</a>
+
+					<details class="rounded-[1.35rem] border border-brand-line/80 bg-brand-cream/70 p-1.5">
+						<summary class="flex cursor-pointer list-none items-center justify-between rounded-[1rem] px-3 py-2.5 text-sm font-medium text-brand-ink">
+							<span>Services</span>
+							<svg class="h-4 w-4 text-slate-400" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+								<path d="m5 7.5 5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path>
+							</svg>
+						</summary>
+
+						<div class="mt-1 grid gap-1 px-1 pb-1">
+							{servicesMenu.map((service) => (
+								<a
+									href={service.href}
+									class:list={[
+										"rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-brand-ink",
+										isActive(service.href) && "bg-brand-ink text-white shadow-[0_14px_30px_-28px_rgba(8,36,61,0.55)]"
+									]}
+								>
+									{service.label}
+								</a>
+							))}
+						</div>
+					</details>
+
+					<a
+						href="/blog"
+						class:list={[
+							"rounded-2xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-brand-soft hover:text-brand-ink",
+							isActive("/blog") && "bg-brand-ink text-white"
+						]}
+					>
+						Blog
+					</a>
+					<a
+						href="/contact"
+						class:list={[
+							"rounded-2xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-brand-soft hover:text-brand-ink",
+							isActive("/contact") && "bg-brand-ink text-white"
+						]}
+					>
+						Contact
+					</a>
+				</nav>
+
+				<div class="mt-5 grid gap-2.5">
+					<ButtonLink
+						href="/apply"
+						variant="unstyled"
+						class="bg-[linear-gradient(135deg,#0b2f50,#147c68)] text-white shadow-[0_22px_44px_-24px_rgba(8,36,61,0.68)] hover:-translate-y-0.5 hover:bg-[linear-gradient(135deg,#08243d,#0f6f5d)]"
+					>
+						Apply Now
+					</ButtonLink>
+					<ButtonLink
+						href="/contact"
+						variant="unstyled"
+						class="border border-brand-green/20 bg-brand-cream/92 text-brand-ink shadow-[0_18px_36px_-30px_rgba(8,36,61,0.38)] hover:border-brand-green/50 hover:bg-brand-mist"
+					>
+						Talk to Us
+					</ButtonLink>
+				</div>
+			</div>
+		</details>
+	</Container>
+</header>

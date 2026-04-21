@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/ui/PageHero.astro";
+import Container from "../../components/ui/Container.astro";
+import ContentCard from "../../components/sections/ContentCard.astro";
+import CTASection from "../../components/sections/CTASection.astro";
+import { getAllResources } from "../../lib/content";
+
+const resources = await getAllResources();
+---
+
+<BaseLayout
+	title="Funding & Resources | Golden Care Support Services Inc."
+	description="Planning tools for Ontario funding, intake, and support decisions."
+>
+	<PageHero
+		eyebrow="Funding & Resources"
+		title="Resources to help families prepare."
+		description="Ontario-focused tools for intake, funding, and support decisions."
+		badges={["Planning tools", "Funding education", "Family resources"]}
+		actions={[
+			{ href: "/blog", label: "Read the blog", variant: "secondary" },
+			{ href: "/contact", label: "Request an inquiry" }
+		]}
+	/>
+
+	<section class="section-padding pt-6">
+		<Container class="grid gap-5 lg:grid-cols-3">
+			{resources.map((resource) => (
+				<ContentCard
+					href={`/funding-resources/${resource.id}`}
+					tag={resource.data.category}
+					title={resource.data.title}
+					description={resource.data.description}
+					meta={`${resource.data.date.toLocaleDateString("en-CA", { month: "short", day: "numeric", year: "numeric" })} | ${resource.data.readingTime}`}
+				/>
+			))}
+		</Container>
+	</section>
+
+	<CTASection
+		title="Ready for a next step?"
+		description="Start an application or ask a question."
+		primaryAction={{ href: "/apply", label: "Go to Apply" }}
+		secondaryAction={{ href: "/contact", label: "Ask a question" }}
+	/>
+</BaseLayout>

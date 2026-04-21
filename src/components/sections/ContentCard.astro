@@ -1,0 +1,23 @@
+---
+interface Props {
+	href: string;
+	tag: string;
+	title: string;
+	description: string;
+	meta: string;
+}
+
+const { href, tag, title, description, meta } = Astro.props as Props;
+---
+
+<article class="article-card flex h-full flex-col">
+	<p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-green">{tag}</p>
+	<h3 class="mt-4 text-2xl font-semibold">
+		<a href={href} class="hover:text-brand-green">{title}</a>
+	</h3>
+	<p class="mt-4 flex-1 leading-7 text-slate-600">{description}</p>
+	<div class="mt-6 flex items-center justify-between gap-4 text-sm text-slate-500">
+		<span>{meta}</span>
+		<a href={href} class="font-medium text-brand-ink hover:text-brand-green">Read more</a>
+	</div>
+</article>

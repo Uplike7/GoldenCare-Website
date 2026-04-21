@@ -1,0 +1,73 @@
+---
+import ButtonLink from "../ui/ButtonLink.astro";
+import Container from "../ui/Container.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+
+interface PathItem {
+	title: string;
+	description: string;
+	href: string;
+	ctaLabel: string;
+	badge?: string;
+	bullets?: string[];
+}
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	description?: string;
+	items: PathItem[];
+	columns?: "two" | "three";
+}
+
+const { eyebrow, title, description, items, columns = "two" } = Astro.props as Props;
+
+const gridClasses =
+	columns === "three" ? "md:grid-cols-2 xl:grid-cols-3" : "lg:grid-cols-2";
+---
+
+<section class="section-padding">
+	<Container class="space-y-10">
+		<SectionIntro eyebrow={eyebrow} title={title} description={description} />
+
+		<div class:list={["grid gap-5", gridClasses]}>
+			{items.map((item, index) => (
+				<article
+					class:list={[
+						"group relative flex h-full flex-col overflow-hidden rounded-[2rem] p-6 shadow-[0_28px_78px_-60px_rgba(8,36,61,0.54)] transition hover:-translate-y-1 hover:shadow-[0_36px_92px_-58px_rgba(8,36,61,0.62)] sm:p-7",
+						index % 2 === 0
+							? "bg-[linear-gradient(145deg,#e8f4eb,#fffaf1)]"
+							: "bg-[linear-gradient(145deg,#fff1dd,#fffaf1)]"
+					]}
+				>
+					<div class="relative space-y-4 pl-3">
+						{item.badge && (
+							<p class="inline-flex rounded-full border border-brand-gold/20 bg-brand-cream/78 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-brand-green shadow-[0_12px_26px_-24px_rgba(8,36,61,0.42)]">
+								{item.badge}
+							</p>
+						)}
+						<h3 class="text-2xl font-semibold">{item.title}</h3>
+						<p class="max-w-2xl leading-7 text-slate-600">{item.description}</p>
+
+						{item.bullets && (
+							<ul class="space-y-2.5 text-sm leading-6 text-slate-600">
+								{item.bullets.map((bullet) => (
+									<li class="flex gap-3">
+										<span class="mt-2 h-2 w-2 rounded-full bg-brand-green"></span>
+										<span>{bullet}</span>
+									</li>
+								))}
+							</ul>
+						)}
+					</div>
+
+					<div class="relative mt-6 pl-3">
+						<ButtonLink href={item.href} variant="secondary">
+							{item.ctaLabel}
+						</ButtonLink>
+					</div>
+				</article>
+			))}
+		</div>
+	</Container>
+</section>

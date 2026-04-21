@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import TrustGrid from "../components/sections/TrustGrid.astro";
+import CTASection from "../components/sections/CTASection.astro";
+import { feedbackPrinciples, testimonialPlaceholders } from "../data/testimonials";
+---
+
+<BaseLayout
+	title="Testimonials | Golden Care Support Services Inc."
+	description="Family and referral-source feedback for Golden Care services."
+>
+	<PageHero
+		eyebrow="Testimonials"
+		title="Family stories, shared with care."
+		description="Testimonials will be shared only with consent and privacy in mind."
+		badges={["Family trust", "Referral confidence", "Consent-first"]}
+		actions={[
+			{ href: "/contact", label: "Contact Golden Care" },
+			{ href: "/about", label: "Learn about our approach", variant: "secondary" }
+		]}
+	/>
+
+	<TrustGrid
+		eyebrow="Publishing principles"
+		title="How feedback will be shared"
+		items={feedbackPrinciples}
+	/>
+
+	<TrustGrid
+		eyebrow="Story areas"
+		title="Quotes and family feedback"
+		description="Approved stories can be added later."
+		items={testimonialPlaceholders}
+	/>
+
+	<CTASection
+		title="Need trust-building information today?"
+		description="Start with the FAQ, resources, or services."
+		primaryAction={{ href: "/faq", label: "Read FAQs" }}
+		secondaryAction={{ href: "/funding-resources", label: "Browse resources" }}
+	/>
+</BaseLayout>

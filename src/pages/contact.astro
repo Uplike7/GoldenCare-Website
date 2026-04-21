@@ -1,0 +1,244 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import ButtonLink from "../components/ui/ButtonLink.astro";
+
+const contactDetails = [
+	{
+		label: "Phone",
+		value: "437-248-1172",
+		href: "tel:4372481172",
+		description: "During business hours"
+	},
+	{
+		label: "Email",
+		value: "goldencaresupport@gmail.com",
+		href: "mailto:goldencaresupport@gmail.com",
+		description: "Best for detailed questions"
+	},
+	{
+		label: "Hours",
+		value: "7:00 AM - 7:00 PM",
+		href: undefined,
+		description: "Monday to Sunday"
+	},
+	{
+		label: "Response Time",
+		value: "Response within 1-2 business days",
+		href: undefined,
+		description: ""
+	}
+];
+
+const inquiryTypes = [
+	"Day Program Inquiry",
+	"Home & Community Staffing Inquiry",
+	"General / Referral Inquiry"
+];
+
+const regions = [
+	"Durham Region",
+	"Peel Region",
+	"York Region",
+	"Toronto",
+	"Scarborough",
+	"Other / Unsure"
+];
+---
+
+<BaseLayout
+	title="Contact | Golden Care Support Services Inc."
+	description="Contact Golden Care Support Services Inc. for day program intake in Durham Region and Home & Community Support Staffing across Durham, Peel, York, Toronto, and Scarborough."
+>
+	<section class="pb-4 pt-7 sm:pb-6 sm:pt-9">
+		<Container>
+			<div class="hero-panel relative overflow-hidden rounded-[2rem] border border-white/85 bg-brand-cream/90 p-5 shadow-[0_28px_78px_-54px_rgba(8,36,61,0.42)] sm:p-6 lg:p-8">
+				<div class="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-brand-gold/15 blur-3xl"></div>
+				<div class="relative space-y-3">
+					<p class="eyebrow">Contact</p>
+					<h1 class="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+						Contact Golden Care Support Services Inc.
+					</h1>
+					<p class="max-w-3xl text-base leading-7 text-slate-600">
+						Ask about Day Program intake or Home & Community Support Staffing.
+					</p>
+				</div>
+
+				<div class="relative mt-4 flex flex-wrap gap-3">
+					<ButtonLink href="tel:4372481172">Call 437-248-1172</ButtonLink>
+					<ButtonLink href="#contact-form" variant="secondary">Send an Inquiry</ButtonLink>
+				</div>
+
+				<p class="relative mt-3 text-sm text-slate-500">We aim to respond within 1-2 business days.</p>
+			</div>
+		</Container>
+	</section>
+
+	<section id="contact-form" class="pb-5 pt-2 sm:pb-6">
+		<Container>
+			<div class="overflow-hidden rounded-[2rem] border border-white/85 bg-brand-cream/94 shadow-[0_34px_90px_-56px_rgba(8,36,61,0.48)]">
+				<div class="grid lg:grid-cols-[21rem_minmax(0,1fr)] xl:grid-cols-[23rem_minmax(0,1fr)]">
+					<aside class="flex flex-col bg-[linear-gradient(180deg,rgba(232,244,235,0.92),rgba(255,241,221,0.56))] p-5 sm:p-6 lg:border-r lg:border-white/75 lg:p-7 xl:p-8">
+						<div class="space-y-2.5">
+							<p class="eyebrow">Contact details</p>
+							<h2 class="text-2xl font-semibold tracking-tight">Connect with us.</h2>
+						</div>
+
+						<div class="mt-5 divide-y divide-brand-line/80">
+							{contactDetails.map((item) => (
+								<div class="py-3.5 first:pt-0 last:pb-0">
+									<p class="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-green">
+										{item.label}
+									</p>
+									{item.href ? (
+										<a href={item.href} class="mt-1 block text-base font-semibold text-brand-ink hover:text-brand-green">
+											{item.value}
+										</a>
+									) : (
+										<p class="mt-1 text-base font-semibold leading-6 text-brand-ink">{item.value}</p>
+									)}
+									{item.description && <p class="mt-1 text-sm leading-6 text-slate-600">{item.description}</p>}
+								</div>
+							))}
+						</div>
+
+						<p class="mt-5 border-t border-brand-line/70 pt-4 text-sm leading-6 text-slate-600 lg:mt-auto">
+							Choose your region so we can route your inquiry.
+						</p>
+					</aside>
+
+					<div class="bg-[linear-gradient(180deg,rgba(255,252,247,0.98),rgba(238,248,242,0.72))] p-5 sm:p-6 lg:p-8 xl:p-10">
+						<div class="space-y-2.5">
+							<p class="eyebrow">Send an inquiry</p>
+							<h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Tell us how we can help.</h2>
+							<p class="max-w-2xl text-base leading-7 text-slate-600">
+								Share a few details. We&apos;ll follow up.
+							</p>
+						</div>
+
+						<form id="golden-care-contact-form" class="mt-5 grid max-w-4xl gap-4 sm:gap-5">
+							<div class="grid gap-4 sm:grid-cols-2">
+								<label class="grid gap-2">
+									<span class="text-sm font-medium text-brand-ink">Full Name</span>
+									<input
+										required
+										name="fullName"
+										type="text"
+										autocomplete="name"
+										class="rounded-2xl border border-brand-line/90 bg-white px-4 py-3 text-base text-brand-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-brand-green/60 focus:ring-4 focus:ring-brand-mist"
+									/>
+								</label>
+
+								<label class="grid gap-2">
+									<span class="text-sm font-medium text-brand-ink">Email Address</span>
+									<input
+										required
+										name="email"
+										type="email"
+										autocomplete="email"
+										class="rounded-2xl border border-brand-line/90 bg-white px-4 py-3 text-base text-brand-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-brand-green/60 focus:ring-4 focus:ring-brand-mist"
+									/>
+								</label>
+							</div>
+
+							<div class="grid gap-4 sm:grid-cols-2">
+								<label class="grid gap-2">
+									<span class="text-sm font-medium text-brand-ink">Phone Number</span>
+									<input
+										name="phone"
+										type="tel"
+										autocomplete="tel"
+										class="rounded-2xl border border-brand-line/90 bg-white px-4 py-3 text-base text-brand-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-brand-green/60 focus:ring-4 focus:ring-brand-mist"
+									/>
+								</label>
+
+								<label class="grid gap-2">
+									<span class="text-sm font-medium text-brand-ink">Inquiry Type</span>
+									<select
+										required
+										id="inquiry-type"
+										name="inquiryType"
+										class="rounded-2xl border border-brand-line/90 bg-white px-4 py-3 text-base text-brand-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-brand-green/60 focus:ring-4 focus:ring-brand-mist"
+									>
+										<option value="">Select an inquiry type</option>
+										{inquiryTypes.map((inquiryType) => (
+											<option value={inquiryType}>{inquiryType}</option>
+										))}
+									</select>
+								</label>
+							</div>
+
+							<label class="grid gap-2">
+								<span class="text-sm font-medium text-brand-ink">Region</span>
+								<select
+									required
+									name="region"
+									class="rounded-2xl border border-brand-line/90 bg-white px-4 py-3 text-base text-brand-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-brand-green/60 focus:ring-4 focus:ring-brand-mist"
+								>
+									<option value="">Select a region</option>
+									{regions.map((region) => (
+										<option value={region}>{region}</option>
+									))}
+								</select>
+							</label>
+
+							<label class="grid gap-2">
+								<span class="text-sm font-medium text-brand-ink">Message</span>
+								<textarea
+									required
+									name="message"
+									rows="4"
+									class="rounded-[1.35rem] border border-brand-line/90 bg-white px-4 py-3 text-base text-brand-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-brand-green/60 focus:ring-4 focus:ring-brand-mist"
+								></textarea>
+							</label>
+
+							<button
+								type="submit"
+								class="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[linear-gradient(135deg,#0b2f50,#147c68)] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_24px_48px_-24px_rgba(8,36,61,0.72)] transition hover:-translate-y-0.5 hover:bg-[linear-gradient(135deg,#08243d,#0f6f5d)] hover:shadow-[0_30px_58px_-24px_rgba(8,36,61,0.78)] sm:w-auto sm:justify-self-start"
+							>
+								Submit Inquiry
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-10 pt-1 sm:pb-12">
+		<Container>
+			<div class="rounded-[1.15rem] border border-brand-gold/25 bg-brand-sand/68 px-5 py-3.5 shadow-[0_18px_48px_-44px_rgba(8,36,61,0.3)]">
+				<p class="max-w-5xl text-sm leading-6 text-slate-700">
+					Do not use this form for emergencies, urgent medical concerns, or crisis situations. Submitting an
+					inquiry does not guarantee acceptance or immediate staffing. More information may be requested.
+				</p>
+			</div>
+		</Container>
+	</section>
+</BaseLayout>
+
+<script is:inline>
+	const form = document.getElementById("golden-care-contact-form");
+
+	form?.addEventListener("submit", (event) => {
+		event.preventDefault();
+
+		if (!(form instanceof HTMLFormElement)) return;
+		const data = new FormData(form);
+
+		const subject = `${data.get("inquiryType") || "General Inquiry"} - Golden Care Support Services Inc.`;
+		const lines = [
+			`Full Name: ${data.get("fullName") || ""}`,
+			`Email Address: ${data.get("email") || ""}`,
+			`Phone Number: ${data.get("phone") || ""}`,
+			`Inquiry Type: ${data.get("inquiryType") || ""}`,
+			`Region: ${data.get("region") || ""}`,
+			"",
+			"Message:",
+			`${data.get("message") || ""}`
+		];
+
+		const mailtoUrl = `mailto:goldencaresupport@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+		window.location.href = mailtoUrl;
+	});
+</script>

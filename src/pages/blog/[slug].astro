@@ -1,0 +1,172 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/site/Breadcrumbs.astro";
+import Container from "../../components/ui/Container.astro";
+import ButtonLink from "../../components/ui/ButtonLink.astro";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("blog");
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post }
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const allPosts = (await getCollection("blog")).sort(
+	(a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const relatedPosts = allPosts
+	.filter((item) => item.id !== post.id)
+	.sort((a, b) => {
+		const categoryScoreA = a.data.category === post.data.category ? 1 : 0;
+		const categoryScoreB = b.data.category === post.data.category ? 1 : 0;
+		return categoryScoreB - categoryScoreA || b.data.date.getTime() - a.data.date.getTime();
+	})
+	.slice(0, 2);
+
+const meta = `${post.data.date.toLocaleDateString("en-CA", {
+	month: "long",
+	day: "numeric",
+	year: "numeric"
+})} | ${post.data.readingTime}`;
+
+const serviceLinks = [
+	{
+		href: "/day-program",
+		label: "Day Program",
+		description: "For adult daytime structure in Durham Region."
+	},
+	{
+		href: "/community-home-support",
+		label: "Home & Community Staffing",
+		description: "For home, community, respite, 1:1 staffing, and coverage support."
+	},
+	{
+		href: "/funding-resources",
+		label: "Funding & Resources",
+		description: "For planning questions, funding starting points, and caregiver resources."
+	},
+	{
+		href: "/contact",
+		label: "Contact Golden Care",
+		description: "Ask about fit, service area, and practical next steps."
+	}
+];
+
+const resourcePrompts = [
+	{
+		title: "Planning tools",
+		description: "Use checklists and intake questions to organize support needs before reaching out.",
+		href: "/funding-resources",
+		label: "View Resources"
+	},
+	{
+		title: "Ready to move forward?",
+		description: "Choose the right application or service request path when you are ready.",
+		href: "/apply",
+		label: "Apply"
+	}
+];
+---
+
+<BaseLayout title={`${post.data.title} | Golden Care Blog`} description={post.data.description}>
+	<Breadcrumbs
+		items={[
+			{ label: "Home", href: "/" },
+			{ label: "Blog", href: "/blog" },
+			{ label: post.data.title }
+		]}
+	/>
+
+	<section class="pb-6 pt-5 sm:pb-8">
+		<Container narrow>
+			<div class="hero-panel rounded-[2rem] border border-white/85 bg-brand-cream/90 p-5 shadow-[0_28px_78px_-54px_rgba(8,36,61,0.42)] sm:p-6 lg:p-8">
+				<div class="space-y-4">
+					<div class="flex flex-wrap items-center gap-3">
+						<p class="eyebrow">{post.data.category}</p>
+						<p class="text-sm text-slate-500">{meta}</p>
+					</div>
+					<h1 class="text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
+						{post.data.title}
+					</h1>
+					<p class="max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
+						{post.data.description}
+					</p>
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-7 sm:pb-9">
+		<Container narrow>
+			<article
+				class="article-content blog-article-content rounded-[1.75rem] border border-white/85 bg-brand-cream/92 px-5 py-7 shadow-[0_26px_70px_-54px_rgba(8,36,61,0.38)] [&_h2]:border-t [&_h2]:border-brand-line/70 [&_h2]:pt-8 [&_li]:leading-7 [&_p]:leading-8 sm:px-7 sm:py-8 lg:px-9 lg:py-10"
+			>
+				<Content />
+			</article>
+		</Container>
+	</section>
+
+	<section class="pb-10 pt-1 sm:pb-12">
+		<Container>
+			<div class="grid gap-5 lg:grid-cols-[1fr_1fr]">
+				<div class="tint-panel p-5 sm:p-6">
+					<p class="eyebrow">Helpful next steps</p>
+					<h2 class="mt-4 text-2xl font-semibold tracking-tight">Turn this article into a practical plan.</h2>
+					<p class="mt-3 text-sm leading-6 text-slate-600">
+						Use this guidance to compare services, prepare questions, or contact Golden Care with your region and support needs.
+					</p>
+
+					<div class="mt-5 grid gap-3 sm:grid-cols-2">
+						{serviceLinks.map((link) => (
+							<a
+								href={link.href}
+								class="group rounded-[1.15rem] border border-white/78 bg-brand-cream/78 p-4 shadow-[0_16px_42px_-36px_rgba(8,36,61,0.38)] transition hover:-translate-y-0.5 hover:border-brand-green/36 hover:bg-white/86"
+							>
+								<span class="text-sm font-semibold text-brand-ink group-hover:text-brand-green">{link.label}</span>
+								<span class="mt-2 block text-sm leading-6 text-slate-600">{link.description}</span>
+							</a>
+						))}
+					</div>
+
+					<div class="mt-5 grid gap-3 sm:grid-cols-2">
+						{resourcePrompts.map((resource) => (
+							<div class="rounded-[1.15rem] border border-brand-green/14 bg-white/48 p-4">
+								<h3 class="text-sm font-semibold text-brand-ink">{resource.title}</h3>
+								<p class="mt-2 text-sm leading-6 text-slate-600">{resource.description}</p>
+								<div class="mt-4">
+									<ButtonLink href={resource.href} variant="secondary" size="sm">{resource.label}</ButtonLink>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+
+				{relatedPosts.length > 0 && (
+					<div class="feature-panel p-5 sm:p-6">
+						<p class="eyebrow">Related reading</p>
+						<div class="mt-5 grid gap-3">
+							{relatedPosts.map((relatedPost) => (
+								<a
+									href={`/blog/${relatedPost.id}`}
+									class="article-card group bg-brand-cream/72"
+								>
+									<p class="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-green">
+										{relatedPost.data.category}
+									</p>
+									<h3 class="mt-2 text-base font-semibold tracking-tight group-hover:text-brand-green">
+										{relatedPost.data.title}
+									</h3>
+									<p class="mt-2 text-sm leading-6 text-slate-600">{relatedPost.data.description}</p>
+								</a>
+							))}
+						</div>
+					</div>
+				)}
+			</div>
+		</Container>
+	</section>
+</BaseLayout>

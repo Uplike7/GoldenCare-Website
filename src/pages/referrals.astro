@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import ProcessSteps from "../components/sections/ProcessSteps.astro";
+import TrustGrid from "../components/sections/TrustGrid.astro";
+import ContactPlaceholder from "../components/sections/ContactPlaceholder.astro";
+import CTASection from "../components/sections/CTASection.astro";
+
+const referralSteps = [
+	{
+		title: "Share client context",
+		description: "Include location, age group, goals, needs, and safety notes."
+	},
+	{
+		title: "Clarify service stream",
+		description: "Identify Day Program or Home & Community Support Staffing."
+	},
+	{
+		title: "Set realistic expectations",
+		description: "We review fit, region, capacity, and timing."
+	},
+	{
+		title: "Coordinate follow-up",
+		description: "Follow-up may include family coordination, intake, or onboarding."
+	}
+];
+
+const referralValues = [
+	{
+		title: "Structured communication",
+		description: "Clear updates about scope, fit, and next steps."
+	},
+	{
+		title: "Family-aware intake",
+		description: "Referral handling should respect family stress."
+	},
+	{
+		title: "Operational realism",
+		description: "Submission does not guarantee acceptance or immediate staffing."
+	}
+];
+---
+
+<BaseLayout
+	title="Referrals | Golden Care Support Services Inc."
+	description="Referral information for agencies, case managers, educators, and care teams."
+>
+	<PageHero
+		eyebrow="Referral pathway"
+		title="A clear referral pathway."
+		description="For agencies, case managers, educators, and care teams."
+		badges={["Agencies", "Care coordinators", "Case managers", "Educators"]}
+		actions={[
+			{ href: "#referral-form", label: "Start Referral Inquiry" },
+			{ href: "/contact", label: "Contact first", variant: "secondary" }
+		]}
+		note="Submitting a referral does not guarantee acceptance or staffing. Referrals are reviewed for fit, region, and capacity."
+	>
+		<div slot="aside" class="muted-card p-5">
+			<p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-green">Helpful referral details</p>
+			<ul class="mt-4 space-y-2 text-sm leading-6 text-slate-600">
+				<li>Region and preferred schedule</li>
+				<li>Primary service requested</li>
+				<li>Core support considerations</li>
+				<li>Urgency and family contact context</li>
+			</ul>
+		</div>
+	</PageHero>
+
+	<ProcessSteps
+		eyebrow="Referral process"
+		title="What to include in a referral"
+		items={referralSteps}
+	/>
+
+	<TrustGrid
+		eyebrow="Why this matters"
+		title="Clear referrals support better intake"
+		items={referralValues}
+	/>
+
+	<div id="referral-form">
+		<ContactPlaceholder
+			eyebrow="Referral inquiry"
+			title="Referral form access"
+			description="Prepare the key details needed for review."
+			formLabel="Golden Care referral form"
+		notes={[
+			"Use this form for non-emergency referrals only.",
+			"Include service stream, region, needs, and timing.",
+			"Submission does not confirm acceptance or staffing."
+		]}
+		/>
+	</div>
+
+	<CTASection
+		title="Need family-facing resources?"
+		description="Share the FAQ, funding, or service pages."
+		primaryAction={{ href: "/funding-resources", label: "Funding & resources" }}
+		secondaryAction={{ href: "/faq", label: "View FAQs" }}
+	/>
+</BaseLayout>

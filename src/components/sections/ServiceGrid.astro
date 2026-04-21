@@ -1,0 +1,60 @@
+---
+import Container from "../ui/Container.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+import ButtonLink from "../ui/ButtonLink.astro";
+
+interface ServiceItem {
+	title: string;
+	description: string;
+	badge?: string;
+	href?: string;
+	bullets?: string[];
+}
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	description?: string;
+	items: ServiceItem[];
+}
+
+const { eyebrow, title, description, items } = Astro.props as Props;
+---
+
+<section class="section-padding">
+	<Container class="space-y-10">
+		<SectionIntro eyebrow={eyebrow} title={title} description={description} />
+
+		<div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+			{items.map((item) => (
+				<article class="service-card flex h-full flex-col">
+					<div class="relative space-y-4 pl-3">
+						{item.badge && (
+							<p class="inline-flex rounded-full bg-brand-mist px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-brand-green">
+								{item.badge}
+							</p>
+						)}
+						<h3 class="text-2xl font-semibold">{item.title}</h3>
+						<p class="leading-7 text-slate-600">{item.description}</p>
+						{item.bullets && (
+							<ul class="space-y-2 text-sm leading-6 text-slate-600">
+								{item.bullets.map((bullet) => (
+									<li class="flex gap-3">
+										<span class="mt-2 h-2 w-2 rounded-full bg-brand-green"></span>
+										<span>{bullet}</span>
+									</li>
+								))}
+							</ul>
+						)}
+					</div>
+
+					{item.href && (
+						<div class="mt-6 pt-2">
+							<ButtonLink href={item.href} variant="ghost" size="sm">Learn more</ButtonLink>
+						</div>
+					)}
+				</article>
+			))}
+		</div>
+	</Container>
+</section>
