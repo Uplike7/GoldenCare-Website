@@ -2,7 +2,7 @@ export const companyName = "GOLDEN CARE SUPPORT SERVICES INC";
 export const shortName = "Golden Care";
 
 export const siteDescription =
-	"Golden Care provides adult day programming in Durham and Home & Community Support Staffing across key GTA regions.";
+	"Golden Care provides Adult Day Program support for adults 18+ in Durham and Home & Community Support Staffing across key GTA regions.";
 
 export const primaryNav = [
 	{ href: "/", label: "Home" },
@@ -51,7 +51,7 @@ export const footerGroups = [
 export const serviceAreas = [
 	{
 		region: "Durham Region",
-		note: "Day Program plus Home & Community Staffing."
+		note: "Adult Day Program for ages 18+ plus Home & Community Staffing."
 	},
 	{
 		region: "Peel Region",
@@ -97,10 +97,10 @@ export const trustPillars = [
 export const homepageServices = [
 	{
 		title: "Adult Day Program",
-		badge: "Durham Region",
+		badge: "Ages 18+ / Durham Region",
 		href: "/day-program",
 		description:
-			"Daytime programming for adults who benefit from routine and engagement."
+			"Daytime programming for adults 18+ who benefit from routine and engagement."
 	},
 	{
 		title: "Home & Community Staffing",

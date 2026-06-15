@@ -4,9 +4,13 @@ import Container from "../components/ui/Container.astro";
 import ButtonLink from "../components/ui/ButtonLink.astro";
 import { getAllBlogPosts } from "../lib/content";
 
-const featuredPosts = (await getAllBlogPosts()).slice(0, 3);
+const blogPosts = await getAllBlogPosts();
+const blogCarouselPosts = [...blogPosts, ...blogPosts].map((post, index) => ({
+	post,
+	set: index < blogPosts.length ? "original" : "duplicate"
+}));
 
-function formatPostMeta(post: (typeof featuredPosts)[number]) {
+function formatPostMeta(post: (typeof blogPosts)[number]) {
 	return `${post.data.date.toLocaleDateString("en-CA", {
 		month: "short",
 		day: "numeric",
@@ -14,11 +18,38 @@ function formatPostMeta(post: (typeof featuredPosts)[number]) {
 	})} | ${post.data.readingTime}`;
 }
 
+const heroStorySlides = [
+	{
+		src: "/images/home-hero.jpg",
+		alt: "People drawing together during a supportive structured activity",
+		title: "Life-skills activity"
+	},
+	{
+		src: "/images/family-support.jpg",
+		alt: "Caregiver and children enjoying an outdoor support activity",
+		title: "Outdoor and community moments"
+	},
+	{
+		src: "/images/blog-day-program.jpg",
+		alt: "A warm day program setting prepared for structured activity",
+		title: "Small group participation"
+	},
+	{
+		src: "/images/blog-community-support.jpg",
+		alt: "Support planning for home and community care needs",
+		title: "Family support planning"
+	}
+];
+const heroStoryLoopSlides = [...heroStorySlides, ...heroStorySlides].map((slide, index) => ({
+	slide,
+	isDuplicate: index >= heroStorySlides.length
+}));
+
 const servicePaths = [
 	{
 		title: "Adult Day Program",
-		label: "For adults",
-		description: "A structured daytime option for adults who need routine, guided activity, and steady support.",
+		label: "Adults 18+",
+		description: "A structured daytime option for adults 18+ with complex needs, including young adults transitioning from school-based supports.",
 		area: "Available in Durham Region.",
 		href: "/day-program",
 		cta: "Explore Day Program",
@@ -32,6 +63,25 @@ const servicePaths = [
 		href: "/community-home-support",
 		cta: "Explore Staffing Support",
 		tone: "cream"
+	}
+];
+
+const audienceCards = [
+	{
+		title: "Young adults transitioning from school",
+		description: "For families whose loved one has aged out of school-based supports and still needs routine, life-skills programming, and meaningful daytime activity."
+	},
+	{
+		title: "Adults with complex needs",
+		description: "Structured day programming for adults 18+ and home/community support for people who benefit from calm routines, participation, and person-centred planning."
+	},
+	{
+		title: "Families and caregivers",
+		description: "Respite, practical coverage, and clear communication for families who need support they can plan around."
+	},
+	{
+		title: "Referral and provider partners",
+		description: "Dependable support options for partners seeking day program pathways, home/community staffing, or practical next steps."
 	}
 ];
 
@@ -60,7 +110,7 @@ const steps = [
 
 <BaseLayout
 	title="Golden Care Support Services Inc. | Day Program and Home & Community Staffing in Ontario"
-	description="Golden Care provides adult day programming in Durham Region and Home & Community Support Staffing across Durham, Peel, York, Toronto, and Scarborough."
+	description="Golden Care provides Adult Day Program support for adults 18+ in Durham Region and Home & Community Support Staffing across Durham, Peel, York, Toronto, and Scarborough."
 >
 	<section class="relative overflow-hidden pb-14 pt-10 sm:pb-16 sm:pt-14 lg:pb-20">
 		<div class="pointer-events-none absolute left-0 top-0 h-72 w-72 rounded-full bg-brand-leaf/14 blur-3xl"></div>
@@ -74,7 +124,7 @@ const steps = [
 						Specialized support for individuals with complex needs.
 					</h1>
 					<p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-						We help families access structured Adult Day Program and Home & Community Support Staffing for individuals with autism, ADHD, developmental disabilities, mental health challenges, and related support needs.
+						We help families access structured Adult Day Program support for adults 18+ and Home & Community Support Staffing for individuals with autism, ADHD, developmental disabilities, mental health challenges, and related support needs.
 					</p>
 
 					<div class="mt-8">
@@ -83,18 +133,46 @@ const steps = [
 				</div>
 
 				<div class="relative">
-					<div class="relative min-h-[24rem] overflow-hidden rounded-[2.5rem] bg-[linear-gradient(145deg,#fff1dd,#e8f4eb_54%,#fffaf1)] p-5 shadow-[0_36px_96px_-66px_rgba(8,36,61,0.64)] sm:min-h-[28rem] sm:p-6">
+					<div class="relative min-h-[24rem] overflow-hidden rounded-[2.5rem] bg-[linear-gradient(145deg,#fff1dd,#e8f4eb_54%,#fffaf1)] p-2.5 shadow-[0_36px_96px_-66px_rgba(8,36,61,0.64)] sm:min-h-[28rem]">
 						<div class="absolute -right-12 -top-10 h-44 w-44 rounded-full bg-brand-orange/26 blur-2xl"></div>
 						<div class="absolute -bottom-14 left-8 h-52 w-52 rounded-full bg-brand-leaf/20 blur-2xl"></div>
 						<div class="relative h-[21.5rem] overflow-hidden rounded-[2rem] bg-brand-cream/45 shadow-[inset_0_1px_0_rgba(255,255,255,0.58)] sm:h-[25rem]">
-							<img
-								src="/images/home-hero.jpg"
-								alt="Smiling people drawing together at a table during a supportive group activity"
-								class="h-full w-full object-cover object-[68%_52%]"
-								decoding="async"
-								fetchpriority="high"
-							/>
-							<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,250,241,0.08),rgba(8,36,61,0.12))]"></div>
+							<div class="photo-story h-full overflow-hidden" data-photo-story>
+								<div class="photo-story-track flex h-full" data-photo-track>
+									{heroStoryLoopSlides.map(({ slide, isDuplicate }, index) => (
+										<figure
+											class:list={[
+												"photo-story-slide relative h-full min-w-full",
+												index === 0 && "is-active"
+											]}
+											data-photo-slide
+											data-photo-slide-original={isDuplicate ? undefined : "true"}
+											data-photo-slide-duplicate={isDuplicate ? "true" : undefined}
+											aria-hidden={isDuplicate ? "true" : undefined}
+										>
+											<img
+												src={slide.src}
+												alt={isDuplicate ? "" : slide.alt}
+												class="h-full w-full object-cover"
+												loading={index === 0 ? "eager" : "lazy"}
+												decoding="async"
+												fetchpriority={index === 0 ? "high" : undefined}
+											/>
+										</figure>
+									))}
+								</div>
+								<div class="absolute right-4 top-4 flex gap-2" aria-label="Photo story slides">
+									{heroStorySlides.map((slide, index) => (
+										<button
+											type="button"
+											class:list={["photo-story-dot", index === 0 && "is-active"]}
+											data-photo-dot
+											aria-label={`Show ${slide.title}`}
+											aria-pressed={index === 0 ? "true" : "false"}
+										></button>
+									))}
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -147,6 +225,32 @@ const steps = [
 
 	<section class="pb-16">
 		<Container>
+			<div class="grid gap-7 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+				<div>
+					<p class="eyebrow">Who we help</p>
+					<h2 class="mt-4 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
+						Support pathways for families, adults, and care partners.
+					</h2>
+					<p class="mt-4 max-w-xl text-base leading-7 text-slate-600">
+						Golden Care helps families find structured support for adults with complex needs, including young adults transitioning from school-based supports, caregivers needing relief, and partners seeking dependable support options.
+					</p>
+				</div>
+
+				<div class="grid gap-4 sm:grid-cols-2">
+					{audienceCards.map((card) => (
+						<article class="relative overflow-hidden rounded-[1.6rem] border border-white/76 bg-brand-cream/86 p-5 shadow-[0_24px_68px_-54px_rgba(8,36,61,0.46)]">
+							<div class="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#147c68,#e0a33a)]"></div>
+							<h3 class="text-lg font-semibold tracking-tight text-brand-ink">{card.title}</h3>
+							<p class="mt-3 text-sm leading-6 text-slate-600">{card.description}</p>
+						</article>
+					))}
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-16">
+		<Container>
 			<div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
 				<div>
 					<p class="eyebrow">Why families choose Golden Care</p>
@@ -167,7 +271,7 @@ const steps = [
 					</div>
 				</div>
 
-				<div class="relative min-h-[18rem] overflow-hidden rounded-[2rem] bg-[linear-gradient(145deg,#e8f4eb,#fff1dd)] p-5 shadow-[0_28px_74px_-58px_rgba(8,36,61,0.48)] sm:min-h-[22rem]">
+				<div class="relative min-h-[18rem] overflow-hidden rounded-[2rem] bg-[linear-gradient(145deg,#e8f4eb,#fff1dd)] p-2.5 shadow-[0_28px_74px_-58px_rgba(8,36,61,0.48)] sm:min-h-[22rem]">
 					<div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-brand-orange/22 blur-2xl"></div>
 					<div class="absolute -bottom-14 left-10 h-48 w-48 rounded-full bg-brand-leaf/18 blur-2xl"></div>
 					<div class="relative h-[15.5rem] overflow-hidden rounded-[1.55rem] bg-brand-cream/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.58)] sm:h-[19rem]">
@@ -225,49 +329,95 @@ const steps = [
 
 	<section class="pb-16">
 		<Container>
-			<div class="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-				<div>
-					<p class="eyebrow">Blog and resources</p>
-					<h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-						Helpful reads for family planning.
-					</h2>
-				</div>
-				<ButtonLink href="/blog" variant="secondary">View Blog</ButtonLink>
-			</div>
+			<div
+				class="relative overflow-hidden rounded-[2.35rem] border border-white/80 bg-[linear-gradient(145deg,#fffaf1,#e8f4eb_58%,#fff1dd)] p-5 shadow-[0_34px_92px_-66px_rgba(8,36,61,0.56)] sm:p-7 lg:p-8"
+				data-blog-carousel-region
+			>
+				<div class="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand-orange/18 blur-3xl"></div>
+				<div class="pointer-events-none absolute -bottom-24 left-16 h-64 w-64 rounded-full bg-brand-leaf/16 blur-3xl"></div>
 
-			<div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-				{featuredPosts.map((post) => (
-					<a
-						href={`/blog/${post.id}`}
-						class="group overflow-hidden rounded-[1.8rem] bg-brand-cream/90 shadow-[0_24px_70px_-58px_rgba(8,36,61,0.5)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_34px_86px_-56px_rgba(8,36,61,0.6)]"
-					>
-						<div
-							class="relative h-44 overflow-hidden border-b border-white/82 bg-[linear-gradient(135deg,rgba(255,241,221,0.84),rgba(232,244,235,0.9))] sm:h-48"
-							aria-hidden="true"
-						>
-							<div class="absolute -right-10 -top-12 h-36 w-36 rounded-full bg-brand-orange/14 blur-2xl transition group-hover:scale-110"></div>
-							<div class="absolute -bottom-14 left-8 h-44 w-44 rounded-full bg-brand-leaf/14 blur-2xl transition group-hover:scale-110"></div>
-							<div class="absolute inset-x-5 bottom-5 h-px bg-brand-green/14"></div>
-						</div>
-
-						<div class="p-5">
-							<div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-								<p class="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-brand-green">
-									{post.data.category}
-								</p>
-								<p class="text-xs text-slate-500">{formatPostMeta(post)}</p>
-							</div>
-
-							<h3 class="mt-3 text-xl font-semibold tracking-tight group-hover:text-brand-green">
-								{post.data.title}
-							</h3>
-							<p class="mt-3 text-sm leading-6 text-slate-600">{post.data.description}</p>
-							<p class="mt-5 text-sm font-semibold text-brand-ink group-hover:text-brand-green">
-								Read article
+				<div class="relative">
+					<div class="mb-7 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+						<div>
+							<p class="eyebrow">Resource hub</p>
+							<h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+								Helpful guides for families planning support.
+							</h2>
+							<p class="mt-4 max-w-2xl text-base leading-7 text-slate-600">
+								Browse practical articles on funding, caregiving, day programming, respite, and home/community staffing.
 							</p>
 						</div>
-					</a>
-				))}
+
+						<div class="flex items-center gap-3">
+							<button
+								type="button"
+								class="blog-carousel-control"
+								data-blog-carousel-prev
+								aria-label="Show previous blog articles"
+							>
+								<span aria-hidden="true">&larr;</span>
+							</button>
+							<button
+								type="button"
+								class="blog-carousel-control"
+								data-blog-carousel-next
+								aria-label="Show next blog articles"
+							>
+								<span aria-hidden="true">&rarr;</span>
+							</button>
+						</div>
+					</div>
+
+					<div
+						class="blog-carousel -mx-3 overflow-hidden px-3 pb-1"
+						data-blog-carousel
+						aria-label="Blog article carousel"
+						aria-roledescription="carousel"
+					>
+						<div class="blog-carousel-track flex gap-5" data-blog-carousel-track>
+							{blogCarouselPosts.map(({ post, set }) => (
+								<a
+									href={`/blog/${post.id}`}
+									class="blog-carousel-card group overflow-hidden rounded-[1.8rem] bg-brand-cream/90 shadow-[0_24px_70px_-58px_rgba(8,36,61,0.5)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_34px_86px_-56px_rgba(8,36,61,0.6)]"
+									data-blog-card-set={set}
+									aria-hidden={set === "original" ? undefined : "true"}
+									tabindex={set === "original" ? undefined : "-1"}
+								>
+									<div
+										class="relative h-44 overflow-hidden border-b border-white/82 bg-[linear-gradient(135deg,rgba(255,241,221,0.84),rgba(232,244,235,0.9))] sm:h-48"
+										aria-hidden="true"
+									>
+										<div class="absolute -right-10 -top-12 h-36 w-36 rounded-full bg-brand-orange/14 blur-2xl transition group-hover:scale-110"></div>
+										<div class="absolute -bottom-14 left-8 h-44 w-44 rounded-full bg-brand-leaf/14 blur-2xl transition group-hover:scale-110"></div>
+										<div class="absolute inset-x-5 bottom-5 h-px bg-brand-green/14"></div>
+									</div>
+
+									<div class="p-5">
+										<div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+											<p class="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-brand-green">
+												{post.data.category}
+											</p>
+											<p class="text-xs text-slate-500">{formatPostMeta(post)}</p>
+										</div>
+
+										<h3 class="mt-3 text-xl font-semibold tracking-tight group-hover:text-brand-green">
+											{post.data.title}
+										</h3>
+										<p class="mt-3 text-sm leading-6 text-slate-600">{post.data.description}</p>
+										<p class="mt-5 text-sm font-semibold text-brand-ink group-hover:text-brand-green">
+											Read article
+										</p>
+									</div>
+								</a>
+							))}
+						</div>
+					</div>
+
+					<div class="mt-7 flex flex-wrap gap-3">
+						<ButtonLink href="/blog">View All Articles</ButtonLink>
+						<ButtonLink href="/funding-resources" variant="secondary">Browse Funding Resources</ButtonLink>
+					</div>
+				</div>
 			</div>
 		</Container>
 	</section>
@@ -299,4 +449,393 @@ const steps = [
 			</div>
 		</Container>
 	</section>
+
+	<style>
+		.photo-story-track {
+			transform: translate3d(0, 0, 0);
+			transition: transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+			will-change: transform;
+		}
+
+		.photo-story-slide {
+			opacity: 1;
+		}
+
+		.photo-story-slide.is-active {
+			opacity: 1;
+		}
+
+		.photo-story-dot {
+			height: 0.58rem;
+			width: 0.58rem;
+			border-radius: 999px;
+			border: 1px solid rgba(255, 250, 241, 0.72);
+			background: rgba(255, 250, 241, 0.5);
+			box-shadow: 0 12px 24px -16px rgba(8, 36, 61, 0.5);
+			transition:
+				background 160ms ease,
+				transform 160ms ease,
+				width 160ms ease;
+		}
+
+		.photo-story-dot.is-active {
+			width: 1.35rem;
+			background: #fffaf1;
+		}
+
+		.blog-carousel {
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+		}
+
+		.blog-carousel::-webkit-scrollbar {
+			display: none;
+		}
+
+		.blog-carousel-track {
+			transform: translate3d(0, 0, 0);
+			transition: transform 680ms cubic-bezier(0.645, 0.045, 0.355, 1);
+			will-change: transform;
+		}
+
+		.blog-carousel-card {
+			flex: 0 0 calc(100% - 1rem);
+		}
+
+		.blog-carousel-control {
+			align-items: center;
+			background: linear-gradient(135deg, #08243d, #147c68);
+			border-radius: 999px;
+			box-shadow: 0 18px 42px -28px rgba(8, 36, 61, 0.68);
+			color: #fffaf1;
+			display: inline-flex;
+			font-size: 1rem;
+			font-weight: 800;
+			height: 2.75rem;
+			justify-content: center;
+			transition:
+				box-shadow 160ms ease,
+				transform 160ms ease;
+			width: 2.75rem;
+		}
+
+		.blog-carousel-control:hover {
+			box-shadow: 0 24px 52px -30px rgba(8, 36, 61, 0.78);
+			transform: translateY(-0.08rem);
+		}
+
+		.blog-carousel-control:focus-visible {
+			outline: 2px solid #147c68;
+			outline-offset: 3px;
+		}
+
+		@media (min-width: 768px) {
+			.blog-carousel-card {
+				flex-basis: calc((100% - 1.25rem) / 2);
+			}
+		}
+
+		@media (min-width: 1280px) {
+			.blog-carousel-card {
+				flex-basis: calc((100% - 2.5rem) / 3);
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.photo-story-track {
+				transition: none;
+			}
+
+			.blog-carousel-track {
+				transition: none;
+			}
+		}
+	</style>
+
+	<script is:inline>
+		const photoStory = document.querySelector("[data-photo-story]");
+
+		if (photoStory) {
+			const track = photoStory.querySelector("[data-photo-track]");
+			const slides = Array.from(photoStory.querySelectorAll("[data-photo-slide]"));
+			const originalSlides = Array.from(photoStory.querySelectorAll("[data-photo-slide-original='true']"));
+			const dots = Array.from(photoStory.querySelectorAll("[data-photo-dot]"));
+			const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+			const heroIntervalDelay = 5200;
+			let activeHeroIndex = 0;
+			let heroTimer;
+			let isHoveringHero = false;
+			let isFocusingHero = false;
+
+			const getActiveHeroIndex = () => {
+				if (!originalSlides.length) return 0;
+				return activeHeroIndex % originalSlides.length;
+			};
+
+			const updateHeroDots = () => {
+				if (!originalSlides.length) return;
+				const activeIndex = getActiveHeroIndex();
+				slides.forEach((slide, slideIndex) => {
+					slide.classList.toggle("is-active", slideIndex % originalSlides.length === activeIndex);
+				});
+				dots.forEach((dot, dotIndex) => {
+					const isActive = dotIndex === activeIndex;
+					dot.classList.toggle("is-active", isActive);
+					dot.setAttribute("aria-pressed", String(isActive));
+				});
+			};
+
+			const moveHeroTrack = (index, shouldAnimate = true) => {
+				if (!track) return;
+				activeHeroIndex = index;
+
+				if (!shouldAnimate) {
+					track.style.transition = "none";
+				}
+
+				track.style.transform = `translate3d(-${activeHeroIndex * 100}%, 0, 0)`;
+				updateHeroDots();
+
+				if (!shouldAnimate) {
+					track.offsetHeight;
+					track.style.transition = "";
+				}
+			};
+
+			const normalizeHeroTrack = () => {
+				if (activeHeroIndex < originalSlides.length) return;
+				moveHeroTrack(activeHeroIndex % originalSlides.length, false);
+			};
+
+			const shouldPauseHeroAuto = () => isHoveringHero || isFocusingHero;
+
+			const stopHeroAuto = () => {
+				window.clearInterval(heroTimer);
+				heroTimer = undefined;
+			};
+
+			const startHeroAuto = () => {
+				if (prefersReducedMotion || shouldPauseHeroAuto() || heroTimer) return;
+				heroTimer = window.setInterval(() => {
+					moveHeroTrack(activeHeroIndex + 1);
+				}, heroIntervalDelay);
+			};
+
+			track?.addEventListener("transitionend", (event) => {
+				if (event.propertyName !== "transform") return;
+				normalizeHeroTrack();
+			});
+
+			dots.forEach((dot, index) => {
+				dot.addEventListener("click", () => {
+					stopHeroAuto();
+					normalizeHeroTrack();
+					moveHeroTrack(index);
+					startHeroAuto();
+				});
+			});
+
+			photoStory.addEventListener("mouseenter", () => {
+				isHoveringHero = true;
+				stopHeroAuto();
+			});
+
+			photoStory.addEventListener("mouseleave", () => {
+				isHoveringHero = false;
+				startHeroAuto();
+			});
+
+			photoStory.addEventListener("focusin", () => {
+				isFocusingHero = true;
+				stopHeroAuto();
+			});
+
+			photoStory.addEventListener("focusout", (event) => {
+				if (!photoStory.contains(event.relatedTarget)) {
+					isFocusingHero = false;
+					startHeroAuto();
+				}
+			});
+
+			startHeroAuto();
+		}
+
+		const blogCarouselRegion = document.querySelector("[data-blog-carousel-region]");
+		const blogCarousel = document.querySelector("[data-blog-carousel]");
+		const blogTrack = document.querySelector("[data-blog-carousel-track]");
+		const blogPrev = document.querySelector("[data-blog-carousel-prev]");
+		const blogNext = document.querySelector("[data-blog-carousel-next]");
+
+		if (blogCarousel && blogTrack && blogPrev && blogNext) {
+			const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+			const pauseTarget = blogCarouselRegion || blogCarousel;
+			const originalBlogCards = Array.from(blogTrack.querySelectorAll("[data-blog-card-set='original']"));
+			const blogCardCount = originalBlogCards.length;
+			const blogPauseDelay = 2000;
+			const blogSlideDuration = 680;
+			const blogTransition = `transform ${blogSlideDuration}ms cubic-bezier(0.645, 0.045, 0.355, 1)`;
+			let blogTimer;
+			let activeBlogIndex = 0;
+			let blogStepWidth = 0;
+			let blogCompletionCallback;
+			let isBlogTransitioning = false;
+			let isHoveringBlog = false;
+			let isFocusingBlog = false;
+			let isPointerInteracting = false;
+
+			const getBlogStepWidth = () => {
+				const firstCard = originalBlogCards[0];
+				if (!firstCard) return blogCarousel.clientWidth;
+				const styles = window.getComputedStyle(blogTrack);
+				const gap = Number.parseFloat(styles.columnGap || styles.gap || "0");
+				return firstCard.getBoundingClientRect().width + gap;
+			};
+
+			const setBlogTrackTransition = (shouldAnimate) => {
+				blogTrack.style.transition = shouldAnimate && !prefersReducedMotion ? blogTransition : "none";
+			};
+
+			const moveBlogTrack = (shouldAnimate = true) => {
+				setBlogTrackTransition(shouldAnimate);
+				blogTrack.style.transform = `translate3d(-${activeBlogIndex * blogStepWidth}px, 0, 0)`;
+			};
+
+			const resetBlogTrackSilently = (index) => {
+				activeBlogIndex = index;
+				moveBlogTrack(false);
+				blogTrack.offsetHeight;
+				setBlogTrackTransition(true);
+			};
+
+			const normalizeBlogIndex = () => {
+				if (!blogCardCount) return;
+
+				if (activeBlogIndex >= blogCardCount) {
+					resetBlogTrackSilently(activeBlogIndex % blogCardCount);
+				}
+			};
+
+			const finishBlogMove = () => {
+				isBlogTransitioning = false;
+				normalizeBlogIndex();
+				const callback = blogCompletionCallback;
+				blogCompletionCallback = undefined;
+				callback?.();
+			};
+
+			const moveBlogCarousel = (direction, onComplete) => {
+				if (!blogCardCount || isBlogTransitioning) return;
+
+				blogStepWidth = getBlogStepWidth();
+
+				if (direction < 0 && activeBlogIndex === 0) {
+					resetBlogTrackSilently(blogCardCount);
+				}
+
+				activeBlogIndex += direction;
+				blogCompletionCallback = onComplete;
+
+				if (prefersReducedMotion) {
+					moveBlogTrack(false);
+					finishBlogMove();
+					return;
+				}
+
+				isBlogTransitioning = true;
+				moveBlogTrack(true);
+			};
+
+			const stopBlogAuto = () => {
+				window.clearTimeout(blogTimer);
+				blogTimer = undefined;
+				blogCompletionCallback = undefined;
+			};
+
+			const shouldPauseBlogAuto = () => isHoveringBlog || isFocusingBlog || isPointerInteracting;
+
+			const startBlogAuto = () => {
+				if (prefersReducedMotion || shouldPauseBlogAuto() || blogTimer) return;
+				blogTimer = window.setTimeout(() => {
+					blogTimer = undefined;
+					moveBlogCarousel(1, startBlogAuto);
+				}, blogPauseDelay);
+			};
+
+			const setBlogTrackWidth = () => {
+				blogStepWidth = getBlogStepWidth();
+				activeBlogIndex = activeBlogIndex % Math.max(blogCardCount, 1);
+				moveBlogTrack(false);
+				blogTrack.offsetHeight;
+				setBlogTrackTransition(true);
+			};
+
+			setBlogTrackWidth();
+			window.requestAnimationFrame(setBlogTrackWidth);
+
+			if ("ResizeObserver" in window) {
+				const resizeObserver = new ResizeObserver(setBlogTrackWidth);
+				resizeObserver.observe(blogCarousel);
+			} else {
+				window.addEventListener("resize", setBlogTrackWidth);
+			}
+
+			blogTrack.addEventListener("transitionend", (event) => {
+				if (event.target !== blogTrack || event.propertyName !== "transform") return;
+				finishBlogMove();
+			});
+
+			blogPrev.addEventListener("click", () => {
+				stopBlogAuto();
+				moveBlogCarousel(-1);
+				startBlogAuto();
+			});
+
+			blogNext.addEventListener("click", () => {
+				stopBlogAuto();
+				moveBlogCarousel(1);
+				startBlogAuto();
+			});
+
+			pauseTarget.addEventListener("mouseenter", () => {
+				isHoveringBlog = true;
+				stopBlogAuto();
+			});
+
+			pauseTarget.addEventListener("mouseleave", () => {
+				isHoveringBlog = false;
+				startBlogAuto();
+			});
+
+			pauseTarget.addEventListener("focusin", () => {
+				isFocusingBlog = true;
+				stopBlogAuto();
+			});
+
+			pauseTarget.addEventListener("focusout", (event) => {
+				if (!pauseTarget.contains(event.relatedTarget)) {
+					isFocusingBlog = false;
+					startBlogAuto();
+				}
+			});
+
+			pauseTarget.addEventListener("pointerdown", () => {
+				isPointerInteracting = true;
+				stopBlogAuto();
+			});
+
+			window.addEventListener("pointerup", () => {
+				if (!isPointerInteracting) return;
+				isPointerInteracting = false;
+				startBlogAuto();
+			});
+
+			window.addEventListener("pointercancel", () => {
+				if (!isPointerInteracting) return;
+				isPointerInteracting = false;
+				startBlogAuto();
+			});
+
+			startBlogAuto();
+		}
+	</script>
 </BaseLayout>

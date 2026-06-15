@@ -1,6 +1,6 @@
 ---
 title: "Questions to Ask Before Choosing a Support Provider"
-description: "Questions for comparing day program, respite, and Home & Community Support Staffing."
+description: "Questions for comparing Adult Day Program for ages 18+, respite, and Home & Community Support Staffing."
 date: 2026-03-18
 category: "Decision Guide"
 readingTime: "5 min read"

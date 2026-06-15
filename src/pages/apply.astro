@@ -1,58 +1,151 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Container from "../components/ui/Container.astro";
-import ButtonLink from "../components/ui/ButtonLink.astro";
 
 const applicationPaths = [
 	{
-		eyebrow: "Day Program Application",
+		path: "day-program",
 		title: "Adult Day Program",
-		audience: "For adults seeking daytime support.",
-		region: "Durham Region only",
-		formId: "day-program-application",
-		cta: "Start Day Program Application",
-		contactHref:
-			"mailto:goldencaresupport@gmail.com?subject=Day%20Program%20Application%20Request"
+		badge: "Ages 18+",
+		body:
+			"Structured daytime support for adults 18+ in Durham Region. Build routine, life skills, independence, and community connection.",
+		bullets: [
+			"Daytime program support",
+			"Inclusive activities and life skills",
+			"Community participation",
+			"Safe, supportive environment"
+		],
+		cta: "Apply for Day Program",
+		accent: "green",
+		formPanelId: "day-program-form-panel"
 	},
 	{
-		eyebrow: "Home & Community Staffing Request",
-		title: "Home & Community Support Staffing",
-		audience: "For youth and adults needing home, community, respite, or 1:1 support.",
-		region: "Durham, Peel, York, Toronto, and Scarborough",
-		formId: "community-support-request",
-		cta: "Start Support Request",
-		contactHref:
-			"mailto:goldencaresupport@gmail.com?subject=Community%20%2F%20Home%20Support%20Request"
+		path: "staffing",
+		title: "Staffing Support",
+		body:
+			"Staffing and support for families, group homes, shelters, schools, private care companies, and community organizations.",
+		bullets: [
+			"Support worker staffing",
+			"Short and long-term coverage",
+			"Home, community, and respite support",
+			"Reliable support for complex needs"
+		],
+		cta: "Request Staffing Support",
+		accent: "gold",
+		formPanelId: "staffing-form-panel"
 	}
 ];
 
-const nextSteps = [
-	"Submit your request.",
-	"We review fit, region, and availability.",
-	"We follow up with next steps."
+const fundingSources = ["Passport", "SSAH", "ODSP", "Private pay", "Not sure", "Other"];
+const timelineOptions = ["Now", "1-3 months", "3-6 months", "Exploring options"];
+const transportationOptions = ["Yes", "No", "Not sure"];
+const requestTypes = [
+	"Family/private home",
+	"Group home",
+	"Shelter",
+	"School/youth-support setting",
+	"Private care company",
+	"Community agency",
+	"Other"
 ];
+const supportSettings = ["Home", "Community", "Group home", "Shelter", "School", "Program", "Care setting", "Other"];
+const ageGroups = ["Child", "Youth", "Adult", "Senior", "Mixed age group"];
+const coverageOptions = [
+	"1:1 support",
+	"Respite",
+	"Shift coverage",
+	"Community access support",
+	"Program support",
+	"Staffing partnership",
+	"Other"
+];
+const trainingOptions = [
+	"First Aid & CPR",
+	"UMAB / behaviour support",
+	"Crisis intervention",
+	"DSW / SSW / CYW / PSW background",
+	"Documentation / reporting",
+	"Other"
+];
+
+const nextSteps = [
+	{
+		title: "Submit your request",
+		body: "Tell us the service path, support needs, location, and preferred schedule."
+	},
+	{
+		title: "We review fit and availability",
+		body:
+			"We look at support needs, region, timing, and whether we can safely provide the right coverage."
+	},
+	{
+		title: "We follow up with next steps",
+		body: "We contact you to confirm details, ask questions, and discuss the best next step."
+	}
+];
+
+const fieldClasses =
+	"mt-2 w-full rounded-[1rem] border border-brand-line/80 bg-white/88 px-4 py-3 text-sm text-brand-ink shadow-[0_14px_34px_-30px_rgba(8,36,61,0.34)] outline-none transition placeholder:text-slate-400 focus:border-brand-green focus:ring-2 focus:ring-brand-green/18";
+const labelClasses = "text-sm font-semibold text-brand-ink";
+const fieldsetClasses = "rounded-[1.25rem] border border-white/76 bg-brand-cream/72 p-4";
+const optionGridClasses = "mt-3 grid gap-2 sm:grid-cols-2";
+const optionClasses =
+	"flex items-center gap-2 rounded-[0.9rem] border border-brand-line/70 bg-white/72 px-3 py-2 text-sm font-medium text-slate-700";
 ---
 
 <BaseLayout
 	title="Apply | Golden Care Support Services Inc."
-	description="Choose the right Golden Care application path for day program or Home & Community Support Staffing."
+	description="Choose the right Golden Care application path for the Adult Day Program for adults 18+ or Home & Community Support Staffing."
 >
 	<section class="pb-5 pt-7 sm:pb-6 sm:pt-9">
 		<Container>
-			<div class="hero-panel rounded-[2rem] border border-white/85 bg-brand-cream/90 p-5 shadow-[0_28px_78px_-54px_rgba(8,36,61,0.42)] sm:p-6 lg:p-8">
-				<div class="max-w-4xl space-y-3">
-					<p class="eyebrow">Apply for services</p>
-					<h1 class="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-						Choose the right application path.
-					</h1>
-					<p class="text-base leading-7 text-slate-600">
-						Pick the service that fits.
-					</p>
-				</div>
+			<div class="relative overflow-hidden rounded-[2.35rem] border border-white/85 bg-brand-cream shadow-[0_30px_86px_-58px_rgba(8,36,61,0.48)]">
+				<img
+					src="/images/apply-hero-support.png"
+					alt="Golden Care support worker helping with a warm activity at a table"
+					width="1536"
+					height="1024"
+					class="absolute inset-0 hidden h-full w-full object-cover object-top lg:block"
+					loading="eager"
+					decoding="async"
+				/>
+				<div class="absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(255,250,241,0.24),rgba(255,250,241,0)_62%)] lg:block"></div>
 
-				<div class="mt-4 flex flex-wrap gap-3">
-					<ButtonLink href="#application-paths">View Paths</ButtonLink>
-					<ButtonLink href="/contact" variant="secondary">Ask First</ButtonLink>
+				<div class="relative grid gap-5 p-5 sm:p-6 lg:min-h-[30rem] lg:grid-cols-[0.52fr_0.48fr] lg:p-8 xl:min-h-[32rem]">
+					<div class="flex max-w-xl flex-col justify-center py-4 sm:py-6 lg:py-10">
+						<p class="eyebrow">Apply / Request Support</p>
+						<h1 class="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl">
+							Start the right support request.
+						</h1>
+						<p class="mt-4 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+							Whether you're a family looking for daytime support or an organization needing staffing coverage, we're here to help. Choose the path that best fits your needs and we'll guide you through the next steps.
+						</p>
+
+						<div class="mt-6 flex flex-wrap gap-3">
+							<button type="button" class="inline-flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,#0b2f50,#147c68)] px-5 py-3 text-sm font-semibold text-white shadow-[0_22px_48px_-24px_rgba(8,36,61,0.7)] transition hover:-translate-y-0.5 hover:bg-[linear-gradient(135deg,#08243d,#0f6f5d)] hover:shadow-[0_30px_60px_-26px_rgba(8,36,61,0.78)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green sm:text-base" data-path-trigger="day-program" aria-controls="day-program-form-panel" aria-expanded="false">
+								Apply for Day Program
+							</button>
+							<button type="button" class="inline-flex items-center justify-center gap-2 rounded-full border border-brand-green/20 bg-brand-cream/92 px-5 py-3 text-sm font-semibold text-brand-ink shadow-[0_18px_38px_-30px_rgba(8,36,61,0.38)] transition hover:-translate-y-0.5 hover:border-brand-green/55 hover:bg-brand-mist focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green sm:text-base" data-path-trigger="staffing" aria-controls="staffing-form-panel" aria-expanded="false">
+								Request Staffing Support
+							</button>
+						</div>
+					</div>
+
+					<div class="lg:hidden">
+						<div class="overflow-hidden rounded-[1.65rem] border border-white/80 bg-brand-mist/70 p-1.5 shadow-[0_22px_58px_-48px_rgba(8,36,61,0.48)]">
+							<img
+								src="/images/apply-hero-support.png"
+								alt="Golden Care support worker helping with a warm activity at a table"
+								width="1536"
+								height="1024"
+								class="aspect-[16/10] w-full rounded-[1.35rem] object-cover object-[72%_42%]"
+								loading="eager"
+								decoding="async"
+							/>
+						</div>
+					</div>
+
+					<div class="hidden lg:block" aria-hidden="true"></div>
 				</div>
 			</div>
 		</Container>
@@ -60,54 +153,354 @@ const nextSteps = [
 
 	<section id="application-paths" class="pb-6 pt-2 sm:pb-8">
 		<Container>
-			<div class="grid gap-5 lg:grid-cols-2">
-				{applicationPaths.map((path) => (
-					<article class="service-card group flex flex-col">
-						<div class="relative flex-1 pl-3">
-							<p class="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-brand-green">
-								{path.eyebrow}
-							</p>
-							<h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">{path.title}</h2>
-							<p class="mt-3 text-base leading-7 text-slate-600">{path.audience}</p>
-							<div class="mt-4 rounded-[1.1rem] border border-white/70 bg-brand-mist/78 px-4 py-3">
-								<p class="text-sm font-semibold text-brand-ink">Service area</p>
-								<p class="mt-1 text-sm leading-6 text-slate-600">{path.region}</p>
-							</div>
-						</div>
+			<div class="mb-6 max-w-3xl sm:mb-7">
+				<p class="eyebrow">Choose Your Support Path</p>
+				<h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+					How can we support you?
+				</h2>
+			</div>
 
-						<div id={path.formId} class="relative mt-5 rounded-[1.3rem] border border-white/70 bg-brand-cream/82 p-4 shadow-[0_18px_48px_-42px_rgba(8,36,61,0.36)]">
-							<p class="text-sm font-semibold text-brand-ink">Application access</p>
-							<p class="mt-2 text-sm leading-6 text-slate-600">
-								Start a non-emergency request.
-							</p>
-							<div class="mt-4 flex flex-wrap gap-3">
-								<ButtonLink href={path.contactHref} class="bg-[linear-gradient(135deg,#0b2f50,#147c68)]">
+			<div class="grid gap-5 lg:grid-cols-2">
+				{applicationPaths.map((path) => {
+					const isStaffing = path.accent === "gold";
+					const cardAccentClasses = isStaffing
+						? "border-brand-gold/34 bg-[linear-gradient(145deg,#fffaf1,#fff1dd_58%,#fffaf1)]"
+						: "border-brand-green/22 bg-[linear-gradient(145deg,#fffaf1,#e8f4eb_60%,#fffaf1)]";
+					const markClasses = isStaffing
+						? "bg-brand-gold text-brand-ink shadow-[0_20px_44px_-28px_rgba(239,143,58,0.72)]"
+						: "bg-brand-green text-white shadow-[0_20px_44px_-28px_rgba(20,124,104,0.72)]";
+					const bulletClasses = isStaffing ? "bg-brand-gold" : "bg-brand-green";
+
+					return (
+						<button
+							type="button"
+							data-path-trigger={path.path}
+							aria-controls={path.formPanelId}
+							aria-expanded="false"
+							class:list={[
+								"path-choice relative flex min-h-full flex-col overflow-hidden rounded-[2rem] border p-5 text-left shadow-[0_28px_80px_-58px_rgba(8,36,61,0.5)] transition hover:-translate-y-0.5 hover:shadow-[0_36px_92px_-62px_rgba(8,36,61,0.58)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green sm:p-6 lg:p-7",
+								cardAccentClasses
+							]}
+						>
+							<span
+								class:list={[
+									"pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full blur-3xl",
+									isStaffing ? "bg-brand-orange/18" : "bg-brand-leaf/16"
+								]}
+							></span>
+							<span class="choice-check absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-full bg-white/88 text-sm font-semibold text-brand-green opacity-0 shadow-[0_16px_34px_-26px_rgba(8,36,61,0.48)] transition">
+								✓
+							</span>
+
+							<span class="relative flex flex-1 flex-col">
+								<span class="flex items-start gap-4">
+									<span
+										aria-hidden="true"
+										class:list={[
+											"flex h-12 w-12 shrink-0 items-center justify-center rounded-[1rem] text-lg font-semibold",
+											markClasses
+										]}
+									>
+										{isStaffing ? "02" : "01"}
+									</span>
+									<span>
+										<span class="block text-2xl font-semibold tracking-tight text-brand-ink sm:text-3xl">
+											{path.title}
+										</span>
+										{path.badge && (
+											<span class="mt-2 inline-flex rounded-full bg-white/78 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-brand-green shadow-[0_14px_32px_-28px_rgba(8,36,61,0.42)]">
+												{path.badge}
+											</span>
+										)}
+									</span>
+								</span>
+
+								<span class="mt-5 block text-base leading-7 text-slate-600">{path.body}</span>
+
+								<span class="mt-5 grid gap-3" aria-label={`${path.title} includes`}>
+									{path.bullets.map((bullet) => (
+										<span class="flex gap-3 text-sm font-medium leading-6 text-slate-700">
+											<span
+												class:list={[
+													"mt-2 h-2.5 w-2.5 shrink-0 rounded-full shadow-[0_10px_20px_-12px_rgba(8,36,61,0.5)]",
+													bulletClasses
+												]}
+											></span>
+											<span>{bullet}</span>
+										</span>
+									))}
+								</span>
+
+								<span
+									class:list={[
+										"mt-7 inline-flex w-fit items-center justify-center rounded-full px-5 py-3 text-sm font-semibold shadow-[0_22px_48px_-26px_rgba(8,36,61,0.54)] transition sm:text-base",
+										isStaffing
+											? "bg-[linear-gradient(135deg,#8f5f13,#ef8f3a)] text-white"
+											: "bg-[linear-gradient(135deg,#0b2f50,#147c68)] text-white"
+									]}
+								>
 									{path.cta}
-								</ButtonLink>
+								</span>
+							</span>
+						</button>
+					);
+				})}
+			</div>
+		</Container>
+	</section>
+
+	<section id="support-request-form" class="pb-6 pt-1 sm:pb-8" data-form-region>
+		<Container>
+			<div class="relative overflow-hidden rounded-[2.1rem] border border-white/85 bg-[linear-gradient(145deg,#fffaf1,#eef8f2_62%,#fff1dd)] p-5 shadow-[0_32px_88px_-60px_rgba(8,36,61,0.52)] sm:p-6 lg:p-8">
+				<div class="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand-orange/16 blur-3xl"></div>
+				<div class="pointer-events-none absolute -bottom-24 left-12 h-64 w-64 rounded-full bg-brand-leaf/14 blur-3xl"></div>
+
+				<div data-form-empty class="relative rounded-[1.45rem] border border-brand-line/70 bg-brand-cream/76 p-5 text-center shadow-[0_20px_56px_-48px_rgba(8,36,61,0.42)] sm:p-6">
+					<p class="eyebrow">Support Request Form</p>
+					<h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+						Choose a path above to begin.
+					</h2>
+					<p class="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600">
+						We will show the right form based on whether you are applying for the Adult Day Program or requesting staffing support.
+					</p>
+				</div>
+
+				<form id="day-program-form-panel" data-support-form data-path-form="day-program" class="relative hidden" hidden novalidate>
+					<div class="mb-6 max-w-3xl">
+						<p class="eyebrow">Day Program Application</p>
+						<h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+							Apply for Adult Day Program.
+						</h2>
+						<p class="mt-3 text-sm leading-6 text-slate-600">
+							Share the key details we need to review program fit, support needs, schedule, and availability.
+						</p>
+					</div>
+
+					<div class="grid gap-4 lg:grid-cols-2">
+						<label class={labelClasses}>
+							Parent/caregiver full name <span class="text-brand-orange">*</span>
+							<input class={fieldClasses} name="caregiverName" type="text" autocomplete="name" required />
+						</label>
+						<label class={labelClasses}>
+							Phone number <span class="text-brand-orange">*</span>
+							<input class={fieldClasses} name="phone" type="tel" inputmode="tel" autocomplete="tel" data-phone-field required />
+						</label>
+						<label class={labelClasses}>
+							Email address <span class="text-brand-orange">*</span>
+							<input class={fieldClasses} name="email" type="email" autocomplete="email" required />
+						</label>
+						<label class={labelClasses}>
+							Participant age <span class="text-brand-orange">*</span>
+							<input class={fieldClasses} name="participantAge" type="number" min="18" inputmode="numeric" required />
+						</label>
+						<label class={labelClasses}>
+							City / region <span class="text-brand-orange">*</span>
+							<input class={fieldClasses} name="cityRegion" type="text" autocomplete="address-level2" required />
+						</label>
+						<label class={labelClasses}>
+							Funding source
+							<select class={fieldClasses} name="fundingSource">
+								<option value="">Select one</option>
+								{fundingSources.map((source) => <option value={source}>{source}</option>)}
+							</select>
+						</label>
+					</div>
+
+					<div class="mt-4 grid gap-4 lg:grid-cols-2">
+						<label class={labelClasses}>
+							Preferred schedule / days needed
+							<textarea class={fieldClasses} name="preferredSchedule" rows="4"></textarea>
+						</label>
+						<fieldset class={fieldsetClasses}>
+							<legend class={labelClasses}>Transportation needed?</legend>
+							<div class={optionGridClasses}>
+								{transportationOptions.map((option) => (
+									<label class={optionClasses}>
+										<input class="accent-brand-green" type="radio" name="transportationNeeded" value={option} />
+										<span>{option}</span>
+									</label>
+								))}
 							</div>
-						</div>
-					</article>
-				))}
+						</fieldset>
+					</div>
+
+					<div class="mt-4 grid gap-4 lg:grid-cols-2">
+						<label class={labelClasses}>
+							Support needs summary
+							<textarea class={fieldClasses} name="supportNeedsSummary" rows="5"></textarea>
+						</label>
+						<label class={labelClasses}>
+							Timeline / urgency
+							<select class={fieldClasses} name="timelineUrgency">
+								<option value="">Select one</option>
+								{timelineOptions.map((option) => <option value={option}>{option}</option>)}
+							</select>
+						</label>
+					</div>
+
+					<label class="mt-5 flex gap-3 rounded-[1.15rem] border border-brand-line/70 bg-white/76 p-4 text-sm font-medium leading-6 text-slate-700">
+						<input class="mt-1 accent-brand-green" type="checkbox" name="consent" required />
+						<span>I understand this request does not guarantee acceptance or availability.</span>
+					</label>
+
+					<div class="mt-6 flex flex-wrap items-center gap-3">
+						<button type="submit" data-submit-button class="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#0b2f50,#147c68)] px-5 py-3 text-sm font-semibold text-white shadow-[0_22px_48px_-24px_rgba(8,36,61,0.7)] transition hover:-translate-y-0.5 hover:bg-[linear-gradient(135deg,#08243d,#0f6f5d)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green disabled:cursor-not-allowed disabled:opacity-70 sm:text-base">
+							Submit Day Program Application
+						</button>
+					</div>
+
+					<p data-form-status class="form-status mt-5 hidden rounded-[1rem] border px-4 py-3 text-sm font-semibold" role="status" aria-live="polite"></p>
+				</form>
+
+				<form id="staffing-form-panel" data-support-form data-path-form="staffing" class="relative hidden" hidden novalidate>
+					<div class="mb-6 max-w-3xl">
+						<p class="eyebrow">Staffing Support Request</p>
+						<h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+							Request staffing support.
+						</h2>
+						<p class="mt-3 text-sm leading-6 text-slate-600">
+							Tell us about the setting, schedule, coverage need, and support details so we can review fit and availability.
+						</p>
+					</div>
+
+					<div class="grid gap-4 lg:grid-cols-2">
+						<label class={labelClasses}>
+							Name / organization <span class="text-brand-orange">*</span>
+							<input class={fieldClasses} name="organizationName" type="text" autocomplete="organization" required />
+						</label>
+						<label class={labelClasses}>
+							Contact person <span class="text-brand-orange">*</span>
+							<input class={fieldClasses} name="contactPerson" type="text" autocomplete="name" required />
+						</label>
+						<label class={labelClasses}>
+							Phone number <span class="text-brand-orange">*</span>
+							<input class={fieldClasses} name="phone" type="tel" inputmode="tel" autocomplete="tel" data-phone-field required />
+						</label>
+						<label class={labelClasses}>
+							Email address <span class="text-brand-orange">*</span>
+							<input class={fieldClasses} name="email" type="email" autocomplete="email" required />
+						</label>
+						<label class={labelClasses}>
+							Request type
+							<select class={fieldClasses} name="requestType">
+								<option value="">Select one</option>
+								{requestTypes.map((type) => <option value={type}>{type}</option>)}
+							</select>
+						</label>
+						<label class={labelClasses}>
+							Location / region <span class="text-brand-orange">*</span>
+							<input class={fieldClasses} name="locationRegion" type="text" autocomplete="address-level2" required />
+						</label>
+						<label class={labelClasses}>
+							Support setting
+							<select class={fieldClasses} name="supportSetting">
+								<option value="">Select one</option>
+								{supportSettings.map((setting) => <option value={setting}>{setting}</option>)}
+							</select>
+						</label>
+						<label class={labelClasses}>
+							Age group needing support
+							<select class={fieldClasses} name="ageGroup">
+								<option value="">Select one</option>
+								{ageGroups.map((group) => <option value={group}>{group}</option>)}
+							</select>
+						</label>
+					</div>
+
+					<div class="mt-4 grid gap-4 lg:grid-cols-2">
+						<fieldset class={fieldsetClasses}>
+							<legend class={labelClasses}>Coverage needed</legend>
+							<div class={optionGridClasses}>
+								{coverageOptions.map((option) => (
+									<label class={optionClasses}>
+										<input class="accent-brand-green" type="checkbox" name="coverageNeeded" value={option} />
+										<span>{option}</span>
+									</label>
+								))}
+							</div>
+						</fieldset>
+						<label class={labelClasses}>
+							Schedule needed <span class="text-brand-orange">*</span>
+							<textarea class={fieldClasses} name="scheduleNeeded" rows="5" required></textarea>
+						</label>
+					</div>
+
+					<div class="mt-4 grid gap-4 lg:grid-cols-2">
+						<label class={labelClasses}>
+							Desired start date
+							<input class={fieldClasses} name="desiredStartDate" type="date" />
+						</label>
+						<fieldset class={fieldsetClasses}>
+							<legend class={labelClasses}>Preferred training/certification needs</legend>
+							<div class={optionGridClasses}>
+								{trainingOptions.map((option) => (
+									<label class={optionClasses}>
+										<input class="accent-brand-green" type="checkbox" name="trainingNeeds" value={option} />
+										<span>{option}</span>
+									</label>
+								))}
+							</div>
+						</fieldset>
+					</div>
+
+					<label class={`mt-4 block ${labelClasses}`}>
+						Support details / notes
+						<textarea class={fieldClasses} name="supportDetails" rows="5"></textarea>
+					</label>
+
+					<label class="mt-5 flex gap-3 rounded-[1.15rem] border border-brand-line/70 bg-white/76 p-4 text-sm font-medium leading-6 text-slate-700">
+						<input class="mt-1 accent-brand-green" type="checkbox" name="consent" required />
+						<span>I understand staffing availability depends on location, schedule, support needs, worker availability, and service fit.</span>
+					</label>
+
+					<div class="mt-6 flex flex-wrap items-center gap-3">
+						<button type="submit" data-submit-button class="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#8f5f13,#ef8f3a)] px-5 py-3 text-sm font-semibold text-white shadow-[0_22px_48px_-26px_rgba(143,95,19,0.64)] transition hover:-translate-y-0.5 hover:bg-[linear-gradient(135deg,#7b4f0d,#d97625)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green disabled:cursor-not-allowed disabled:opacity-70 sm:text-base">
+							Request Staffing Support
+						</button>
+					</div>
+
+					<p data-form-status class="form-status mt-5 hidden rounded-[1rem] border px-4 py-3 text-sm font-semibold" role="status" aria-live="polite"></p>
+				</form>
 			</div>
 		</Container>
 	</section>
 
 	<section class="pb-6 pt-1 sm:pb-8">
 		<Container>
-			<div class="feature-panel p-5 sm:p-6">
-				<div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-					<div class="max-w-2xl">
-						<p class="eyebrow">What happens next</p>
-						<h2 class="mt-3 text-2xl font-semibold tracking-tight">A simple review process.</h2>
+			<div class="relative overflow-hidden rounded-[2rem] border border-white/85 bg-[linear-gradient(145deg,#fffaf1,#e8f4eb_64%,#fff1dd)] p-5 shadow-[0_28px_82px_-58px_rgba(8,36,61,0.5)] sm:p-6 lg:p-7">
+				<div class="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-brand-orange/16 blur-3xl"></div>
+				<div class="pointer-events-none absolute -bottom-20 left-12 h-52 w-52 rounded-full bg-brand-leaf/14 blur-3xl"></div>
+
+				<div class="relative grid gap-6 lg:grid-cols-[0.32fr_0.68fr] lg:items-start">
+					<div class="max-w-xl">
+						<p class="eyebrow">What Happens Next</p>
+						<h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+							A simple review process.
+						</h2>
+						<p class="mt-3 text-sm leading-6 text-slate-600">
+							Each request is reviewed carefully so families and organizations understand what may be realistic before planning around support.
+						</p>
 					</div>
 
-					<div class="grid gap-3 lg:grid-cols-3">
-						{nextSteps.map((step, index) => (
-							<div class="step-card">
-								<span class="step-marker">{index + 1}</span>
-								<p class="mt-2 text-sm leading-6 text-slate-600">{step}</p>
-							</div>
-						))}
+					<div>
+						<div class="grid gap-3 md:grid-cols-3">
+							{nextSteps.map((step, index) => (
+								<article class="relative overflow-hidden rounded-[1.25rem] border border-white/80 bg-brand-cream/86 p-4 shadow-[0_20px_56px_-46px_rgba(8,36,61,0.42)]">
+									<div class="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-brand-gold/12 blur-2xl"></div>
+									<span class="relative flex h-11 w-11 items-center justify-center rounded-full border border-brand-gold/35 bg-brand-green text-sm font-semibold text-white shadow-[0_18px_38px_-24px_rgba(20,124,104,0.72)]">
+										{index + 1}
+									</span>
+									<h3 class="relative mt-4 text-base font-semibold tracking-tight text-brand-ink">
+										{step.title}
+									</h3>
+									<p class="relative mt-2 text-sm leading-6 text-slate-600">{step.body}</p>
+								</article>
+							))}
+						</div>
+
+						<p class="mt-4 inline-flex rounded-full border border-brand-green/18 bg-white/70 px-4 py-2 text-sm font-semibold text-brand-ink shadow-[0_18px_40px_-34px_rgba(8,36,61,0.36)]">
+							We aim to respond within 1-2 business days.
+						</p>
 					</div>
 				</div>
 			</div>
@@ -124,4 +517,342 @@ const nextSteps = [
 			</div>
 		</Container>
 	</section>
+
+	<style>
+		.path-choice.is-selected {
+			border-color: rgba(20, 124, 104, 0.58);
+			box-shadow: 0 38px 96px -60px rgba(8, 36, 61, 0.68);
+			transform: translateY(-0.12rem);
+		}
+
+		.path-choice[data-path-trigger="staffing"].is-selected {
+			border-color: rgba(224, 163, 58, 0.72);
+		}
+
+		.path-choice.is-selected .choice-check {
+			opacity: 1;
+			transform: scale(1);
+		}
+
+		.form-status[data-state="success"] {
+			background: rgba(232, 244, 235, 0.84);
+			border-color: rgba(20, 124, 104, 0.28);
+			color: #08243d;
+		}
+
+		.form-status[data-state="error"] {
+			background: rgba(254, 242, 242, 0.92);
+			border-color: rgba(220, 38, 38, 0.28);
+			color: #7f1d1d;
+		}
+
+		:global(.is-field-invalid) {
+			border-color: rgba(220, 38, 38, 0.68) !important;
+			background: rgba(255, 247, 247, 0.96) !important;
+			box-shadow:
+				0 0 0 3px rgba(220, 38, 38, 0.1),
+				0 14px 34px -30px rgba(127, 29, 29, 0.45) !important;
+		}
+
+		:global(.field-error-message) {
+			margin-top: 0.45rem;
+			display: block;
+			color: #b42318;
+			font-size: 0.8125rem;
+			font-weight: 650;
+			line-height: 1.45;
+		}
+
+		:global(.field-error-message[hidden]) {
+			display: none;
+		}
+	</style>
+
+	<script>
+		const pathTriggers = Array.from(document.querySelectorAll("[data-path-trigger]"));
+		const formRegion = document.querySelector("[data-form-region]");
+		const emptyState = document.querySelector("[data-form-empty]");
+		const forms = Array.from(document.querySelectorAll("[data-support-form]"));
+		const REQUIRED_ERROR = "This field is required.";
+		const PHONE_ERROR = "Please enter a valid phone number.";
+		const EMAIL_ERROR = "Please enter a valid email address.";
+		const SUCCESS_MESSAGE =
+			"Thank you. Your request has been received. Golden Care will review your information and follow up about next steps. Email and Google Sheets submission will be connected next.";
+		const PHONE_DISALLOWED_PATTERN = /[^0-9()+\-\s]/;
+		const PHONE_SANITIZE_PATTERN = /[^0-9()+\-\s]/g;
+		const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+		function setStatus(statusElement, message, state) {
+			if (!statusElement) return;
+			statusElement.textContent = message;
+			statusElement.dataset.state = state;
+			statusElement.classList.remove("hidden");
+			statusElement.hidden = false;
+		}
+
+		function clearStatus(form) {
+			const statusElement = form.querySelector("[data-form-status]");
+			if (!statusElement) return;
+			statusElement.textContent = "";
+			statusElement.removeAttribute("data-state");
+			statusElement.classList.add("hidden");
+			statusElement.hidden = true;
+		}
+
+		function getValidatableFields(form) {
+			return Array.from(form.querySelectorAll("input, select, textarea")).filter((field) => {
+				if (field.disabled) return false;
+				if (field.type === "button" || field.type === "submit" || field.type === "hidden") return false;
+				return field.required || field.type === "email" || field.type === "tel";
+			});
+		}
+
+		function sanitizePhoneValue(field) {
+			const cleanValue = field.value.replace(PHONE_SANITIZE_PATTERN, "");
+			if (field.value !== cleanValue) field.value = cleanValue;
+		}
+
+		function isPhoneValueValid(value) {
+			const trimmedValue = value.trim();
+			const digitCount = trimmedValue.replace(/\D/g, "").length;
+			return digitCount >= 10 && digitCount <= 15 && !PHONE_DISALLOWED_PATTERN.test(trimmedValue);
+		}
+
+		function getFieldError(field) {
+			const value = "value" in field ? field.value.trim() : "";
+
+			if (field.type === "checkbox") {
+				if (field.required && !field.checked) return REQUIRED_ERROR;
+				return "";
+			}
+
+			if (field.required && !value) return REQUIRED_ERROR;
+
+			if (field.type === "tel" && value && !isPhoneValueValid(value)) {
+				return PHONE_ERROR;
+			}
+
+			if (field.type === "email" && value && !EMAIL_PATTERN.test(value)) {
+				return EMAIL_ERROR;
+			}
+
+			if (field.type === "number" && value && field.min && Number(value) < Number(field.min)) {
+				return `Please enter a value of ${field.min} or higher.`;
+			}
+
+			return "";
+		}
+
+		function getErrorAnchor(field) {
+			if (field.type === "checkbox" || field.type === "radio") {
+				return field.closest("label") || field.closest("fieldset") || field;
+			}
+
+			return field;
+		}
+
+		function getOrCreateErrorElement(field) {
+			if (!field.id) {
+				field.id = `${field.name || "field"}-${Math.random().toString(36).slice(2, 9)}`;
+			}
+
+			const errorId = `${field.id}-error`;
+			let errorElement = document.getElementById(errorId);
+
+			if (!errorElement) {
+				errorElement = document.createElement("span");
+				errorElement.id = errorId;
+				errorElement.className = "field-error-message";
+				errorElement.hidden = true;
+				errorElement.setAttribute("aria-live", "polite");
+
+				const anchor = getErrorAnchor(field);
+				anchor.insertAdjacentElement("afterend", errorElement);
+			}
+
+			return errorElement;
+		}
+
+		function showFieldError(field, message) {
+			const errorElement = getOrCreateErrorElement(field);
+			const describedBy = new Set((field.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean));
+
+			errorElement.textContent = message;
+			errorElement.hidden = false;
+			describedBy.add(errorElement.id);
+			field.classList.add("is-field-invalid");
+			field.setAttribute("aria-invalid", "true");
+			field.setAttribute("aria-describedby", Array.from(describedBy).join(" "));
+			field.setCustomValidity(message);
+		}
+
+		function clearFieldError(field) {
+			const errorElement = field.id ? document.getElementById(`${field.id}-error`) : null;
+			const describedBy = new Set((field.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean));
+
+			if (errorElement) {
+				errorElement.textContent = "";
+				errorElement.hidden = true;
+				describedBy.delete(errorElement.id);
+			}
+
+			field.classList.remove("is-field-invalid");
+			field.removeAttribute("aria-invalid");
+			if (describedBy.size) {
+				field.setAttribute("aria-describedby", Array.from(describedBy).join(" "));
+			} else {
+				field.removeAttribute("aria-describedby");
+			}
+			field.setCustomValidity("");
+		}
+
+		function validateField(field, shouldShowError = false) {
+			if (field.type === "tel") sanitizePhoneValue(field);
+
+			const message = getFieldError(field);
+			if (message) {
+				if (shouldShowError) showFieldError(field, message);
+				else field.setCustomValidity(message);
+				return false;
+			}
+
+			clearFieldError(field);
+			return true;
+		}
+
+		function clearFormValidation(form) {
+			getValidatableFields(form).forEach((field) => {
+				delete field.dataset.touched;
+				clearFieldError(field);
+			});
+		}
+
+		function validateForm(form) {
+			const fields = getValidatableFields(form);
+			let firstInvalidField = null;
+
+			fields.forEach((field) => {
+				field.dataset.touched = "true";
+				const isValid = validateField(field, true);
+				if (!isValid && !firstInvalidField) firstInvalidField = field;
+			});
+
+			if (firstInvalidField) {
+				firstInvalidField.scrollIntoView({ behavior: "smooth", block: "center" });
+				firstInvalidField.focus({ preventScroll: true });
+				return false;
+			}
+
+			return true;
+		}
+
+		function selectPath(path, shouldScroll = true) {
+			if (!path) return;
+
+			pathTriggers.forEach((trigger) => {
+				const isSelected = trigger.getAttribute("data-path-trigger") === path;
+				trigger.classList.toggle("is-selected", isSelected);
+				trigger.setAttribute("aria-expanded", String(isSelected));
+			});
+
+			forms.forEach((form) => {
+				const isActive = form.getAttribute("data-path-form") === path;
+				form.hidden = !isActive;
+				form.classList.toggle("hidden", !isActive);
+				if (isActive) {
+					clearStatus(form);
+				} else {
+					clearFormValidation(form);
+				}
+			});
+
+			if (emptyState) {
+				emptyState.hidden = true;
+				emptyState.classList.add("hidden");
+			}
+
+			if (shouldScroll && formRegion) {
+				formRegion.scrollIntoView({ behavior: "smooth", block: "start" });
+			}
+		}
+
+		pathTriggers.forEach((trigger) => {
+			trigger.addEventListener("click", () => {
+				selectPath(trigger.getAttribute("data-path-trigger"));
+			});
+		});
+
+		forms.forEach((form) => {
+			getValidatableFields(form).forEach((field) => {
+				if (field.type === "tel") {
+					field.addEventListener("beforeinput", (event) => {
+						if (event.data && PHONE_DISALLOWED_PATTERN.test(event.data)) {
+							event.preventDefault();
+						}
+					});
+
+					field.addEventListener("input", () => {
+						sanitizePhoneValue(field);
+						if (field.dataset.touched === "true") validateField(field, true);
+					});
+				} else {
+					field.addEventListener("input", () => {
+						if (field.dataset.touched === "true") validateField(field, true);
+					});
+				}
+
+				field.addEventListener("blur", () => {
+					field.dataset.touched = "true";
+					validateField(field, true);
+				});
+
+				field.addEventListener("change", () => {
+					if (field.dataset.touched === "true" || field.type === "checkbox") {
+						field.dataset.touched = "true";
+						validateField(field, true);
+					}
+				});
+			});
+
+			form.addEventListener("submit", async (event) => {
+				event.preventDefault();
+
+				const statusElement = form.querySelector("[data-form-status]");
+				const submitButton = form.querySelector("[data-submit-button]");
+
+				if (!validateForm(form)) {
+					setStatus(statusElement, "Please review the highlighted fields before submitting.", "error");
+					return;
+				}
+
+				const originalLabel = submitButton ? submitButton.textContent : "";
+
+				try {
+					if (submitButton) {
+						submitButton.setAttribute("disabled", "");
+						submitButton.textContent = "Submitting...";
+					}
+
+					// TODO: Replace this placeholder with a POST to /api/lead, email delivery,
+					// and/or a Google Sheets connection when the backend integration is ready.
+					await new Promise((resolve) => window.setTimeout(resolve, 650));
+
+					form.reset();
+					clearFormValidation(form);
+					setStatus(statusElement, SUCCESS_MESSAGE, "success");
+				} catch {
+					setStatus(
+						statusElement,
+						"Something went wrong while preparing your request. Please try again or contact Golden Care directly.",
+						"error"
+					);
+				} finally {
+					if (submitButton) {
+						submitButton.removeAttribute("disabled");
+						submitButton.textContent = originalLabel;
+					}
+				}
+			});
+		});
+	</script>
 </BaseLayout>

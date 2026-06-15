@@ -1,0 +1,24 @@
+---
+// Stable QR redirect route for printed pamphlet materials.
+// Vercel performs the quiet platform redirect via vercel.json; this page is a static fallback.
+const destination = "/apply";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="robots" content="noindex" />
+		<meta http-equiv="refresh" content={`0; url=${destination}`} />
+		<link rel="canonical" href={destination} />
+		<title>Redirecting to Apply | Golden Care Support Services Inc.</title>
+	</head>
+	<body>
+		<script is:inline>
+			window.location.replace("/apply");
+		</script>
+		<p>
+			Redirecting to <a href={destination}>the Apply page</a>.
+		</p>
+	</body>
+</html>

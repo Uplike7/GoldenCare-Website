@@ -3,135 +3,223 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Container from "../components/ui/Container.astro";
 import ButtonLink from "../components/ui/ButtonLink.astro";
 
-const fitItems = [
-	"Children, youth, and adults who need structured support at home, in the community, or in supported settings",
-	"People with autism, ADHD, developmental disabilities, mental health challenges, or related complex needs",
-	"Families and caregivers seeking respite, routines, or daily coverage",
-	"Private-pay families in eligible service regions",
-	"Provider partners, group homes, and similar care settings seeking dependable support coverage"
+const supportCards = [
+	{
+		title: "Families and private homes",
+		description: "For children, youth, adults, or seniors needing respite, supervision, or 1:1 support."
+	},
+	{
+		title: "Group homes and supported settings",
+		description: "Coverage for homes and care environments needing dependable staff."
+	},
+	{
+		title: "Shelters and community agencies",
+		description: "Relief, coverage, or program support for community-based organizations."
+	},
+	{
+		title: "Schools and youth-support environments",
+		description: "Structured support where children or youth need extra assistance."
+	},
+	{
+		title: "Private care companies",
+		description: "Partnership staffing support for agencies needing trained workers."
+	},
+	{
+		title: "Community settings",
+		description: "Support for outings, appointments, activities, errands, and participation."
+	}
 ];
+
+// Swap these image paths when stronger Home & Community Staffing photography is ready.
+const supportSettingPhotos = [
+	{
+		src: "/images/family-support.jpg",
+		alt: "Caregiver providing calm support during an outdoor community activity"
+	},
+	{
+		src: "/images/blog-community-support.jpg",
+		alt: "Support worker sharing a structured activity moment in a home or community setting"
+	},
+	{
+		src: "/images/home-hero.jpg",
+		alt: "Hands-on life-skills activity materials for supportive daily routines"
+	},
+	{
+		src: "/images/blog-day-program.jpg",
+		alt: "Prepared activity materials representing guided participation and routine support"
+	},
+	{
+		src: "/images/blog-funding.jpg",
+		alt: "Planning materials representing coordinated support coverage and next steps"
+	}
+];
+
+const supportSettingPhotoSlides = [...supportSettingPhotos, ...supportSettingPhotos].map((photo, index) => ({
+	photo,
+	set: index < supportSettingPhotos.length ? "original" : "duplicate"
+}));
+
+const supportSettingPhotoCount = supportSettingPhotos.length;
+const supportSettingSlideshowLabel = `Home and community support setting photo story with ${supportSettingPhotoCount} photos`;
 
 const supportTypes = [
 	{
-		title: "1:1 support at home",
-		description: "Focused support for daily routines, safety, communication, transitions, and individual needs at home."
+		title: "1:1 support",
+		description: "Focused support for individuals who need direct assistance and supervision."
 	},
 	{
-		title: "Community access and outings",
-		description: "Support for appointments, outings, activities, and safe participation outside the home."
+		title: "Respite and relief coverage",
+		description: "Practical coverage that helps caregivers and teams plan around support needs."
 	},
 	{
-		title: "Respite support",
-		description: "Practical relief for caregivers while routines, expectations, and support plans stay steady."
+		title: "Community access support",
+		description: "Support for safe participation in appointments, activities, errands, and outings."
 	},
 	{
-		title: "Life-skills and routine support",
-		description: "Help with independence, communication, daily living skills, and predictable routines."
-	},
-	{
-		title: "Weekend or extended support",
-		description: "Coverage for evenings, weekends, respite needs, or other support times where available."
-	},
-	{
-		title: "Coverage support for care settings",
-		description: "Dependable 1:1 staffing and coverage support for group homes and similar care settings."
+		title: "Program or shift coverage",
+		description: "Support workers for care settings, programs, or organizations needing coverage."
 	}
 ];
 
-const benefits = [
+const staffReadiness = [
 	{
-		title: "More stability for routines",
-		description: "Consistent support can help daily routines feel more predictable and easier to maintain."
+		title: "First Aid & CPR",
+		description: "Basic emergency-response readiness where required or applicable."
 	},
 	{
-		title: "Better caregiver relief",
-		description: "Families and caregivers can plan around respite, coverage, and practical support needs."
+		title: "Behaviour support awareness",
+		description: "UMAB, behaviour-support training, or related preparation where applicable."
 	},
 	{
-		title: "Dependable support coverage",
-		description: "Provider partners and care settings can request coverage for individuals with complex needs."
+		title: "Crisis intervention",
+		description: "Calm response, redirection, and de-escalation during challenging moments."
 	},
 	{
-		title: "Clearer communication and planning",
-		description: "Support planning considers goals, safety, schedule, location, and fit before moving forward."
+		title: "Documentation and reporting",
+		description: "Daily notes, incident reporting, communication logs, and follow-up where required."
+	},
+	{
+		title: "Person-centred support",
+		description: "Support shaped around routines, communication style, dignity, goals, and comfort."
+	},
+	{
+		title: "Complex-needs experience",
+		description: "Experience may include autism, developmental disabilities, mental health, behavioural needs, or related support settings."
 	}
-];
-
-const trustPoints = [
-	"First Aid & CPR",
-	"UMAB / behaviour support training",
-	"Crisis intervention and de-escalation",
-	"Documentation and reporting practices",
-	"Person-centred support approaches"
 ];
 
 const nextSteps = [
 	{
-		title: "Share the need",
-		description: "Tell us the service, region, age group, schedule, and coverage need."
+		title: "Apply for staffing",
+		description: "Tell us where support is needed, who needs support, the schedule, and the type of coverage you are looking for."
 	},
 	{
-		title: "Review fit",
-		description: "We review scope, support needs, coverage fit, and location."
+		title: "Find the best coverage fit",
+		description: "We review the setting, timing, support needs, location, and staffing availability."
 	},
 	{
 		title: "Plan next steps",
-		description: "We follow up about intake details, scheduling, or availability."
+		description: "We follow up with intake details, scheduling options, and next steps."
 	}
 ];
 ---
 
 <BaseLayout
 	title="Home & Community Support Staffing | Golden Care Support Services Inc."
-	description="Learn about Golden Care's Home & Community Support Staffing, 1:1 staffing, and support coverage services in Durham, Peel, York, Toronto, and Scarborough."
+	description="Request staffing support for children, youth, adults, and seniors with complex needs across homes, community settings, and partner care environments."
 >
-	<section class="pb-5 pt-7 sm:pb-6 sm:pt-9">
+	<section class="pb-7 pt-7 sm:pb-9 sm:pt-9">
 		<Container>
-			<div class="hero-panel relative overflow-hidden rounded-[2.2rem] border border-white/85 bg-brand-cream/90 p-5 shadow-[0_34px_92px_-60px_rgba(8,36,61,0.54)] sm:p-6 lg:grid lg:grid-cols-[1fr_0.82fr] lg:gap-7 lg:p-8">
-				<div class="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand-orange/18 blur-3xl"></div>
-				<div class="pointer-events-none absolute bottom-0 left-12 h-52 w-52 rounded-full bg-brand-leaf/14 blur-3xl"></div>
+			<div class="hero-panel relative overflow-hidden rounded-[2.3rem] border border-white/85 bg-brand-cream/90 p-4 shadow-[0_38px_98px_-60px_rgba(8,36,61,0.56)] sm:p-5 lg:grid lg:min-h-[34rem] lg:grid-cols-[0.84fr_1.16fr] lg:gap-7 lg:p-6">
+				<div class="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-brand-orange/18 blur-3xl"></div>
+				<div class="pointer-events-none absolute bottom-0 left-12 h-56 w-56 rounded-full bg-brand-leaf/14 blur-3xl"></div>
 
-				<div class="relative flex flex-col justify-center">
-					<div class="max-w-4xl space-y-3">
-						<p class="eyebrow">Home & Community Support Staffing</p>
+				<div class="relative flex flex-col justify-center px-1 py-4 sm:px-3 lg:px-4">
+					<div class="max-w-3xl space-y-3">
+						<p class="eyebrow">Home, Community & Staffing Support</p>
 						<h1 class="text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
-							Home & Community Support Staffing
+							Support staffing for homes, communities, and care settings.
 						</h1>
-						<p class="max-w-3xl text-lg font-semibold leading-8 text-brand-ink sm:text-xl">
-							Trained support staff in the home and community for children, youth, and adults with complex needs.
+						<p class="max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+							Golden Care provides trained support workers for families, individuals, group homes, shelters, schools, private care companies, and community organizations that need dependable staffing support.
 						</p>
-						<p class="max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
-							We provide dependable support staffing for individuals who need help at home, in the community, or in care settings that require calm, structured, and responsive coverage.
+						<p class="max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
+							Support can be arranged for children, youth, adults, and seniors with complex needs, depending on location, schedule, staffing availability, and fit.
 						</p>
 					</div>
 
-					<div class="mt-5 flex flex-wrap gap-3">
-						<ButtonLink href="/contact">Request Support</ButtonLink>
-						<ButtonLink href="/contact" variant="secondary">Ask About Coverage</ButtonLink>
+					<div class="mt-6 flex flex-wrap gap-3">
+						<ButtonLink href="/apply#community-support-request">Request Support</ButtonLink>
+						<ButtonLink href="/contact" variant="secondary">Ask About Staffing</ButtonLink>
 					</div>
 				</div>
 
 				<div class="relative mt-7 lg:mt-0">
-					<div class="relative min-h-[18rem] overflow-hidden rounded-[1.9rem] bg-[linear-gradient(145deg,#e8f4eb,#fff1dd)] p-5 shadow-[0_28px_74px_-58px_rgba(8,36,61,0.48)]">
-						<div class="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-brand-orange/22 blur-2xl"></div>
-						<div class="absolute -bottom-14 left-8 h-48 w-48 rounded-full bg-brand-leaf/20 blur-2xl"></div>
-						<div class="relative flex min-h-[15.5rem] items-end overflow-hidden rounded-[1.45rem] bg-brand-cream/48 p-5 backdrop-blur">
-							<div class="absolute left-7 top-7 h-20 w-20 rounded-full bg-brand-cream/80 shadow-[0_20px_48px_-38px_rgba(8,36,61,0.45)]"></div>
-							<div class="absolute right-8 top-16 h-32 w-24 rounded-full bg-brand-green/22"></div>
-							<div class="absolute bottom-20 left-12 h-24 w-40 rounded-t-full bg-brand-ink/10"></div>
-							<div class="relative rounded-[1.15rem] bg-brand-cream/86 p-4 shadow-[0_22px_58px_-46px_rgba(8,36,61,0.48)]">
-								<p class="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-brand-green">
-									Support settings
-								</p>
-								<p class="mt-2 max-w-xs text-lg font-semibold leading-tight tracking-tight text-brand-ink">
-									Home, community, and care coverage.
-								</p>
-								<div class="mt-3 flex flex-wrap gap-2">
-									<span class="rounded-full bg-brand-mist px-3 py-1 text-xs font-semibold text-brand-green">1:1 support</span>
-									<span class="rounded-full bg-brand-sand px-3 py-1 text-xs font-semibold text-brand-ink">Respite</span>
-									<span class="rounded-full bg-white/84 px-3 py-1 text-xs font-semibold text-brand-ink">Coverage</span>
+					<div class="relative h-full min-h-[24rem] overflow-hidden rounded-[2rem] bg-[linear-gradient(145deg,#e8f4eb,#fff1dd)] p-2.5 shadow-[0_30px_84px_-58px_rgba(8,36,61,0.5)] sm:min-h-[28rem]">
+						<img
+							src="/images/family-support.jpg"
+							alt="Caregiver supporting children during an outdoor community activity"
+							class="h-full min-h-[22.5rem] w-full rounded-[1.55rem] object-cover object-[62%_58%] sm:min-h-[26.5rem]"
+							loading="eager"
+							decoding="async"
+						/>
+						<div class="pointer-events-none absolute inset-2.5 rounded-[1.55rem] bg-[linear-gradient(180deg,rgba(8,36,61,0)_50%,rgba(8,36,61,0.18))]"></div>
+					</div>
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-8 pt-1 sm:pb-10">
+		<Container>
+			<div class="relative overflow-hidden rounded-[2rem] border border-white/80 bg-brand-cream/92 p-4 shadow-[0_26px_74px_-62px_rgba(8,36,61,0.48)] sm:p-5 lg:p-6">
+				<div class="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-brand-orange/14 blur-3xl"></div>
+				<div class="relative">
+					<div class="max-w-4xl">
+						<p class="eyebrow">Who we support</p>
+						<h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+							Staffing support for people and organizations that need coverage.
+						</h2>
+						<p class="mt-3 text-sm leading-6 text-slate-600 sm:text-base">
+							Whether support is needed at home, in the community, or within a care setting, Golden Care helps arrange dependable workers based on the person&apos;s needs and the setting.
+						</p>
+					</div>
+
+					<div class="mt-5 grid gap-4 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+						<div class="relative min-h-[16rem] overflow-hidden rounded-[1.6rem] bg-[linear-gradient(145deg,#fff1dd,#e8f4eb)] p-2.5 shadow-[0_24px_70px_-58px_rgba(8,36,61,0.48)] sm:min-h-[18rem] lg:min-h-[22rem]">
+							<div
+								class="support-settings-slideshow h-full min-h-[15rem] overflow-hidden rounded-[1.25rem] sm:min-h-[17rem] lg:min-h-[21rem]"
+								data-support-settings-slideshow
+								tabindex="0"
+								aria-label={supportSettingSlideshowLabel}
+								aria-roledescription="carousel"
+							>
+								<div class="support-settings-slideshow-track flex h-full" data-support-settings-slideshow-track>
+									{supportSettingPhotoSlides.map(({ photo, set }) => (
+										<figure
+											class="support-settings-slideshow-slide h-full min-w-full"
+											data-support-settings-slide-set={set}
+											aria-hidden={set === "duplicate" ? "true" : undefined}
+										>
+											<img
+												src={photo.src}
+												alt={photo.alt}
+												class="h-full min-h-[15rem] w-full rounded-[1.25rem] object-cover object-[58%_52%] sm:min-h-[17rem] lg:min-h-[21rem]"
+												loading="lazy"
+											/>
+										</figure>
+									))}
 								</div>
 							</div>
+						</div>
+
+						<div class="grid gap-2.5 sm:grid-cols-2">
+							{supportCards.map((setting) => (
+								<article class="rounded-[1.1rem] border border-brand-green/14 bg-white/64 p-3.5 shadow-[0_14px_42px_-38px_rgba(8,36,61,0.28)]">
+									<h3 class="text-sm font-semibold leading-5 text-brand-ink sm:text-base">{setting.title}</h3>
+									<p class="mt-1.5 text-sm leading-5 text-slate-600">{setting.description}</p>
+								</article>
+							))}
 						</div>
 					</div>
 				</div>
@@ -139,50 +227,16 @@ const nextSteps = [
 		</Container>
 	</section>
 
-	<section class="pb-7 pt-2 sm:pb-9">
-		<Container>
-			<div class="grid gap-5 lg:grid-cols-[1fr_1fr]">
-				<article class="feature-panel p-5 sm:p-6 lg:p-7">
-					<p class="eyebrow">Service overview</p>
-					<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-						Support for home, community, and care settings.
-					</h2>
-					<p class="mt-4 text-base leading-7 text-slate-600">
-						Home & Community Support Staffing helps families, caregivers, and provider partners arrange trained support staff for real daily needs.
-					</p>
-					<p class="mt-3 text-base leading-7 text-slate-600">
-						Support may happen at home, during outings, around routines, or in care settings that need dependable 1:1 coverage.
-					</p>
-				</article>
-
-				<article class="tint-panel p-5 sm:p-6 lg:p-7">
-					<p class="eyebrow">Who it is for</p>
-					<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-						For families, caregivers, and provider partners.
-					</h2>
-					<ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600">
-						{fitItems.map((item) => (
-							<li class="flex gap-3">
-								<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-brand-green"></span>
-								<span>{item}</span>
-							</li>
-						))}
-					</ul>
-				</article>
-			</div>
-		</Container>
-	</section>
-
-	<section class="pb-7 pt-1 sm:pb-9">
+	<section class="pb-8 pt-1 sm:pb-10">
 		<Container>
 			<div class="mb-5 flex flex-col gap-2 sm:mb-6">
-				<p class="eyebrow">Support types offered</p>
+				<p class="eyebrow">Staffing may support</p>
 				<h2 class="max-w-3xl text-2xl font-semibold tracking-tight sm:text-3xl">
-					Support options families and providers can request.
+					Practical staffing for real-life support needs.
 				</h2>
 			</div>
 
-			<div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+			<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 				{supportTypes.map((support) => (
 					<article class="service-card min-h-full">
 						<h3 class="text-lg font-semibold tracking-tight">{support.title}</h3>
@@ -193,63 +247,30 @@ const nextSteps = [
 		</Container>
 	</section>
 
-	<section class="pb-7 pt-1 sm:pb-9">
+	<section class="pb-8 pt-1 sm:pb-10">
 		<Container>
-			<div class="relative overflow-hidden rounded-[2.2rem] border border-white/80 bg-[linear-gradient(145deg,#fffaf1,#e8f4eb_58%,#fff1dd)] p-5 shadow-[0_30px_84px_-62px_rgba(8,36,61,0.54)] sm:p-6 lg:p-7">
-				<div class="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-brand-orange/16 blur-3xl"></div>
-				<div class="pointer-events-none absolute -bottom-20 left-12 h-56 w-56 rounded-full bg-brand-leaf/14 blur-3xl"></div>
-
-				<div class="relative grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-					<div>
-						<p class="eyebrow">Families and provider partners</p>
-						<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-							Support for families and provider partners.
-						</h2>
-						<p class="mt-4 text-base leading-7 text-slate-600">
-							Golden Care supports private families needing home and community support, caregivers needing practical coverage or respite, and group homes or similar care settings that need dependable support coverage.
-							Families, caregivers, and provider partners can inquire about 1:1 staffing, respite, and coverage for individuals with complex needs.
-						</p>
-					</div>
-
-					<div class="grid gap-3">
-						<div class="rounded-[1.25rem] border border-white/74 bg-brand-cream/84 p-4 shadow-[0_18px_54px_-46px_rgba(8,36,61,0.42)]">
-							<h3 class="text-base font-semibold text-brand-ink">Private families and caregivers</h3>
-							<p class="mt-2 text-sm leading-6 text-slate-600">
-								Support for respite, routines, home support, community participation, and practical day-to-day coverage.
-							</p>
-						</div>
-						<div class="rounded-[1.25rem] border border-white/74 bg-brand-cream/84 p-4 shadow-[0_18px_54px_-46px_rgba(8,36,61,0.42)]">
-							<h3 class="text-base font-semibold text-brand-ink">Provider partners and care settings</h3>
-							<p class="mt-2 text-sm leading-6 text-slate-600">
-								Support coverage and 1:1 staffing for group homes and similar care settings serving individuals with complex needs.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</Container>
-	</section>
-
-	<section class="pb-7 pt-1 sm:pb-9">
-		<Container>
-			<div class="relative overflow-hidden rounded-[2.2rem] border border-white/12 bg-[linear-gradient(135deg,#08243d,#147c68)] p-5 text-white shadow-[0_34px_90px_-54px_rgba(8,36,61,0.72)] sm:p-6 lg:grid lg:grid-cols-[0.82fr_1.18fr] lg:gap-7 lg:p-7">
-				<div class="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-brand-gold/16 blur-3xl"></div>
-				<div class="pointer-events-none absolute -bottom-24 left-10 h-64 w-64 rounded-full bg-brand-leaf/18 blur-3xl"></div>
+			<div class="relative overflow-hidden rounded-[2.2rem] border border-white/82 bg-[linear-gradient(145deg,#fffaf1,#e8f4eb_62%,#fff1dd)] p-5 shadow-[0_32px_88px_-62px_rgba(8,36,61,0.52)] sm:p-6 lg:grid lg:grid-cols-[0.82fr_1.18fr] lg:gap-6 lg:p-7">
+				<div class="pointer-events-none absolute -left-20 -top-24 h-64 w-64 rounded-full bg-brand-leaf/14 blur-3xl"></div>
+				<div class="pointer-events-none absolute -right-16 -bottom-20 h-56 w-56 rounded-full bg-brand-orange/14 blur-3xl"></div>
 
 				<div class="relative">
-					<p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-sand/86">Support staff training</p>
-					<h2 class="mt-4 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-						Trained support staff you can feel confident in.
+					<p class="eyebrow">Staff readiness</p>
+					<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+						Workers prepared for complex-needs environments.
 					</h2>
-					<p class="mt-4 text-base leading-7 text-white/78">
-						Our support staff are prepared to support individuals with layered needs in the home, community, and supported settings.
+					<p class="mt-4 text-base leading-7 text-slate-600">
+						Golden Care focuses on dependable support workers who understand structure, communication, safety, and calm follow-through. Staff experience and training may vary by role and setting, but may include preparation for home, community, shelter, group-home, school, and care-setting environments.
+					</p>
+					<p class="mt-3 rounded-[1.1rem] border border-brand-green/16 bg-brand-leaf/12 px-4 py-3 text-sm leading-6 text-slate-700">
+						Staff matching depends on support needs, setting, schedule, availability, and fit.
 					</p>
 				</div>
 
 				<div class="relative mt-5 grid gap-3 sm:grid-cols-2 lg:mt-0">
-					{trustPoints.map((point) => (
-						<div class="rounded-[1.1rem] border border-white/16 bg-white/10 p-4 shadow-[0_18px_48px_-42px_rgba(0,0,0,0.36)] backdrop-blur">
-							<p class="text-sm font-semibold leading-6 text-white">{point}</p>
+					{staffReadiness.map((point) => (
+						<div class="rounded-[1.15rem] border border-white/78 bg-brand-cream/84 px-4 py-3 shadow-[0_18px_52px_-46px_rgba(8,36,61,0.38)]">
+							<h3 class="text-sm font-semibold leading-5 text-brand-ink">{point.title}</h3>
+							<p class="mt-1.5 text-sm leading-5 text-slate-600">{point.description}</p>
 						</div>
 					))}
 				</div>
@@ -257,56 +278,32 @@ const nextSteps = [
 		</Container>
 	</section>
 
-	<section class="pb-7 pt-1 sm:pb-9">
+	<section class="pb-8 pt-1 sm:pb-10">
 		<Container>
-			<div class="feature-panel grid gap-5 p-5 sm:p-6 lg:grid-cols-[0.85fr_1.15fr] lg:p-7">
-				<div class="space-y-3">
-					<p class="eyebrow">How support can help</p>
-					<h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">
-						More stability, participation, and peace of mind.
+			<div class="relative overflow-hidden rounded-[2.2rem] border border-white/80 bg-brand-cream/92 p-5 shadow-[0_30px_84px_-62px_rgba(8,36,61,0.5)] sm:p-6 lg:grid lg:grid-cols-[0.86fr_1.14fr] lg:gap-6 lg:p-7">
+				<div class="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-brand-orange/14 blur-3xl"></div>
+				<div class="relative">
+					<p class="eyebrow">Request staffing support</p>
+					<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+						Request staffing support for your home, program, or care setting.
 					</h2>
-					<p class="text-base leading-7 text-slate-600">
-						Support can help with routine stability, safe participation, caregiver relief, dependable coverage, and clearer planning.
+					<p class="mt-4 text-base leading-7 text-slate-600">
+						Tell us where support is needed, who needs support, the schedule you are looking for, and the type of coverage required. Staffing support may be available across Durham, Peel, York, Toronto, and Scarborough depending on staffing availability, support needs, location, and fit.
 					</p>
 				</div>
 
-				<div class="grid gap-3 sm:grid-cols-2">
-					{benefits.map((benefit) => (
-						<div class="info-card">
-							<h3 class="text-base font-semibold">{benefit.title}</h3>
-							<p class="mt-2 text-sm leading-6 text-slate-600">{benefit.description}</p>
+				<div class="relative mt-5 grid gap-3 lg:mt-0">
+					{nextSteps.map((step, index) => (
+						<div class="rounded-[1.25rem] border border-white/78 bg-[linear-gradient(145deg,rgba(255,250,241,0.95),rgba(232,244,235,0.78))] p-4 shadow-[0_18px_52px_-46px_rgba(8,36,61,0.42)] sm:grid sm:grid-cols-[auto_1fr] sm:items-start sm:gap-4">
+							<span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-brand-gold/60 bg-[linear-gradient(135deg,#147c68,#0f6c5f)] text-base font-bold text-white shadow-[0_18px_40px_-18px_rgba(20,124,104,0.9),0_0_0_1px_rgba(237,170,68,0.24)] ring-[5px] ring-brand-gold/20">
+								{index + 1}
+							</span>
+							<div>
+								<h3 class="text-base font-semibold text-brand-ink">{step.title}</h3>
+								<p class="mt-1 text-sm leading-6 text-slate-600">{step.description}</p>
+							</div>
 						</div>
 					))}
-				</div>
-			</div>
-		</Container>
-	</section>
-
-	<section class="pb-7 pt-1 sm:pb-9">
-		<Container>
-			<div class="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
-				<div class="tint-panel p-5 sm:p-6">
-					<p class="eyebrow">Service regions</p>
-					<h2 class="mt-4 text-2xl font-semibold tracking-tight">Durham, Peel, York, Toronto, and Scarborough.</h2>
-					<p class="mt-3 text-sm leading-6 text-slate-600">
-						Availability depends on region, schedule, support needs, coverage request, and support fit.
-					</p>
-				</div>
-
-				<div class="feature-panel p-5 sm:p-6">
-					<div class="mb-5">
-						<p class="eyebrow">Next steps</p>
-						<h2 class="mt-4 text-2xl font-semibold tracking-tight">A simple inquiry path.</h2>
-					</div>
-					<div class="grid gap-3 lg:grid-cols-3">
-						{nextSteps.map((step, index) => (
-							<div class="step-card">
-								<span class="step-marker">{index + 1}</span>
-								<h3 class="mt-2 text-base font-semibold">{step.title}</h3>
-								<p class="mt-2 text-sm leading-6 text-slate-600">{step.description}</p>
-							</div>
-						))}
-					</div>
 				</div>
 			</div>
 		</Container>
@@ -318,24 +315,140 @@ const nextSteps = [
 				<div class="max-w-2xl">
 					<p class="text-sm font-semibold uppercase tracking-[0.18em] text-white/76">Ready to request support?</p>
 					<h2 class="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-						Request support or discuss coverage.
+						Apply for staffing or support coverage.
 					</h2>
 					<p class="mt-3 text-sm leading-6 text-white/80">
-						Families, caregivers, group homes, and care settings can share the region, schedule, support goals, or coverage need so we can review fit.
+						Families, group homes, shelters, schools, private care companies, and community organizations can reach out to request support.
 					</p>
 				</div>
 
 				<div class="mt-5 flex flex-wrap gap-3 lg:mt-0">
-					<ButtonLink href="/contact" variant="light">Request Support</ButtonLink>
+					<ButtonLink href="/apply#community-support-request" variant="light">Request Staffing</ButtonLink>
 					<ButtonLink
 						href="/contact"
 						variant="unstyled"
 						class="border border-white/30 bg-white/10 px-5 py-3 text-sm text-white hover:-translate-y-0.5 hover:bg-white/18 sm:text-base"
 					>
-						Ask About Coverage
+						Talk to Us
 					</ButtonLink>
 				</div>
 			</div>
 		</Container>
 	</section>
+
+	<style>
+		.support-settings-slideshow {
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+		}
+
+		.support-settings-slideshow::-webkit-scrollbar {
+			display: none;
+		}
+
+		.support-settings-slideshow:focus-visible {
+			outline: 2px solid #147c68;
+			outline-offset: 0.32rem;
+		}
+
+		.support-settings-slideshow-track {
+			transform: translate3d(0, 0, 0);
+			transition: transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+			will-change: transform;
+		}
+
+		.support-settings-slideshow-slide {
+			flex: 0 0 100%;
+			width: 100%;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.support-settings-slideshow-track {
+				transition: none;
+			}
+		}
+	</style>
+
+	<script is:inline>
+		const supportSettingsSlideshow = document.querySelector("[data-support-settings-slideshow]");
+
+		if (supportSettingsSlideshow) {
+			const supportSettingsTrack = supportSettingsSlideshow.querySelector("[data-support-settings-slideshow-track]");
+			const originalSupportSettingsSlides = Array.from(
+				supportSettingsSlideshow.querySelectorAll("[data-support-settings-slide-set='original']")
+			);
+			const supportSettingsSlideCount = originalSupportSettingsSlides.length;
+			const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+			const supportSettingsIntervalDelay = 5200;
+			let activeSupportSettingsIndex = 0;
+			let supportSettingsTimer;
+			let isHoveringSupportSettings = false;
+			let isFocusingSupportSettings = false;
+
+			const moveSupportSettingsTrack = (index, shouldAnimate = true) => {
+				if (!supportSettingsTrack) return;
+				activeSupportSettingsIndex = index;
+
+				if (!shouldAnimate) {
+					supportSettingsTrack.style.transition = "none";
+				}
+
+				supportSettingsTrack.style.transform = `translate3d(-${activeSupportSettingsIndex * 100}%, 0, 0)`;
+
+				if (!shouldAnimate) {
+					supportSettingsTrack.offsetHeight;
+					supportSettingsTrack.style.transition = "";
+				}
+			};
+
+			const normalizeSupportSettingsTrack = () => {
+				if (!supportSettingsSlideCount) return;
+				if (activeSupportSettingsIndex < supportSettingsSlideCount) return;
+				moveSupportSettingsTrack(activeSupportSettingsIndex % supportSettingsSlideCount, false);
+			};
+
+			const shouldPauseSupportSettingsAuto = () => isHoveringSupportSettings || isFocusingSupportSettings;
+
+			const stopSupportSettingsAuto = () => {
+				window.clearInterval(supportSettingsTimer);
+				supportSettingsTimer = undefined;
+			};
+
+			const startSupportSettingsAuto = () => {
+				if (prefersReducedMotion || shouldPauseSupportSettingsAuto() || supportSettingsTimer || !supportSettingsSlideCount) return;
+				supportSettingsTimer = window.setInterval(() => {
+					moveSupportSettingsTrack(activeSupportSettingsIndex + 1);
+				}, supportSettingsIntervalDelay);
+			};
+
+			supportSettingsTrack?.addEventListener("transitionend", (event) => {
+				if (event.propertyName !== "transform") return;
+				normalizeSupportSettingsTrack();
+			});
+
+			supportSettingsSlideshow.addEventListener("mouseenter", () => {
+				isHoveringSupportSettings = true;
+				stopSupportSettingsAuto();
+			});
+
+			supportSettingsSlideshow.addEventListener("mouseleave", () => {
+				isHoveringSupportSettings = false;
+				startSupportSettingsAuto();
+			});
+
+			supportSettingsSlideshow.addEventListener("focusin", () => {
+				isFocusingSupportSettings = true;
+				stopSupportSettingsAuto();
+			});
+
+			supportSettingsSlideshow.addEventListener("focusout", (event) => {
+				if (!supportSettingsSlideshow.contains(event.relatedTarget)) {
+					isFocusingSupportSettings = false;
+					startSupportSettingsAuto();
+				}
+			});
+
+			startSupportSettingsAuto();
+		}
+	</script>
 </BaseLayout>

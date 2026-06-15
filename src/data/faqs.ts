@@ -5,12 +5,12 @@ export const faqGroups = [
 			{
 				question: "Who does Golden Care support?",
 				answer:
-					"Golden Care supports adults in the day program and youth or adults needing Home & Community Support Staffing, including people with complex needs."
+					"Golden Care supports adults 18+ in the day program and youth or adults needing Home & Community Support Staffing, including people with complex needs."
 			},
 			{
 				question: "Where are services available?",
 				answer:
-					"Adult Day Program intake is in Durham Region. Home & Community Staffing is available in Durham, Peel, York, Toronto, and Scarborough."
+					"Adult Day Program intake for ages 18+ is in Durham Region. Home & Community Staffing is available in Durham, Peel, York, Toronto, and Scarborough."
 			},
 			{
 				question: "How do we know if a service is the right fit?",
@@ -25,7 +25,7 @@ export const faqGroups = [
 			{
 				question: "What does the adult day program provide?",
 				answer:
-					"The day program offers structure, activity, skill-building, social connection, and routine."
+					"The day program supports adults 18+ with structure, activity, skill-building, social connection, and routine."
 			},
 			{
 				question: "Does submitting an application mean a spot is reserved?",
@@ -35,7 +35,7 @@ export const faqGroups = [
 			{
 				question: "Can the day program support adults with complex needs?",
 				answer:
-					"Complex needs are considered, but fit depends on intake review, staffing, and safety."
+					"Yes. Adults 18+ with complex needs are considered, but fit depends on intake review, staffing, and safety."
 			}
 		]
 	},
@@ -50,7 +50,7 @@ export const faqGroups = [
 			{
 				question: "Are services only for adults?",
 				answer:
-					"No. Home & Community Support Staffing is for youth and adults. The day program is for adults."
+					"No. Home & Community Support Staffing is for youth and adults. The day program is for adults 18+."
 			},
 			{
 				question: "Can support happen on weekends?",

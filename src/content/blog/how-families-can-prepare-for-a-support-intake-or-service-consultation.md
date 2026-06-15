@@ -77,5 +77,4 @@ Being honest does not make a family harder to support. It helps the provider und
 
 ## Where to start with Golden Care
 
-If you are not sure which path fits, start with the [Apply page](/apply) or [Contact page](/contact). Golden Care can review whether the request may be better suited for Adult Day Program, Home & Community Staffing, or another next step.
-
+If you are not sure which path fits, start with the [Apply page](/apply) or [Contact page](/contact). Golden Care can review whether the request may be better suited for Adult Day Program for adults 18+, Home & Community Staffing, or another next step.

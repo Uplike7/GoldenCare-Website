@@ -67,7 +67,7 @@ Communication can make or break the experience.
 
 Fast staffing is not always the same as appropriate support. Families and provider partners should ask whether the support request is a good fit for the person, setting, schedule, and needs.
 
-Golden Care reviews fit before moving forward with [Home & Community Staffing](/community-home-support), Adult Day Program intake, or other service requests.
+Golden Care reviews fit before moving forward with [Home & Community Staffing](/community-home-support), Adult Day Program intake for adults 18+, or other service requests.
 
 ## Ask what happens next
 
@@ -80,4 +80,3 @@ Before ending the first conversation, clarify:
 - whether submitting a form guarantees service
 
 For Golden Care, submitting an inquiry or application does not guarantee acceptance or immediate staffing. It starts the review process.
-

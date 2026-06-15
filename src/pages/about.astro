@@ -3,29 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Container from "../components/ui/Container.astro";
 import ButtonLink from "../components/ui/ButtonLink.astro";
 
-const values = [
-	{
-		title: "Person-centred support",
-		summary: "Support starts with the person, not a template.",
-		description: "Plans consider routines, communication, safety, and what helps each person feel settled day to day."
-	},
-	{
-		title: "Family collaboration",
-		summary: "Families stay informed, not left guessing.",
-		description: "Families, caregivers, and guardians stay part of planning, updates, and follow-up as needs change."
-	},
-	{
-		title: "Structured, affordable support",
-		summary: "Practical options with clearer next steps.",
-		description: "We focus on support options that are clear, organized, and easier for families to plan around."
-	},
-	{
-		title: "Complex needs experience",
-		summary: "Experience with layered needs in real-life settings.",
-		description: "Support is shaped for developmental, mental health, behavioural, and daily-living needs."
-	}
-];
-
 const supportGroups = [
 	{
 		title: "Who receives support",
@@ -88,7 +65,7 @@ const supportGroups = [
 				</div>
 
 				<div class="relative mt-8 lg:mt-0">
-					<div class="relative min-h-[22rem] overflow-hidden rounded-[2rem] bg-[linear-gradient(145deg,#fff1dd,#e8f4eb)] p-5 shadow-[0_30px_78px_-56px_rgba(8,36,61,0.56)] sm:p-6">
+					<div class="relative min-h-[22rem] overflow-hidden rounded-[2rem] bg-[linear-gradient(145deg,#fff1dd,#e8f4eb)] p-2.5 shadow-[0_30px_78px_-56px_rgba(8,36,61,0.56)]">
 						<div class="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-brand-orange/24 blur-2xl"></div>
 						<div class="absolute -bottom-16 left-8 h-52 w-52 rounded-full bg-brand-leaf/18 blur-2xl"></div>
 						<div class="relative min-h-[19rem] overflow-hidden rounded-[1.6rem] bg-brand-cream/46 backdrop-blur sm:min-h-[22rem]">
@@ -133,11 +110,11 @@ const supportGroups = [
 							</p>
 						</div>
 
-						<div class="relative min-h-[14rem] overflow-hidden rounded-[1.6rem] border border-white/14 bg-brand-cream/18 shadow-[0_24px_58px_-48px_rgba(0,0,0,0.58)]">
+						<div class="relative min-h-[14rem] overflow-hidden rounded-[1.6rem] border border-white/14 bg-brand-cream/18 p-2 shadow-[0_24px_58px_-48px_rgba(0,0,0,0.58)]">
 							<img
 								src="/images/home-hero.jpg"
 								alt="Adults taking part in a guided creative support activity"
-								class="h-full min-h-[14rem] w-full object-cover object-[66%_52%]"
+								class="h-full min-h-[13rem] w-full rounded-[1.25rem] object-cover object-[66%_52%]"
 								loading="lazy"
 								decoding="async"
 							/>
@@ -180,49 +157,28 @@ const supportGroups = [
 
 	<section class="pb-10 pt-2">
 		<Container>
-			<div class="relative overflow-hidden rounded-[2.25rem] bg-[linear-gradient(145deg,#fffaf1,#e8f4eb_56%,#fff1dd)] p-5 shadow-[0_30px_84px_-62px_rgba(8,36,61,0.5)] sm:p-7 lg:p-8">
+			<div class="relative overflow-hidden rounded-[2.25rem] bg-[linear-gradient(145deg,#fffaf1,#e8f4eb_56%,#fff1dd)] p-3 shadow-[0_30px_84px_-62px_rgba(8,36,61,0.5)] sm:p-4 lg:p-5">
 				<div class="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand-orange/18 blur-3xl"></div>
 				<div class="pointer-events-none absolute -bottom-24 left-16 h-64 w-64 rounded-full bg-brand-leaf/16 blur-3xl"></div>
 
-				<div class="relative grid gap-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-					<div class="rounded-[1.75rem] bg-[linear-gradient(135deg,#08243d,#147c68)] p-5 text-white shadow-[0_28px_78px_-56px_rgba(8,36,61,0.64)] sm:p-6">
-						<p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-gold">
-							Mission and values
-						</p>
-						<h2 class="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-							Human care with clear structure.
-						</h2>
-						<p class="mt-4 text-base leading-7 text-white/78">
-							Our approach balances compassion with practical planning, so support feels steady rather than overwhelming.
-						</p>
-						<div class="mt-6 rounded-[1.2rem] border border-white/14 bg-white/10 p-4">
-							<p class="text-sm font-semibold text-white">What this means in practice</p>
-							<p class="mt-2 text-sm leading-6 text-white/76">
-								Clear plans, steady communication, and support that fits real family life.
-							</p>
-						</div>
-					</div>
+				<div class="relative mx-auto max-w-4xl px-2 pt-2 text-center sm:px-3 sm:pt-3">
+					<p class="eyebrow">Mission and values</p>
+					<h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+						Rooted in values. Built around people.
+					</h2>
+					<p class="mx-auto mt-4 max-w-3xl text-base leading-7 text-slate-600">
+						Our values shape how we plan, communicate, and support each person and family. They guide the way we build routines, respond to needs, and create dependable next steps.
+					</p>
+				</div>
 
-					<div class="relative">
-						<div class="absolute left-5 top-6 hidden h-[calc(100%-3rem)] w-px bg-gradient-to-b from-brand-green via-brand-leaf to-brand-orange sm:block"></div>
-						<div class="space-y-4">
-							{values.map((value, index) => (
-								<article class="relative flex gap-4 rounded-[1.35rem] border border-white/70 bg-white/62 p-4 shadow-[0_20px_62px_-52px_rgba(8,36,61,0.46)] backdrop-blur sm:p-5">
-									<span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-green text-sm font-semibold text-white shadow-[0_16px_34px_-24px_rgba(8,36,61,0.56)]">
-										0{index + 1}
-									</span>
-									<div>
-										<h3 class="text-xl font-semibold tracking-tight text-brand-ink">{value.title}</h3>
-										<p class="mt-1.5 text-sm font-semibold leading-6 text-brand-green">
-											{value.summary}
-										</p>
-										<p class="mt-2 text-sm leading-6 text-slate-600">{value.description}</p>
-									</div>
-								</article>
-							))}
-						</div>
-					</div>
-							</div>
+				<div class="relative mt-6 overflow-hidden rounded-[1.9rem] border border-white/78 bg-brand-cream/86 p-1.5 shadow-[0_28px_78px_-56px_rgba(8,36,61,0.54)] sm:p-2">
+					<img
+						src="/images/golden-care-values-tree.png"
+						alt="Golden Care values tree showing person-centred support, family collaboration, structured support, complex-needs experience, care, trust, safety, dignity, compassion, communication, consistency, respect, and support."
+						class="h-auto w-full rounded-[1.45rem] object-contain"
+						loading="lazy"
+						decoding="async"
+					/>
 				</div>
 			</div>
 		</Container>
@@ -270,7 +226,7 @@ const supportGroups = [
 					</div>
 					<div class="mt-6 flex justify-center">
 						<p class="max-w-4xl rounded-full border border-brand-green/24 bg-brand-cream/92 px-5 py-3.5 text-center text-[0.92rem] font-bold leading-6 text-brand-ink shadow-[0_22px_58px_-44px_rgba(8,36,61,0.5)] backdrop-blur sm:px-6">
-							Day Program: Durham Region <span class="mx-3 text-brand-green sm:mx-4">&bull;</span> Home &amp; Community Staffing: Durham, Peel, York, Toronto, and Scarborough
+							Adult Day Program: ages 18+ in Durham Region <span class="mx-3 text-brand-green sm:mx-4">&bull;</span> Home &amp; Community Staffing: Durham, Peel, York, Toronto, and Scarborough
 						</p>
 					</div>
 				</div>

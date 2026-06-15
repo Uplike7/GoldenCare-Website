@@ -3,56 +3,96 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Container from "../components/ui/Container.astro";
 import ButtonLink from "../components/ui/ButtonLink.astro";
 
-const fitItems = [
-	"Adults who benefit from a consistent daytime routine",
-	"Adults with developmental, mental health, or complex needs",
-	"Families seeking a structured daytime option",
-	"Private-pay families in Durham Region"
+const supportItems = [
+	"Adults 18+ who need a dependable daytime setting",
+	"Individuals who do better with calm guidance and predictable routines",
+	"Young adults moving from school-based support into adult services",
+	"Families looking for a safe, engaging option in Durham Region"
 ];
 
-const benefits = [
-	{
-		title: "Meaningful routine",
-		description: "Predictable days can reduce stress and make transitions easier."
-	},
-	{
-		title: "Supportive engagement",
-		description: "Activities are shaped around communication style, interests, and support level."
-	},
-	{
-		title: "Family reassurance",
-		description: "Families know what is being reviewed and what happens next."
-	}
+const reviewItems = [
+	"Safety, supervision, and support level",
+	"Communication needs and daily routines",
+	"Interests, goals, and comfort with group participation",
+	"Current space, staffing, and service fit"
 ];
 
-const participationItems = [
+// Update these image paths when real Day Program photography is ready.
+const activitySlides = [
 	{
 		title: "Supported activities and guided participation",
-		description: "Planned activities adapted to interests, pacing, and support level."
+		image: "/images/home-hero.jpg",
+		alt: "Small group drawing activity during structured day program support"
 	},
 	{
-		title: "Life-skills and routine support",
-		description: "Practice with daily routines, independence, and predictable transitions."
+		title: "Life-skills and semi-independence practice",
+		image: "/images/blog-day-program.jpg",
+		alt: "Hands-on activity materials prepared for life-skills practice"
 	},
 	{
 		title: "Calm social interaction",
-		description: "Opportunities for connection in a supportive, low-pressure environment."
+		image: "/images/blog-community-support.jpg",
+		alt: "Support worker sharing a calm activity moment during structured care"
 	},
 	{
 		title: "Communication and transition support",
-		description: "Support with changes, instructions, preferences, and regulation needs."
+		image: "/images/family-support.jpg",
+		alt: "Family support moment representing communication and planning"
 	},
 	{
-		title: "Community access where appropriate",
-		description: "Community participation may be included when it fits goals and support needs."
+		title: "Outdoor activities and group trips",
+		image: "/images/blog-funding.jpg",
+		alt: "Planning materials representing supported community outings"
 	},
 	{
 		title: "Family collaboration and updates",
-		description: "Families remain part of planning, follow-up, and practical communication."
+		image: "/images/home-hero.jpg",
+		alt: "Collaborative activity setting representing family updates and planning"
+	}
+];
+
+const activityCarouselSlides = [...activitySlides, ...activitySlides].map((slide, index) => ({
+	slide,
+	set: index < activitySlides.length ? "original" : "duplicate"
+}));
+
+const activitySlideCount = activitySlides.length;
+const activityCarouselLabel = `Day Program activity photo story with ${activitySlideCount} activity themes`;
+
+const hoursItems = [
+	{
+		label: "Morning / Day Window",
+		value: "7:00 AM - 3:00 PM",
+		description: "Structured daytime programming and support."
 	},
 	{
-		title: "Pickup and drop-off on request",
-		description: "Transportation may be discussed based on location, schedule, and fit."
+		label: "Afternoon / Evening Window",
+		value: "4:00 PM - 11:00 PM",
+		description: "Extended support for families needing later coverage."
+	},
+	{
+		label: "Transportation",
+		value: "Pickup and drop-off may be available on request.",
+		description: "Depends on location, scheduling, and support fit."
+	}
+];
+
+const trustCards = [
+	{
+		title: "20+ years of experience",
+		description: "Frontline support experience with children, youth, and adults with complex needs."
+	},
+	{
+		title: "Education support background",
+		description: "Experience supporting students in structured and small-class placement settings."
+	},
+	{
+		title: "Person-centred planning",
+		description: "Support is shaped around communication, routines, interests, and comfort level."
+	},
+	{
+		title: "Family communication",
+		description: "Families stay informed with practical updates, planning, and follow-up."
 	}
 ];
 
@@ -73,201 +113,259 @@ const nextSteps = [
 ---
 
 <BaseLayout
-	title="Adult Day Program in Durham Region | Golden Care Support Services Inc."
-	description="Learn about Golden Care's Adult Day Program for adults in Durham Region."
+	title="Adult Day Program Ages 18+ in Durham Region | Golden Care Support Services Inc."
+	description="Learn about Golden Care's Adult Day Program for adults ages 18+ in Durham Region."
 >
-	<section class="pb-5 pt-7 sm:pb-6 sm:pt-9">
+	<section class="pb-7 pt-7 sm:pb-9 sm:pt-9">
 		<Container>
-			<div class="hero-panel relative overflow-hidden rounded-[2.2rem] border border-white/85 bg-brand-cream/90 p-5 shadow-[0_34px_92px_-60px_rgba(8,36,61,0.54)] sm:p-6 lg:grid lg:grid-cols-[1fr_0.82fr] lg:gap-7 lg:p-8">
-				<div class="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand-orange/18 blur-3xl"></div>
-				<div class="pointer-events-none absolute bottom-0 left-12 h-52 w-52 rounded-full bg-brand-leaf/14 blur-3xl"></div>
+			<div class="hero-panel relative overflow-hidden rounded-[2.3rem] border border-white/85 bg-brand-cream/90 p-4 shadow-[0_38px_98px_-60px_rgba(8,36,61,0.56)] sm:p-5 lg:grid lg:min-h-[34rem] lg:grid-cols-[0.82fr_1.18fr] lg:gap-7 lg:p-6">
+				<div class="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-brand-orange/18 blur-3xl"></div>
+				<div class="pointer-events-none absolute bottom-0 left-12 h-56 w-56 rounded-full bg-brand-leaf/14 blur-3xl"></div>
 
-				<div class="relative flex flex-col justify-center">
-					<div class="max-w-4xl space-y-3">
-						<p class="eyebrow">Adult Day Program</p>
+				<div class="relative flex flex-col justify-center px-1 py-4 sm:px-3 lg:px-4">
+					<div class="max-w-3xl space-y-3">
+						<p class="eyebrow">Adult Day Program &middot; Ages 18+</p>
 						<h1 class="text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
-							Structured Adult Day Program support in Durham Region.
+							Structured daytime support for adults 18+ with complex needs.
 						</h1>
-						<p class="max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
-							A person-centred program option for adults who benefit from calm routines, guided participation, life-skills practice, and consistent support.
+						<p class="max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+							A person-centred Day Program in Durham Region for adults who benefit from calm routines, life-skills programming, guided participation, and consistent support.
 						</p>
 					</div>
 
-					<div class="mt-5 flex flex-wrap gap-3">
+					<div class="mt-6 flex flex-wrap gap-3">
 						<ButtonLink href="/apply#day-program-application">Apply for Day Program</ButtonLink>
 						<ButtonLink href="/contact" variant="secondary">Ask a Question</ButtonLink>
 					</div>
 				</div>
 
 				<div class="relative mt-7 lg:mt-0">
-					<div class="relative min-h-[18rem] overflow-hidden rounded-[1.9rem] bg-[linear-gradient(145deg,#fff1dd,#e8f4eb)] p-5 shadow-[0_28px_74px_-58px_rgba(8,36,61,0.48)]">
-						<div class="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-brand-orange/24 blur-2xl"></div>
-						<div class="absolute -bottom-14 left-8 h-48 w-48 rounded-full bg-brand-leaf/18 blur-2xl"></div>
-						<div class="relative flex min-h-[15.5rem] items-end overflow-hidden rounded-[1.45rem] bg-brand-cream/48 p-5 backdrop-blur">
-							<div class="absolute left-7 top-7 h-20 w-20 rounded-full bg-brand-cream/80 shadow-[0_20px_48px_-38px_rgba(8,36,61,0.45)]"></div>
-							<div class="absolute right-8 top-16 h-32 w-24 rounded-full bg-brand-green/20"></div>
-							<div class="absolute bottom-20 left-12 h-24 w-40 rounded-t-full bg-brand-ink/10"></div>
-							<div class="relative rounded-[1.15rem] bg-brand-cream/86 p-4 shadow-[0_22px_58px_-46px_rgba(8,36,61,0.48)]">
-								<p class="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-brand-green">
-									Program image
-								</p>
-								<p class="mt-2 max-w-xs text-lg font-semibold leading-tight tracking-tight text-brand-ink">
-									Add a warm day program photo.
-								</p>
-							</div>
-						</div>
+					<div class="relative h-full min-h-[24rem] overflow-hidden rounded-[2rem] bg-[linear-gradient(145deg,#fff1dd,#e8f4eb)] p-2.5 shadow-[0_30px_84px_-58px_rgba(8,36,61,0.5)] sm:min-h-[28rem]">
+						<img
+							src="/images/blog-community-support.jpg"
+							alt="Support worker sharing a calm activity moment with a young person during structured care"
+							class="h-full min-h-[22.5rem] w-full rounded-[1.55rem] object-cover sm:min-h-[26.5rem]"
+							loading="eager"
+						/>
+						<div class="pointer-events-none absolute inset-2.5 rounded-[1.55rem] bg-[linear-gradient(180deg,rgba(8,36,61,0)_48%,rgba(8,36,61,0.34))]"></div>
 					</div>
 				</div>
 			</div>
 		</Container>
 	</section>
 
-	<section class="pb-7 pt-2 sm:pb-9">
+	<section class="pb-8 pt-1 sm:pb-10">
 		<Container>
-			<div class="grid gap-5 lg:grid-cols-[1fr_1fr]">
-				<article class="feature-panel p-5 sm:p-6 lg:p-7">
-					<p class="eyebrow">Program overview</p>
+			<div class="relative overflow-hidden rounded-[2.2rem] border border-white/80 bg-[linear-gradient(145deg,#fffaf1,#e8f4eb_62%,#fff1dd)] p-5 shadow-[0_30px_84px_-62px_rgba(8,36,61,0.5)] sm:p-6 lg:p-7">
+				<div class="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-brand-orange/16 blur-3xl"></div>
+
+				<div class="relative max-w-4xl">
+					<p class="eyebrow">Program fit</p>
 					<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-						A dependable daytime routine.
+						A daytime program for adults who need purpose, support, and a steady rhythm.
+					</h2>
+					<p class="mt-4 max-w-3xl text-base leading-7 text-slate-600">
+						Golden Care&apos;s Day Program is built for adults 18+ who do best with guided activity, clear expectations, and supportive staff nearby. It can also help families whose loved one is leaving school-based supports and needs a meaningful place to continue building confidence and daily-living skills.
+					</p>
+				</div>
+
+				<div class="relative mt-6 grid gap-4 lg:grid-cols-2">
+					<article class="rounded-[1.55rem] bg-brand-cream/86 p-5 shadow-[0_22px_62px_-52px_rgba(8,36,61,0.42)] sm:p-6">
+						<h3 class="text-xl font-semibold tracking-tight text-brand-ink">Who may benefit</h3>
+						<ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600">
+							{supportItems.map((item) => (
+								<li class="flex gap-3">
+									<span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-green shadow-[0_0_0_4px_rgba(20,124,104,0.12)]"></span>
+									<span>{item}</span>
+								</li>
+							))}
+						</ul>
+					</article>
+
+					<article class="rounded-[1.55rem] border border-brand-leaf/22 bg-white/62 p-5 shadow-[0_22px_62px_-52px_rgba(8,36,61,0.36)] sm:p-6">
+						<h3 class="text-xl font-semibold tracking-tight text-brand-ink">What we look at first</h3>
+						<ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600">
+							{reviewItems.map((item) => (
+								<li class="flex gap-3">
+									<span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-green shadow-[0_0_0_4px_rgba(20,124,104,0.12)]"></span>
+									<span>{item}</span>
+								</li>
+							))}
+						</ul>
+					</article>
+				</div>
+
+				<div class="relative mt-5 rounded-[1.25rem] border border-brand-green/18 bg-brand-mist/64 px-4 py-3.5">
+					<p class="text-sm leading-6 text-slate-700">
+						Before accepting a participant, we review fit carefully so the program can be safe, realistic, and helpful for the person and their family.
+					</p>
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-8 pt-1 sm:pb-10">
+		<Container>
+			<div class="relative overflow-hidden rounded-[2.25rem] border border-white/82 bg-[linear-gradient(145deg,#fffaf1,#e8f4eb_55%,#fff1dd)] p-5 shadow-[0_32px_88px_-62px_rgba(8,36,61,0.54)] sm:p-6 lg:p-7">
+				<div class="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-brand-orange/16 blur-3xl"></div>
+
+				<div class="relative max-w-3xl">
+					<p class="eyebrow">Day Program activities</p>
+					<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+						What Day Program may include.
 					</h2>
 					<p class="mt-4 text-base leading-7 text-slate-600">
-						Adults can take part in planned activities, practise routines, and receive support with transitions during scheduled program windows.
+						The exact mix depends on each participant&apos;s goals, communication style, support needs, and program fit.
 					</p>
-					<p class="mt-3 text-base leading-7 text-slate-600">
-						Intake looks at safety, communication, support needs, and current program capacity.
-					</p>
-				</article>
+				</div>
 
-				<article class="tint-panel p-5 sm:p-6 lg:p-7">
-					<p class="eyebrow">Who it is for</p>
-					<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-						For adults who need a calmer daytime plan.
-					</h2>
-					<ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600">
-						{fitItems.map((item) => (
-							<li class="flex gap-3">
-								<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-brand-green"></span>
-								<span>{item}</span>
-							</li>
-						))}
-					</ul>
-				</article>
+				<div class="relative mt-7" data-activity-carousel-region>
+					<div
+						class="activity-carousel overflow-hidden pb-1"
+						data-activity-carousel
+						tabindex="0"
+						aria-label={activityCarouselLabel}
+						aria-roledescription="carousel"
+					>
+						<div class="activity-carousel-track flex" data-activity-carousel-track>
+							{activityCarouselSlides.map(({ slide, set }) => (
+								<article
+									class="activity-carousel-card"
+									data-activity-slide-set={set}
+									aria-hidden={set === "duplicate" ? "true" : undefined}
+								>
+									<div class="relative h-[19rem] overflow-hidden rounded-[1.8rem] bg-brand-cream/86 p-2.5 shadow-[0_30px_84px_-58px_rgba(8,36,61,0.54)] sm:h-[24rem] lg:h-[28rem]">
+										<img
+											src={slide.image}
+											alt={slide.alt}
+											class="h-full w-full rounded-[1.45rem] object-cover"
+											loading="lazy"
+										/>
+										<div class="pointer-events-none absolute inset-2.5 rounded-[1.45rem] bg-[linear-gradient(180deg,rgba(8,36,61,0.02)_32%,rgba(8,36,61,0.82)_100%)]"></div>
+										<h3 class="absolute inset-x-7 bottom-7 max-w-2xl text-2xl font-semibold leading-tight tracking-tight text-white drop-shadow-sm sm:inset-x-9 sm:bottom-9 sm:text-4xl">
+											{slide.title}
+										</h3>
+									</div>
+								</article>
+							))}
+						</div>
+					</div>
+
+					<button
+						type="button"
+						class="activity-carousel-control activity-carousel-control-prev"
+						data-activity-carousel-prev
+						aria-label="Show previous Day Program activity"
+					>
+						<span aria-hidden="true">&larr;</span>
+					</button>
+					<button
+						type="button"
+						class="activity-carousel-control activity-carousel-control-next"
+						data-activity-carousel-next
+						aria-label="Show next Day Program activity"
+					>
+						<span aria-hidden="true">&rarr;</span>
+					</button>
+				</div>
 			</div>
 		</Container>
 	</section>
 
-	<section class="pb-7 pt-1 sm:pb-9">
+	<section class="pb-8 pt-1 sm:pb-10">
 		<Container>
-			<div class="relative overflow-hidden rounded-[2.2rem] border border-white/80 bg-[linear-gradient(145deg,#fffaf1,#e8f4eb_58%,#fff1dd)] p-5 shadow-[0_30px_84px_-62px_rgba(8,36,61,0.54)] sm:p-6 lg:p-7">
-				<div class="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-brand-orange/18 blur-3xl"></div>
-				<div class="pointer-events-none absolute -bottom-20 left-12 h-56 w-56 rounded-full bg-brand-leaf/14 blur-3xl"></div>
+			<div class="relative overflow-hidden rounded-[2.2rem] border border-white/80 bg-brand-cream/92 p-5 shadow-[0_30px_84px_-62px_rgba(8,36,61,0.5)] sm:p-6 lg:grid lg:grid-cols-[0.86fr_1.14fr] lg:gap-6 lg:p-7">
+				<div class="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-brand-orange/14 blur-3xl"></div>
+				<div class="relative">
+					<p class="eyebrow">Hours and transportation</p>
+					<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+						Clear program windows with room for conversation.
+					</h2>
+					<p class="mt-4 text-base leading-7 text-slate-600">
+						Our Day Program currently operates in two support windows, with pickup and drop-off possibly available upon request depending on location, scheduling, and support fit.
+					</p>
+					<p class="mt-4 rounded-[1.2rem] border border-brand-green/16 bg-brand-leaf/12 px-4 py-3 text-sm leading-6 text-slate-700">
+						<span class="font-semibold text-brand-ink">Need a different schedule?</span> Reach out and tell us what you need. We may be able to discuss a support arrangement that better fits your situation.
+					</p>
+				</div>
 
-				<div class="relative grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
-					<div>
-						<p class="eyebrow">Program Hours & Transportation</p>
-						<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-							Program hours and transportation.
-						</h2>
-						<p class="mt-4 text-base leading-7 text-slate-600">
-							Our Day Program currently operates in two support windows: 7:00 AM &ndash; 3:00 PM and 4:00 PM &ndash; 11:00 PM. Pickup and drop-off may be available upon request, depending on location, scheduling, and support fit.
-						</p>
-						<p class="mt-3 text-base leading-7 text-slate-600">
-							If your needed hours are different from the standard windows, reach out. We may be able to discuss a more suitable support arrangement.
-						</p>
-					</div>
-
-					<div class="grid gap-3 sm:grid-cols-2">
-						<div class="rounded-[1.35rem] bg-brand-cream/86 p-5 shadow-[0_22px_62px_-52px_rgba(8,36,61,0.46)]">
-							<p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-green">Support window 1</p>
-							<p class="mt-3 text-2xl font-semibold tracking-tight text-brand-ink">7:00 AM &ndash; 3:00 PM</p>
-						</div>
-						<div class="rounded-[1.35rem] bg-brand-cream/86 p-5 shadow-[0_22px_62px_-52px_rgba(8,36,61,0.46)]">
-							<p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-green">Support window 2</p>
-							<p class="mt-3 text-2xl font-semibold tracking-tight text-brand-ink">4:00 PM &ndash; 11:00 PM</p>
-						</div>
-						<div class="rounded-[1.35rem] border border-brand-leaf/24 bg-brand-cream/78 p-5 shadow-[0_22px_62px_-52px_rgba(8,36,61,0.46)] sm:col-span-2">
-							<p class="text-base font-semibold text-brand-ink">Pickup and drop-off may be available on request.</p>
-							<p class="mt-2 text-sm leading-6 text-slate-600">
-								Transportation depends on location, scheduling, and whether the arrangement is a safe, appropriate fit.
+				<div class="relative mt-5 grid gap-3 lg:mt-0">
+					{hoursItems.map((item) => (
+						<div class="rounded-[1.25rem] border border-white/78 bg-[linear-gradient(145deg,rgba(255,250,241,0.95),rgba(232,244,235,0.78))] p-4 shadow-[0_18px_52px_-46px_rgba(8,36,61,0.42)] sm:grid sm:grid-cols-[1fr_auto] sm:items-center sm:gap-4">
+							<div>
+								<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand-green">{item.label}</p>
+								<p class="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+							</div>
+							<p class="mt-3 text-xl font-semibold tracking-tight text-brand-ink sm:mt-0 sm:text-right">
+								{item.value}
 							</p>
 						</div>
+					))}
+					<p class="rounded-[1.1rem] border border-brand-gold/18 bg-brand-sand/58 px-4 py-3 text-sm leading-6 text-slate-700">
+						Availability is reviewed during intake so families understand what is realistic before planning.
+					</p>
+				</div>
+			</div>
+		</Container>
+	</section>
+
+	<section class="pb-8 pt-1 sm:pb-10">
+		<Container>
+			<div class="relative overflow-hidden rounded-[2.2rem] border border-white/82 bg-[linear-gradient(145deg,#fffaf1,#e8f4eb_62%,#fff1dd)] p-5 shadow-[0_32px_88px_-62px_rgba(8,36,61,0.52)] sm:p-6 lg:grid lg:grid-cols-[0.88fr_1.12fr] lg:gap-6 lg:p-7">
+				<div class="pointer-events-none absolute -left-20 -top-24 h-64 w-64 rounded-full bg-brand-leaf/14 blur-3xl"></div>
+				<div class="pointer-events-none absolute -right-16 -bottom-20 h-56 w-56 rounded-full bg-brand-orange/14 blur-3xl"></div>
+
+				<div class="relative min-h-[20rem] overflow-hidden rounded-[2rem] bg-[linear-gradient(145deg,#fff1dd,#e8f4eb)] p-2.5 shadow-[0_28px_78px_-58px_rgba(8,36,61,0.5)]">
+					<img
+						src="/images/family-support.jpg"
+						alt="Outdoor support activity showing calm participation and caregiver reassurance"
+						class="h-full min-h-[19rem] w-full rounded-[1.55rem] object-cover"
+						loading="lazy"
+					/>
+				</div>
+
+				<div class="relative mt-5 rounded-[2rem] border border-white/80 bg-brand-cream/88 p-5 shadow-[0_26px_76px_-58px_rgba(8,36,61,0.48)] sm:p-6 lg:mt-0 lg:p-7">
+					<div class="relative">
+						<p class="eyebrow">Experienced support</p>
+						<h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+							Support shaped by real frontline experience.
+						</h2>
+						<p class="mt-4 text-base leading-7 text-slate-600">
+							Golden Care&apos;s approach is shaped by years of direct support experience with individuals who need structure, patience, communication, and consistency. Families can expect practical planning, clear updates, and support that considers safety, routines, goals, and comfort.
+						</p>
+						<div class="mt-6 grid gap-3 sm:grid-cols-2">
+							{trustCards.map((item) => (
+								<article class="rounded-[1.25rem] border border-brand-green/14 bg-white/62 p-4 shadow-[0_18px_52px_-46px_rgba(8,36,61,0.34)]">
+									<h3 class="text-base font-semibold leading-6 text-brand-ink">{item.title}</h3>
+									<p class="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+								</article>
+							))}
+						</div>
 					</div>
 				</div>
 			</div>
 		</Container>
 	</section>
 
-	<section class="pb-7 pt-1 sm:pb-9">
+	<section class="pb-8 pt-1 sm:pb-10">
 		<Container>
-			<div class="mb-5 flex flex-col gap-2 sm:mb-6">
-				<p class="eyebrow">Benefits</p>
-				<h2 class="max-w-3xl text-2xl font-semibold tracking-tight sm:text-3xl">
-					What the program is designed to support.
-				</h2>
-			</div>
-
-			<div class="grid gap-4 lg:grid-cols-3">
-				{benefits.map((benefit) => (
-					<article class="info-card bg-brand-cream/84">
-						<h3 class="text-xl font-semibold tracking-tight">{benefit.title}</h3>
-						<p class="mt-3 text-sm leading-6 text-slate-600">{benefit.description}</p>
-					</article>
-				))}
-			</div>
-		</Container>
-	</section>
-
-	<section class="pb-7 pt-1 sm:pb-9">
-		<Container>
-			<div class="relative overflow-hidden rounded-[2.1rem] bg-[linear-gradient(145deg,#fffaf1,#e8f4eb)] p-5 shadow-[0_28px_82px_-62px_rgba(8,36,61,0.5)] sm:p-6 lg:grid lg:grid-cols-[0.78fr_1.22fr] lg:gap-6 lg:p-7">
-				<div class="pointer-events-none absolute -right-14 -top-14 h-48 w-48 rounded-full bg-brand-orange/14 blur-3xl"></div>
-				<div class="space-y-3">
-					<p class="eyebrow">Participation may include</p>
-					<h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">
-						Practical support during the day.
-					</h2>
-					<p class="text-base leading-7 text-slate-600">
-						The exact mix depends on goals, communication style, and level of support.
+			<div class="feature-panel relative overflow-hidden p-5 sm:p-6 lg:grid lg:grid-cols-[0.72fr_1.28fr] lg:gap-7 lg:p-7">
+				<div class="pointer-events-none absolute -right-14 -top-16 h-48 w-48 rounded-full bg-brand-orange/12 blur-3xl"></div>
+				<div class="relative mb-5 lg:mb-0">
+					<p class="eyebrow">Next steps</p>
+					<h2 class="mt-4 text-2xl font-semibold tracking-tight">A simple intake path.</h2>
+					<p class="mt-3 text-sm leading-6 text-slate-600">
+						The application helps us understand age, location, support needs, safety considerations, and current fit.
 					</p>
 				</div>
-
-				<div class="grid gap-3 sm:grid-cols-2">
-					{participationItems.map((item) => (
-						<div class="relative rounded-[1.2rem] border border-white/74 bg-brand-cream/82 p-4 shadow-[0_18px_54px_-46px_rgba(8,36,61,0.42)]">
-							<h3 class="text-sm font-semibold leading-6 text-brand-ink">{item.title}</h3>
-							<p class="mt-1.5 text-sm leading-6 text-slate-600">{item.description}</p>
+				<div class="relative grid gap-3 lg:grid-cols-3">
+					{nextSteps.map((step, index) => (
+						<div class="step-card min-h-full">
+							<span class="step-marker">{index + 1}</span>
+							<h3 class="mt-2 text-base font-semibold">{step.title}</h3>
+							<p class="mt-2 text-sm leading-6 text-slate-600">{step.description}</p>
 						</div>
 					))}
-				</div>
-			</div>
-		</Container>
-	</section>
-
-	<section class="pb-7 pt-1 sm:pb-9">
-		<Container>
-			<div class="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
-				<div class="tint-panel p-5 sm:p-6">
-					<p class="eyebrow">Service area</p>
-					<h2 class="mt-4 text-2xl font-semibold tracking-tight">Durham Region only.</h2>
-					<p class="mt-3 text-sm leading-6 text-slate-600">
-						Day Program intake is currently for adults in Durham Region.
-					</p>
-				</div>
-
-				<div class="feature-panel p-5 sm:p-6">
-					<div class="mb-5">
-						<p class="eyebrow">Next steps</p>
-						<h2 class="mt-4 text-2xl font-semibold tracking-tight">A simple intake path.</h2>
-					</div>
-					<div class="grid gap-3 lg:grid-cols-3">
-						{nextSteps.map((step, index) => (
-							<div class="step-card">
-								<span class="step-marker">{index + 1}</span>
-								<h3 class="mt-2 text-base font-semibold">{step.title}</h3>
-								<p class="mt-2 text-sm leading-6 text-slate-600">{step.description}</p>
-							</div>
-						))}
-					</div>
 				</div>
 			</div>
 		</Container>
@@ -299,4 +397,249 @@ const nextSteps = [
 			</div>
 		</Container>
 	</section>
+
+	<style>
+		.activity-carousel {
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+		}
+
+		.activity-carousel::-webkit-scrollbar {
+			display: none;
+		}
+
+		.activity-carousel:focus-visible {
+			border-radius: 1.8rem;
+			outline: 2px solid #147c68;
+			outline-offset: 0.35rem;
+		}
+
+		.activity-carousel-track {
+			transform: translate3d(0, 0, 0);
+			transition: transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+			will-change: transform;
+		}
+
+		.activity-carousel-card {
+			flex: 0 0 100%;
+			min-width: 0;
+			width: 100%;
+		}
+
+		.activity-carousel-control {
+			align-items: center;
+			background: rgba(255, 250, 241, 0.9);
+			border: 1px solid rgba(255, 255, 255, 0.7);
+			border-radius: 999px;
+			box-shadow: 0 22px 54px -34px rgba(8, 36, 61, 0.66);
+			color: #08243d;
+			display: inline-flex;
+			font-size: 1.15rem;
+			font-weight: 800;
+			height: 3rem;
+			justify-content: center;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			transition:
+				background 160ms ease,
+				box-shadow 160ms ease,
+				color 160ms ease,
+				transform 160ms ease;
+			width: 3rem;
+			z-index: 5;
+		}
+
+		.activity-carousel-control:hover {
+			background: #147c68;
+			box-shadow: 0 26px 62px -34px rgba(8, 36, 61, 0.72);
+			color: #fffaf1;
+			transform: translateY(-50%) scale(1.04);
+		}
+
+		.activity-carousel-control:focus-visible {
+			outline: 2px solid #147c68;
+			outline-offset: 0.25rem;
+		}
+
+		.activity-carousel-control-prev {
+			left: 0.85rem;
+		}
+
+		.activity-carousel-control-next {
+			right: 0.85rem;
+		}
+
+		@media (min-width: 768px) {
+			.activity-carousel-control {
+				height: 3.35rem;
+				width: 3.35rem;
+			}
+
+			.activity-carousel-control-prev {
+				left: 1.15rem;
+			}
+
+			.activity-carousel-control-next {
+				right: 1.15rem;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.activity-carousel-track {
+				transition: none;
+			}
+		}
+	</style>
+
+	<script is:inline>
+		const activityCarouselRegion = document.querySelector("[data-activity-carousel-region]");
+		const activityCarousel = document.querySelector("[data-activity-carousel]");
+		const activityTrack = document.querySelector("[data-activity-carousel-track]");
+		const activityPrev = document.querySelector("[data-activity-carousel-prev]");
+		const activityNext = document.querySelector("[data-activity-carousel-next]");
+
+		if (activityCarousel && activityTrack) {
+			const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+			const originalActivityCards = Array.from(activityTrack.querySelectorAll("[data-activity-slide-set='original']"));
+			const activityCardCount = originalActivityCards.length;
+			const activityPauseDelay = 4000;
+			const activityTransition = "transform 760ms cubic-bezier(0.22, 1, 0.36, 1)";
+			const pauseTarget = activityCarouselRegion || activityCarousel;
+			let activeActivityIndex = 0;
+			let activityStepWidth = 0;
+			let activityTimer;
+			let isActivityTransitioning = false;
+			let isHoveringActivity = false;
+			let isFocusingActivity = false;
+
+			const getActivityStepWidth = () => {
+				return activityCarousel.getBoundingClientRect().width;
+			};
+
+			const setActivityTransition = (shouldAnimate) => {
+				activityTrack.style.transition = shouldAnimate && !prefersReducedMotion ? activityTransition : "none";
+			};
+
+			const moveActivityTrack = (shouldAnimate = true) => {
+				setActivityTransition(shouldAnimate);
+				activityTrack.style.transform = `translate3d(-${activeActivityIndex * activityStepWidth}px, 0, 0)`;
+			};
+
+			const resetActivityTrackSilently = (index) => {
+				activeActivityIndex = index;
+				moveActivityTrack(false);
+				activityTrack.offsetHeight;
+				setActivityTransition(true);
+			};
+
+			const normalizeActivityIndex = () => {
+				if (!activityCardCount) return;
+
+				if (activeActivityIndex >= activityCardCount) {
+					resetActivityTrackSilently(activeActivityIndex % activityCardCount);
+				}
+			};
+
+			const shouldPauseActivityAuto = () => isHoveringActivity || isFocusingActivity;
+
+			const stopActivityAuto = () => {
+				window.clearTimeout(activityTimer);
+				activityTimer = undefined;
+			};
+
+			const moveActivityCarousel = (direction) => {
+				if (!activityCardCount || isActivityTransitioning) return;
+
+				activityStepWidth = getActivityStepWidth();
+
+				if (direction < 0 && activeActivityIndex === 0) {
+					resetActivityTrackSilently(activityCardCount);
+				}
+
+				activeActivityIndex += direction;
+
+				if (prefersReducedMotion) {
+					moveActivityTrack(false);
+					normalizeActivityIndex();
+					return;
+				}
+
+				isActivityTransitioning = true;
+				moveActivityTrack(true);
+			};
+
+			const startActivityAuto = () => {
+				if (prefersReducedMotion || shouldPauseActivityAuto() || activityTimer || !activityCardCount) return;
+				activityTimer = window.setTimeout(() => {
+					activityTimer = undefined;
+					isActivityTransitioning = true;
+					activityStepWidth = getActivityStepWidth();
+					activeActivityIndex += 1;
+					moveActivityTrack(true);
+				}, activityPauseDelay);
+			};
+
+			const setActivityTrackWidth = () => {
+				activityStepWidth = getActivityStepWidth();
+				activeActivityIndex = activeActivityIndex % Math.max(activityCardCount, 1);
+				moveActivityTrack(false);
+				activityTrack.offsetHeight;
+				setActivityTransition(true);
+			};
+
+			setActivityTrackWidth();
+			window.requestAnimationFrame(setActivityTrackWidth);
+
+			if ("ResizeObserver" in window) {
+				const resizeObserver = new ResizeObserver(setActivityTrackWidth);
+				resizeObserver.observe(activityCarousel);
+			} else {
+				window.addEventListener("resize", setActivityTrackWidth);
+			}
+
+			activityTrack.addEventListener("transitionend", (event) => {
+				if (event.target !== activityTrack || event.propertyName !== "transform") return;
+				isActivityTransitioning = false;
+				normalizeActivityIndex();
+				startActivityAuto();
+			});
+
+			activityPrev?.addEventListener("click", () => {
+				stopActivityAuto();
+				moveActivityCarousel(-1);
+				if (!shouldPauseActivityAuto() && !isActivityTransitioning) startActivityAuto();
+			});
+
+			activityNext?.addEventListener("click", () => {
+				stopActivityAuto();
+				moveActivityCarousel(1);
+				if (!shouldPauseActivityAuto() && !isActivityTransitioning) startActivityAuto();
+			});
+
+			pauseTarget.addEventListener("mouseenter", () => {
+				isHoveringActivity = true;
+				stopActivityAuto();
+			});
+
+			pauseTarget.addEventListener("mouseleave", () => {
+				isHoveringActivity = false;
+				if (!isActivityTransitioning) startActivityAuto();
+			});
+
+			pauseTarget.addEventListener("focusin", () => {
+				isFocusingActivity = true;
+				stopActivityAuto();
+			});
+
+			pauseTarget.addEventListener("focusout", (event) => {
+				if (!pauseTarget.contains(event.relatedTarget)) {
+					isFocusingActivity = false;
+					if (!isActivityTransitioning) startActivityAuto();
+				}
+			});
+
+			startActivityAuto();
+		}
+	</script>
 </BaseLayout>

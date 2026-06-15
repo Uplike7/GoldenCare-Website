@@ -6,14 +6,14 @@ import ButtonLink from "../components/ui/ButtonLink.astro";
 const contactDetails = [
 	{
 		label: "Phone",
-		value: "437-248-1172",
-		href: "tel:4372481172",
+		value: "+1 (289) 992-0776",
+		href: "tel:+12899920776",
 		description: "During business hours"
 	},
 	{
 		label: "Email",
-		value: "goldencaresupport@gmail.com",
-		href: "mailto:goldencaresupport@gmail.com",
+		value: "goldencare968@gmail.com",
+		href: "mailto:goldencare968@gmail.com",
 		description: "Best for detailed questions"
 	},
 	{
@@ -31,7 +31,7 @@ const contactDetails = [
 ];
 
 const inquiryTypes = [
-	"Day Program Inquiry",
+	"Adult Day Program Inquiry (Ages 18+)",
 	"Home & Community Staffing Inquiry",
 	"General / Referral Inquiry"
 ];
@@ -48,7 +48,7 @@ const regions = [
 
 <BaseLayout
 	title="Contact | Golden Care Support Services Inc."
-	description="Contact Golden Care Support Services Inc. for day program intake in Durham Region and Home & Community Support Staffing across Durham, Peel, York, Toronto, and Scarborough."
+	description="Contact Golden Care Support Services Inc. for Adult Day Program intake for adults 18+ in Durham Region and Home & Community Support Staffing across Durham, Peel, York, Toronto, and Scarborough."
 >
 	<section class="pb-4 pt-7 sm:pb-6 sm:pt-9">
 		<Container>
@@ -60,12 +60,12 @@ const regions = [
 						Contact Golden Care Support Services Inc.
 					</h1>
 					<p class="max-w-3xl text-base leading-7 text-slate-600">
-						Ask about Day Program intake or Home & Community Support Staffing.
+						Ask about Adult Day Program intake for adults 18+ or Home & Community Support Staffing.
 					</p>
 				</div>
 
 				<div class="relative mt-4 flex flex-wrap gap-3">
-					<ButtonLink href="tel:4372481172">Call 437-248-1172</ButtonLink>
+					<ButtonLink href="tel:+12899920776">Call +1 (289) 992-0776</ButtonLink>
 					<ButtonLink href="#contact-form" variant="secondary">Send an Inquiry</ButtonLink>
 				</div>
 
@@ -238,7 +238,7 @@ const regions = [
 			`${data.get("message") || ""}`
 		];
 
-		const mailtoUrl = `mailto:goldencaresupport@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+		const mailtoUrl = `mailto:goldencare968@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
 		window.location.href = mailtoUrl;
 	});
 </script>

@@ -35,7 +35,7 @@ Families often use Passport planning conversations to think through practical ne
 - 1:1 support worker hours
 - planning around goals, independence, and participation
 
-If you are exploring Golden Care, you may want to ask whether [Adult Day Program](/day-program) support or [Home & Community Staffing](/community-home-support) fits your goals, region, schedule, and funding rules.
+If you are exploring Golden Care, you may want to ask whether [Adult Day Program](/day-program) support for adults 18+ or [Home & Community Staffing](/community-home-support) fits your goals, region, schedule, and funding rules.
 
 ## What to organize before using Passport
 
@@ -70,4 +70,3 @@ If you are unsure, start by organizing your funding questions and contacting you
 
 - [Ontario Passport program](https://www.ontario.ca/page/passport-program-adults-developmental-disability)
 - [Passport Program guidelines](https://www.ontario.ca/page/passport-program-guidelines)
-

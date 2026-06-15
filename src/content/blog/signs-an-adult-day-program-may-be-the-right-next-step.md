@@ -1,13 +1,13 @@
 ---
 title: "Signs an Adult Day Program May Be the Right Next Step"
-description: "Learn the common signs that an adult day program may be the right next step for structured support, routine, engagement, and caregiver relief."
+description: "Learn the common signs that an adult day program may be the right next step for adults 18+ who need structured support, routine, engagement, and caregiver relief."
 date: 2026-04-06
 category: "Day Program"
 readingTime: "6 min read"
 featured: false
 ---
 
-Families often begin thinking about an adult day program when home routines become harder to manage or when an adult family member needs more structure during the day.
+Families often begin thinking about an adult day program when home routines become harder to manage or when an adult family member who is 18+ needs more structure during the day.
 
 The right day program can support routine, engagement, social connection, and caregiver relief. It can also create a more predictable plan for the household.
 
@@ -53,7 +53,6 @@ Adult day programming can support the whole household by creating a more reliabl
 
 ## Is Golden Care's Day Program a fit?
 
-Golden Care's Adult Day Program intake is currently for Durham Region. Families can [apply](/apply) or [contact the team](/contact) to ask about fit, support needs, scheduling, and next steps.
+Golden Care's Adult Day Program intake is currently for adults 18+ in Durham Region. Families can [apply](/apply) or [contact the team](/contact) to ask about fit, support needs, scheduling, and next steps.
 
 Submitting an application does not guarantee acceptance, but it starts the review process.
-

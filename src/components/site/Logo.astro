@@ -2,12 +2,19 @@
 import { companyName, shortName } from "../../data/site";
 
 const compactSubtitle = "Support Services Inc.";
+const logoAlt = "Golden Care Support Services Inc.";
 ---
 
-<a href="/" class="inline-flex items-center gap-3 text-brand-ink">
-	<span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#08243d,#147c68)] p-2 shadow-[0_14px_36px_-22px_rgba(8,36,61,0.72)] xl:h-12 xl:w-12">
-		<img src="/favicon.svg" alt="" class="h-full w-full rounded-xl bg-white/95 p-1.5" />
-	</span>
+<a href="/" class="inline-flex items-center gap-3 text-brand-ink" aria-label={logoAlt}>
+	<img
+		src="/images/golden-care-logo-mark.png"
+		alt={logoAlt}
+		width="900"
+		height="569"
+		class="h-11 w-[4.25rem] shrink-0 object-contain sm:h-12 sm:w-[4.75rem] xl:h-[3.25rem] xl:w-[5.125rem]"
+		loading="eager"
+		decoding="async"
+	/>
 	<span class="flex flex-col leading-none">
 		<span class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-green xl:text-[0.95rem]">
 			Golden Care

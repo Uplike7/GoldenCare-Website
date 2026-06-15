@@ -1,5 +1,5 @@
 ---
-title: "Family Intake Checklist for Day Program and Home & Community Staffing"
+title: "Family Intake Checklist for Adult Day Program and Home & Community Staffing"
 description: "Organize key details before an inquiry, application, or referral."
 date: 2026-04-02
 category: "Planning Tool"
@@ -12,6 +12,7 @@ Intake is easier when the basics are ready.
 ## Helpful details to gather
 
 - the individual's age group and current routines
+- for Day Program inquiries, whether the person needing support is an adult 18+
 - region or city where support is needed
 - the service you are exploring
 - preferred days, times, or urgency level
